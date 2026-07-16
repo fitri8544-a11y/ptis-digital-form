@@ -1,0 +1,24 @@
+[
+    {
+        "code":"KEW.PA-9",
+        "title":"Permohonan Pergerakan / Pinjaman Aset Alih",
+        "category":"Aset Alih",
+        "icon":"📦",
+        "status":"Aktif",
+        "page":"kewpa9"
+    },
+    {
+        "code":"KEW.PA-3",
+        "title":"Daftar Harta Modal",
+        "category":"Aset Alih",
+        "icon":"💻",
+        "status":"Akan Datang"
+    },
+    {
+        "code":"KEW.PA-19",
+        "title":"Sijil Penyaksian Pemusnahan",
+        "category":"Pelupusan",
+        "icon":"🗑️",
+        "status":"Akan Datang"
+    }
+]

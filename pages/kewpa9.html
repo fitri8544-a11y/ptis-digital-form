@@ -1,0 +1,916 @@
+<div class="p-8 lg:p-10 space-y-8">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+        <button
+        onclick="loadPage('digital-forms')"
+        class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Kembali ke Digital Forms
+
+        </button>
+
+        <div class="flex items-center gap-3">
+
+            <span
+            class="px-4 py-2 rounded-full
+            bg-green-500/15
+            text-green-400
+            text-sm
+            font-bold">
+
+                🟢 DRAFT
+
+            </span>
+
+            <span
+            class="px-4 py-2 rounded-full
+            bg-cyan-500/15
+            text-cyan-300
+            text-sm
+            font-bold">
+
+                LANGKAH 1 / 4
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- ================= HERO ================= -->
+
+    <section
+    class="rounded-[32px]
+    bg-gradient-to-r
+    from-cyan-600
+    via-sky-600
+    to-blue-700
+    overflow-hidden
+    p-10
+    shadow-2xl">
+
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+            <div>
+
+                <div
+                class="inline-flex
+                items-center
+                gap-2
+                px-4
+                py-2
+                rounded-full
+                bg-white/15
+                text-white
+                text-sm
+                font-semibold">
+
+                    📄 BORANG RASMI KERAJAAN
+
+                </div>
+
+                <h1
+                class="text-4xl
+                lg:text-5xl
+                font-black
+                mt-6">
+
+                    KEW.PA-9
+
+                </h1>
+
+                <p
+                class="text-xl
+                text-blue-100
+                mt-3">
+
+                    Permohonan Pergerakan / Pinjaman Aset Alih
+
+                </p>
+
+                <p
+                class="text-blue-100
+                mt-6
+                max-w-2xl
+                leading-8">
+
+                    Lengkapkan semua maklumat dengan tepat.
+                    Semua rekod akan disimpan secara digital
+                    di dalam PTIS Digital Form.
+
+                </p>
+
+            </div>
+
+            <div
+            class="hidden
+            lg:flex
+            w-40
+            h-40
+            rounded-[32px]
+            bg-white/10
+            items-center
+            justify-center
+            text-7xl">
+
+                📦
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= WIZARD ================= -->
+
+    <section>
+
+        <div class="flex items-center">
+
+            <div class="wizard-step active">
+
+                1
+
+            </div>
+
+            <div class="flex-1 h-1 bg-cyan-500"></div>
+
+            <div class="wizard-step">
+
+                2
+
+            </div>
+
+            <div class="flex-1 h-1 bg-slate-700"></div>
+
+            <div class="wizard-step">
+
+                3
+
+            </div>
+
+            <div class="flex-1 h-1 bg-slate-700"></div>
+
+            <div class="wizard-step">
+
+                4
+
+            </div>
+
+        </div>
+
+        <div
+        class="grid
+        grid-cols-4
+        text-center
+        mt-5
+        text-sm
+        text-slate-400
+        font-semibold">
+
+            <div>Pemohon</div>
+
+            <div>Pinjaman</div>
+
+            <div>Aset</div>
+
+            <div>Semakan</div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section>
+
+        <div
+        class="flex
+        justify-between
+        mb-4">
+
+            <span class="font-semibold">
+
+                Progress Borang
+
+            </span>
+
+            <span>
+
+                Langkah
+                <b>1</b>
+                daripada
+                <b>4</b>
+
+            </span>
+
+        </div>
+
+        <div
+        class="w-full
+        h-3
+        rounded-full
+        bg-slate-800">
+
+            <div
+            id="progressFill"
+            class="h-3
+            rounded-full
+            bg-cyan-500"
+            style="width:25%;">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STEP 1 ================= -->
+
+    <section
+    id="step1"
+    class="wizard-section">
+
+        <div
+        class="flex
+        items-center
+        justify-between
+        mb-10">
+
+            <div>
+
+                <h2
+                class="text-3xl
+                font-black">
+
+                    👤 Maklumat Pemohon
+
+                </h2>
+
+                <p
+                class="text-slate-400
+                mt-2">
+
+                    Lengkapkan maklumat pemohon.
+
+                </p>
+
+            </div>
+
+            <div
+            class="hidden
+            lg:flex
+            items-center
+            justify-center
+            w-16
+            h-16
+            rounded-2xl
+            bg-cyan-500/15
+            text-3xl">
+
+                👤
+
+            </div>
+
+        </div>
+
+        <div
+        class="grid
+        md:grid-cols-2
+        gap-8">
+
+            <div>
+
+                <label>Nama Pemohon</label>
+
+                <input
+                id="namaPemohon"
+                class="wizard-input"
+                type="text"
+                placeholder="Masukkan nama penuh">
+
+            </div>
+
+            <div>
+
+                <label>No. Kad Pengenalan</label>
+
+                <input
+                id="icPemohon"
+                class="wizard-input"
+                type="text"
+                placeholder="Contoh : 900101021234">
+
+            </div>
+
+            <div>
+
+                <label>Jawatan</label>
+
+                <input
+                id="jawatan"
+                class="wizard-input"
+                type="text"
+                placeholder="Contoh : Guru ICT">
+
+            </div>
+
+            <div>
+
+                <label>Bahagian / Unit</label>
+
+                <input
+                id="bahagian"
+                class="wizard-input"
+                type="text"
+                placeholder="Contoh : Unit ICT">
+
+            </div>
+
+            <div>
+
+                <label>Sekolah</label>
+
+                <input
+                id="sekolah"
+                class="wizard-input"
+                type="text"
+                placeholder="Nama sekolah">
+
+            </div>
+
+            <div>
+
+                <label>Daerah</label>
+
+                <input
+                id="daerah"
+                class="wizard-input"
+                type="text"
+                placeholder="Contoh : Baling">
+
+            </div>
+
+            <div>
+
+                <label>No. Telefon</label>
+
+                <input
+                id="telefon"
+                class="wizard-input"
+                type="text"
+                placeholder="01XXXXXXXX">
+
+            </div>
+
+            <div>
+
+                <label>Email</label>
+
+                <input
+                id="email"
+                class="wizard-input"
+                type="email"
+                placeholder="nama@moe.gov.my">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STEP 2 ================= -->
+
+    <section
+    id="step2"
+    class="wizard-section mt-10">
+
+        <div
+        class="flex
+        items-center
+        justify-between
+        mb-10">
+
+            <div>
+
+                <h2
+                class="text-3xl
+                font-black">
+
+                    📋 Maklumat Pinjaman
+
+                </h2>
+
+                <p
+                class="text-slate-400
+                mt-2">
+
+                    Lengkapkan maklumat berkaitan pinjaman aset.
+
+                </p>
+
+            </div>
+
+            <div
+            class="hidden
+            lg:flex
+            items-center
+            justify-center
+            w-16
+            h-16
+            rounded-2xl
+            bg-cyan-500/15
+            text-3xl">
+
+                📋
+
+            </div>
+
+        </div>
+
+        <div
+        class="grid
+        md:grid-cols-2
+        gap-8">
+
+            <div>
+
+                <label>Tarikh Pinjaman</label>
+
+                <input
+                id="tarikhPinjaman"
+                type="date"
+                class="wizard-input">
+
+            </div>
+
+            <div>
+
+                <label>Tarikh Pemulangan</label>
+
+                <input
+                id="tarikhPulang"
+                type="date"
+                class="wizard-input">
+
+            </div>
+
+            <div class="md:col-span-2">
+
+                <label>Lokasi Digunakan</label>
+
+                <input
+                id="lokasi"
+                type="text"
+                class="wizard-input"
+                placeholder="Contoh : Dewan Sekolah">
+
+            </div>
+
+            <div class="md:col-span-2">
+
+                <label>Tujuan Pinjaman</label>
+
+                <textarea
+                id="tujuan"
+                rows="4"
+                class="wizard-input"
+                placeholder="Nyatakan tujuan pinjaman aset..."></textarea>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STEP 3 ================= -->
+
+    <section
+    id="step3"
+    class="wizard-section mt-10">
+
+        <div
+        class="flex
+        items-center
+        justify-between
+        mb-10">
+
+            <div>
+
+                <h2
+                class="text-3xl
+                font-black">
+
+                    💻 Maklumat Aset
+
+                </h2>
+
+                <p
+                class="text-slate-400
+                mt-2">
+
+                    Maklumat aset yang dipohon.
+
+                </p>
+
+            </div>
+
+            <div
+            class="hidden
+            lg:flex
+            items-center
+            justify-center
+            w-16
+            h-16
+            rounded-2xl
+            bg-cyan-500/15
+            text-3xl">
+
+                💻
+
+            </div>
+
+        </div>
+
+        <div
+        class="grid
+        md:grid-cols-2
+        gap-8">
+
+            <div>
+
+                <label>Jenis Aset</label>
+
+                <select
+                id="jenisAset"
+                class="wizard-input">
+
+                    <option value="">
+
+                        -- Pilih --
+
+                    </option>
+
+                    <option>
+
+                        Laptop
+
+                    </option>
+
+                    <option>
+
+                        Desktop
+
+                    </option>
+
+                    <option>
+
+                        LCD Projector
+
+                    </option>
+
+                    <option>
+
+                        Printer
+
+                    </option>
+
+                    <option>
+
+                        Lain-lain
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div>
+
+                <label>No. Siri / Tag Aset</label>
+
+                <input
+                id="tagAset"
+                type="text"
+                class="wizard-input"
+                placeholder="Contoh : BBA404012345">
+
+            </div>
+
+            <div>
+
+                <label>Kuantiti</label>
+
+                <input
+                id="kuantiti"
+                type="number"
+                value="1"
+                min="1"
+                class="wizard-input">
+
+            </div>
+
+            <div>
+
+                <label>Keadaan Aset</label>
+
+                <select
+                id="keadaan"
+                class="wizard-input">
+
+                    <option>
+
+                        Baik
+
+                    </option>
+
+                    <option>
+
+                        Memuaskan
+
+                    </option>
+
+                    <option>
+
+                        Perlu Pemerhatian
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="md:col-span-2">
+
+                <label>Catatan</label>
+
+                <textarea
+                id="catatan"
+                rows="4"
+                class="wizard-input"
+                placeholder="Catatan tambahan..."></textarea>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STEP 4 ================= -->
+
+    <section
+    id="step4"
+    class="wizard-section mt-10">
+
+        <div
+        class="flex
+        items-center
+        justify-between
+        mb-10">
+
+            <div>
+
+                <h2
+                class="text-3xl
+                font-black">
+
+                    ✅ Semakan Permohonan
+
+                </h2>
+
+                <p
+                class="text-slate-400
+                mt-2">
+
+                    Sila semak semula semua maklumat sebelum menghantar permohonan.
+
+                </p>
+
+            </div>
+
+            <div
+            class="hidden
+            lg:flex
+            items-center
+            justify-center
+            w-16
+            h-16
+            rounded-2xl
+            bg-green-500/15
+            text-3xl">
+
+                ✅
+
+            </div>
+
+        </div>
+
+        <!-- SUMMARY -->
+
+        <div
+        class="grid
+        md:grid-cols-2
+        gap-6">
+
+            <div class="bg-slate-900 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+
+                    Nama Pemohon
+
+                </p>
+
+                <h3
+                id="reviewNama"
+                class="font-bold text-lg mt-2">
+
+                    -
+
+                </h3>
+
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+
+                    Sekolah
+
+                </p>
+
+                <h3
+                id="reviewSekolah"
+                class="font-bold text-lg mt-2">
+
+                    -
+
+                </h3>
+
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+
+                    Tarikh Pinjaman
+
+                </p>
+
+                <h3
+                id="reviewTarikh"
+                class="font-bold text-lg mt-2">
+
+                    -
+
+                </h3>
+
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+
+                    Jenis Aset
+
+                </p>
+
+                <h3
+                id="reviewAset"
+                class="font-bold text-lg mt-2">
+
+                    -
+
+                </h3>
+
+            </div>
+
+        </div>
+
+        <!-- DECLARATION -->
+
+        <div
+        class="mt-10
+        rounded-2xl
+        border
+        border-cyan-500/20
+        bg-cyan-500/5
+        p-6">
+
+            <label
+            class="flex
+            items-start
+            gap-4">
+
+                <input
+                id="agreeDeclaration"
+                type="checkbox"
+                class="mt-1">
+
+                <span class="leading-7">
+
+                    Saya mengesahkan bahawa semua maklumat yang diberikan
+                    adalah benar dan saya bertanggungjawab terhadap aset
+                    yang dipinjam sepanjang tempoh pinjaman.
+
+                </span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+    <!-- ================= BUTTON ================= -->
+
+    <div
+class="flex
+flex-col
+md:flex-row
+justify-between
+items-center
+gap-4
+mt-12">
+
+    <button
+    onclick="saveDraft()"
+    class="px-8
+    py-4
+    rounded-2xl
+    bg-slate-700
+    hover:bg-slate-600
+    font-semibold">
+
+        💾 Simpan Draft
+
+    </button>
+
+    <div class="flex gap-4">
+
+        <button
+        id="btnPrevious"
+        onclick="previousStep()"
+        class="px-8
+        py-4
+        rounded-2xl
+        bg-slate-700
+        hover:bg-slate-600
+        font-semibold">
+
+            ← Sebelumnya
+
+        </button>
+
+        <button
+        id="btnNext"
+        onclick="nextStep()"
+        class="px-10
+        py-4
+        rounded-2xl
+        bg-cyan-500
+        hover:bg-cyan-600
+        font-bold">
+
+            Seterusnya →
+
+        </button>
+
+        <button
+        id="btnSubmit"
+        onclick="submitForm()"
+        style="display:none;"
+        class="px-10
+        py-4
+        rounded-2xl
+        bg-green-600
+        hover:bg-green-700
+        font-bold">
+
+            ✅ Hantar Permohonan
+
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <div
+    class="mt-16
+    border-t
+    border-slate-800
+    pt-8
+    text-center
+    text-sm
+    text-slate-500">
+
+        PTIS DIGITAL FORM • KEW.PA-9 • Versi 1.0
+
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+{
+    "user":{
+
+        "name":"Muhamed Fitri",
+
+        "role":"ICT Coordinator",
+
+        "school":"SK XXXXX",
+
+        "district":"Daerah Baling"
+
+    },
+
+    "kpi":{
+
+        "totalForms":142,
+
+        "pending":12,
+
+        "approved":98,
+
+        "readyPrint":8
+
+    },
+
+    "activities":[
+
+        {
+
+            "date":"Hari Ini",
+
+            "title":"KEW.PA-9 dihantar"
+
+        },
+
+        {
+
+            "date":"Semalam",
+
+            "title":"KEW.PA-19 diluluskan"
+
+        },
+
+        {
+
+            "date":"3 Hari Lepas",
+
+            "title":"KEW.PA-3 dicetak"
+
+        }
+
+    ]
+
+}

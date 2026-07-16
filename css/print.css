@@ -1,0 +1,272 @@
+/* ==========================================
+   PTIS DIGITAL FORM
+   KEW.PA-9 PRINT STYLE
+========================================== */
+
+@page{
+
+    size:A4 portrait;
+
+    margin:12mm;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:#f1f5f9;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    font-size:12px;
+
+    color:#000;
+
+}
+
+.paper{
+
+    width:210mm;
+
+    min-height:297mm;
+
+    margin:20px auto;
+
+    background:#fff;
+
+    padding:10mm;
+
+    box-shadow:0 0 12px rgba(0,0,0,.15);
+
+}
+
+/* ================= HEADER ================= */
+
+.header-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-bottom:10px;
+
+}
+
+.header-left{
+
+    text-align:left;
+
+    font-size:12px;
+
+    vertical-align:top;
+
+    color:#000;
+
+}
+
+.header-right{
+
+    text-align:right;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    vertical-align:top;
+
+    color:#000;
+
+}
+
+.formno-table{
+
+    width:100%;
+
+    margin-top:8px;
+
+    margin-bottom:10px;
+
+    border-collapse:collapse;
+
+}
+
+.form-title{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+    margin-bottom:20px;
+
+    line-height:1.5;
+
+    color:#000;
+
+}
+
+/* ================= INFO ================= */
+
+.info-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-bottom:18px;
+
+}
+
+.info-table td{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    vertical-align:top;
+
+}
+
+.info-table .label{
+
+    width:18%;
+
+    font-weight:bold;
+
+    background:#f7f7f7;
+
+    color:#000;
+
+}
+
+.info-table .value{
+
+    width:32%;
+
+    color:#000;
+
+}
+
+/* ================= TABLE ================= */
+
+.asset-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+    margin-bottom:18px;
+
+}
+
+.asset-table th{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    font-size:11px;
+
+    background:#ececec;
+
+    text-align:center;
+
+    color:#000;
+
+}
+
+.asset-table td{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    height:28px;
+
+    font-size:11px;
+
+    color:#000;
+
+}
+
+.center{
+
+    text-align:center;
+
+}
+
+.w-bil{
+
+    width:40px;
+
+}
+
+.w-siri{
+
+    width:140px;
+
+}
+
+/* ================= SIGNATURE ================= */
+
+.signature-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.signature-table td{
+
+    width:50%;
+
+    vertical-align:top;
+
+    padding:10px;
+
+    font-size:12px;
+
+    color:#000;
+
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+
+    body{
+
+        background:#fff;
+
+    }
+
+    .paper{
+
+        width:100%;
+
+        margin:0;
+
+        box-shadow:none;
+
+        padding:0;
+
+    }
+
+}

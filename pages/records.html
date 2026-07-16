@@ -1,0 +1,193 @@
+<div class="p-10 space-y-8">
+
+    <!-- HEADER -->
+
+    <section
+    class="rounded-[32px]
+    bg-gradient-to-r
+    from-cyan-600
+    to-blue-700
+    p-10">
+
+        <p class="text-xl">
+
+            Rekod Permohonan
+
+        </p>
+
+        <h1
+        class="text-5xl
+        font-black
+        mt-2">
+
+            Rekod Saya
+
+        </h1>
+
+        <p class="mt-4 text-cyan-100">
+
+            Semua permohonan yang pernah dihantar akan dipaparkan di sini.
+
+        </p>
+
+    </section>
+
+    <!-- SUMMARY -->
+
+    <section
+    class="grid
+    md:grid-cols-4
+    gap-6">
+
+        <div class="kpi-card">
+
+            <p>Total Permohonan</p>
+
+            <h2 id="totalForms">
+
+                0
+
+            </h2>
+
+        </div>
+
+        <div class="kpi-card">
+
+            <p>Pending</p>
+
+            <h2
+            id="pendingForms"
+            class="text-yellow-400">
+
+                0
+
+            </h2>
+
+        </div>
+
+        <div class="kpi-card">
+
+            <p>Approved</p>
+
+            <h2
+            id="approvedForms"
+            class="text-green-400">
+
+                0
+
+            </h2>
+
+        </div>
+
+        <div class="kpi-card">
+
+            <p>Rejected</p>
+
+            <h2
+            id="rejectedForms"
+            class="text-red-400">
+
+                0
+
+            </h2>
+
+        </div>
+
+    </section>
+
+    <!-- TABLE -->
+
+    <section
+    class="bg-slate-900
+    rounded-3xl
+    p-6">
+
+        <div
+        class="flex
+        justify-between
+        items-center
+        mb-6">
+
+            <h2
+            class="text-2xl
+            font-black">
+
+                📁 Senarai Permohonan
+
+            </h2>
+
+        </div>
+
+        <div
+        class="overflow-x-auto">
+
+            <table
+            class="w-full">
+
+                <thead>
+
+                    <tr
+                    class="text-left
+                    border-b
+                    border-slate-700">
+
+                        <th class="py-4">
+
+                            No Permohonan
+
+                        </th>
+
+                        <th>
+
+                            Borang
+
+                        </th>
+
+                        <th>
+
+                            Tarikh
+
+                        </th>
+
+                        <th>
+
+                            Status
+
+                        </th>
+
+                        <th>
+
+                            Tindakan
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                id="recordTable">
+
+                    <tr>
+
+                        <td
+                        colspan="5"
+                        class="py-10
+                        text-center
+                        text-slate-400">
+
+                            Memuatkan data...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
