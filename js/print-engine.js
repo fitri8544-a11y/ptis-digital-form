@@ -128,7 +128,9 @@ function loadPrintData(){
 
     setValue(
         "printTarikhPinjamSign",
+        formatPrintDate(
         data.permohonan?.tarikhPinjam
+        )
     );
 
     setValue(
@@ -153,64 +155,62 @@ function loadPrintData(){
 
 /* ================= LOAD ASSET ================= */
 
-function loadAssetTable(
-    aset,
-    tarikhPinjam,
-    tarikhPulang
-){
+function loadAssetTable(aset, tarikhPinjam, tarikhPulang) {
 
-    for(let i=1;i<=5;i++){
+    for (let i = 1; i <= 6; i++) {
 
-        setValue(
-            `assetSiri${i}`,
-            ""
-        );
+        setValue(`assetSiri${i}`, "");
 
-        setValue(
-            `assetNama${i}`,
-            ""
-        );
-
-        setValue(
-            `assetPinjam${i}`,
-            ""
-        );
-
-        setValue(
-            `assetPulang${i}`,
-            ""
-        );
+        setValue(`assetNama${i}`, "");
 
     }
 
-    aset.forEach((item,index)=>{
+    aset.slice(0, 6).forEach((item, index) => {
 
-        const row =
-        index + 1;
+        const row = index + 1;
 
-        if(row>5) return;
+        let siri = item.noSiri || "";
 
-        setValue(
-            `assetSiri${row}`,
-            item.noSiri
-        );
+/* Jika terlalu panjang */
+
+if(siri.length > 18){
+
+    const index =
+    siri.indexOf("/",12);
+
+    if(index !== -1){
+
+        siri =
+        siri.substring(0,index+1)
+        +
+        "<br>"
+        +
+        siri.substring(index+1);
+
+    }
+
+}
+
+document.getElementById(
+`assetSiri${row}`
+).innerHTML = siri;
 
         setValue(
             `assetNama${row}`,
-            item.keterangan
-        );
-
-        setValue(
-            `assetPinjam${row}`,
-            tarikhPinjam
-        );
-
-        setValue(
-            `assetPulang${row}`,
-            tarikhPulang
+            item.keterangan || ""
         );
 
     });
+
+    setValue(
+        "printTarikhPinjam",
+        formatPrintDate(tarikhPinjam)
+    );
+
+    setValue(
+        "printTarikhPulang",
+        formatPrintDate(tarikhPulang)
+    );
 
 }
 
@@ -223,9 +223,32 @@ function setValue(id,value){
 
     if(el){
 
-        el.textContent =
-        value || "";
+        el.innerHTML =
+        (value || "")
+        .replace(/\n/g," ");
 
     }
+
+}
+
+/* ================= FORMAT DATE ================= */
+
+function formatPrintDate(value) {
+
+    if (!value) return "";
+
+    const parts = value.split("-");
+
+    if (parts.length !== 3) return value;
+
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+}
+
+/* ================= PRINT NOW ================= */
+
+function printNow() {
+
+    window.print();
 
 }

@@ -1,272 +1,1267 @@
-/* ==========================================
+/* ======================================================
    PTIS DIGITAL FORM
-   KEW.PA-9 PRINT STYLE
+   KEW.PA-9 OFFICIAL PRINT STYLE
+====================================================== */
+
+@page {
+
+    size: A4 portrait;
+
+    margin: 0;
+
+}
+
+/* ======================================================
+   GLOBAL
+====================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    min-height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #000;
+
+}
+
+body {
+
+    background: #dce2e8;
+
+}
+
+/* ======================================================
+   TOOLBAR
+====================================================== */
+
+.print-toolbar {
+
+    width: 210mm;
+
+    margin: 18px auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+.print-back-btn,
+.print-now-btn {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 20px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+}
+
+.print-back-btn {
+
+    background: #475569;
+
+}
+
+.print-now-btn {
+
+    background: #0284c7;
+
+}
+
+.print-back-btn:hover,
+.print-now-btn:hover {
+
+    opacity: 0.9;
+
+    transform: translateY(-1px);
+
+}
+
+/* ======================================================
+   A4 SHEET
+====================================================== */
+
+.kewpa9-sheet {
+
+    position: relative;
+
+    width: 210mm;
+
+    height: 297mm;
+
+    margin: 0 auto 30px;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    box-shadow:
+    0 10px 35px
+    rgba(15, 23, 42, 0.25);
+
+}
+
+/* ======================================================
+   BORANG RASMI SEBAGAI LATAR
+====================================================== */
+
+.kewpa9-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    user-select: none;
+
+}
+
+/* ======================================================
+   SEMUA MEDAN DATA
+====================================================== */
+
+.print-field {
+
+    position: absolute;
+
+    z-index: 2;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    color: #000 !important;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    font-size: 9pt;
+
+    font-weight: 400;
+
+    line-height: 1.15;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+
+}
+
+/* ======================================================
+   NO. PERMOHONAN
+====================================================== */
+
+.field-form-no{
+
+    top:40.8mm;
+
+    left:175mm;
+
+    width:30mm;
+
+}
+
+/* ======================================================
+   MAKLUMAT PEMOHON
+====================================================== */
+
+.field-nama {
+
+    top: 58.7mm;
+
+    left: 54mm;
+
+    width: 43mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+.field-tujuan {
+
+    top: 58.7mm;
+
+    left: 143.5mm;
+
+    width: 53mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+.field-jawatan {
+
+    top: 67.9mm;
+
+    left: 54mm;
+
+    width: 43mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+.field-tempat {
+
+    top: 67.9mm;
+
+    left: 143.5mm;
+
+    width: 53mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+.field-bahagian {
+
+    top: 77mm;
+
+    left: 54mm;
+
+    width: 43mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+.field-pengeluar {
+
+    top: 77mm;
+
+    left: 143.5mm;
+
+    width: 53mm;
+
+    height: 7mm;
+
+    padding-top: 1mm;
+
+}
+
+/* ======================================================
+   SENARAI ASET
+====================================================== */
+
+/*
+   No. Siri dibenarkan menjadi dua baris,
+   tetapi kekal di dalam kotak.
+*/
+
+.asset-siri {
+
+    left: 27.2mm;
+
+    width: 37mm;
+
+    height: 14mm;
+
+    line-height:1.15;
+
+    padding:
+    1.2mm
+    1mm
+    0;
+
+    overflow: hidden;
+
+    font-size: 7.5pt;
+
+    line-height: 1.15;
+
+    text-align: center;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break:normal;
+
+    overflow-wrap:break-word;
+
+}
+
+.asset-nama {
+
+    left: 60mm;
+
+    width: 27.8mm;
+
+    height: 10mm;
+
+    padding:
+    2.2mm
+    1mm
+    0;
+
+    overflow: hidden;
+
+    font-size: 8pt;
+
+    line-height: 1.1;
+
+    text-align: center;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+}
+
+/* ======================================================
+   KEDUDUKAN SETIAP BARIS ASET
+====================================================== */
+
+.asset-row-1{
+
+    top:112mm;
+
+}
+
+.asset-row-2 {
+
+    top: 122mm;
+
+}
+
+.asset-row-3 {
+
+    top: 133.4mm;
+
+}
+
+.asset-row-4 {
+
+    top: 142.8mm;
+
+}
+
+.asset-row-5 {
+
+    top: 154.2mm;
+
+}
+
+.asset-row-6 {
+
+    top: 165.6mm;
+
+}
+
+/* ======================================================
+   TARIKH SETIAP BARIS ASET
+====================================================== */
+
+/*
+   Kod HTML seterusnya akan menggunakan kelas:
+   asset-pinjam dan asset-pulang
+   bersama asset-row-1 hingga asset-row-6.
+*/
+
+.asset-pinjam {
+
+    left: 85mm;
+
+    width: 19.5mm;
+
+    height: 9mm;
+
+    padding-top: 2.3mm;
+
+    overflow: hidden;
+
+    font-size: 7.5pt;
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+.asset-pulang {
+
+    left: 112.8mm;
+
+    width: 20.8mm;
+
+    height: 9mm;
+
+    padding-top: 2.3mm;
+
+    overflow: hidden;
+
+    font-size: 7.5pt;
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+/* Sokongan kod lama sementara */
+
+.field-tarikh-pinjam {
+
+    top: 114.5mm;
+
+    left: 85mm;
+
+    width: 19.5mm;
+
+    height: 9mm;
+
+    padding-top: 2.3mm;
+
+    overflow: hidden;
+
+    font-size: 7.5pt;
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+.field-tarikh-pulang {
+
+    top: 114.5mm;
+
+    left: 105mm;
+
+    width: 20.8mm;
+
+    height: 9mm;
+
+    padding-top: 2.3mm;
+
+    overflow: hidden;
+
+    font-size: 7.5pt;
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+/* ======================================================
+   TANDATANGAN PEMINJAM
+====================================================== */
+
+.field-sign-nama {
+
+    top: 187mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-sign-jawatan {
+
+    top: 194mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-sign-tarikh {
+
+    top: 200mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+/* ======================================================
+   TANDATANGAN PELULUS
+====================================================== */
+
+.field-pelulus-nama {
+
+    top: 200.5mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-pelulus-jawatan {
+
+    top: 207.2mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+/* Sokongan medan tambahan pelulus */
+
+.field-pelulus-tarikh {
+
+    top: 213.9mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+/* ======================================================
+   TANDATANGAN PEMULANG
+====================================================== */
+
+.field-pemulang-nama {
+
+    top: 254.5mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-pemulang-jawatan {
+
+    top: 261.2mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-pemulang-tarikh {
+
+    top: 267.9mm;
+
+    left: 36.5mm;
+
+    width: 48mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+/* ======================================================
+   TANDATANGAN PENERIMA
+====================================================== */
+
+.field-penerima-nama {
+
+    top: 254.5mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-penerima-jawatan {
+
+    top: 261.2mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+.field-penerima-tarikh {
+
+    top: 267.9mm;
+
+    left: 133mm;
+
+    width: 55mm;
+
+    height: 5.5mm;
+
+    font-size: 8.5pt;
+
+    line-height: 1;
+
+}
+
+/* ======================================================
+   PRINT MODE
+====================================================== */
+
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: visible !important;
+    }
+
+    /* Sembunyikan keseluruhan aplikasi */
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    /* Paparkan borang sahaja */
+
+    #kewpa9PrintSheet,
+    #kewpa9PrintSheet * {
+        visibility: visible !important;
+    }
+
+    #kewpa9PrintSheet {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        width: 210mm !important;
+        height: 297mm !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+        background: #fff !important;
+        box-shadow: none !important;
+
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* Pastikan toolbar tidak dicetak */
+
+    .print-toolbar,
+    .no-print,
+    #topbar,
+    #sidebar,
+    #footer {
+        display: none !important;
+    }
+
+    /* Buang ruang layout aplikasi */
+
+    #app,
+    #content,
+    main,
+    header,
+    aside,
+    footer {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+
+    .kewpa9-background {
+        width: 210mm !important;
+        height: 297mm !important;
+        object-fit: contain !important;
+
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-field {
+        color: #000 !important;
+
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+}
+
+/* ==========================================
+   PTIS PRINT THEME (SAMA SEPERTI KEW.PA-9)
 ========================================== */
 
-@page{
+.kewpa19-print-page{
 
-    size:A4 portrait;
+    min-height:100vh;
 
-    margin:12mm;
+    padding:32px;
 
-}
+    overflow-x:auto;
 
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-}
-
-body{
-
-    background:#f1f5f9;
-
-    font-family:Arial,Helvetica,sans-serif;
-
-    font-size:12px;
-
-    color:#000;
+    background:
+    radial-gradient(
+        circle at top,
+        #111827 0%,
+        #030712 70%,
+        #000000 100%
+    );
 
 }
 
-.paper{
+/* ================= TOOLBAR ================= */
 
-    width:210mm;
+.kewpa19-print-toolbar{
 
-    min-height:297mm;
+    width:min(100%,794px);
 
-    margin:20px auto;
+    margin:0 auto 20px;
 
-    background:#fff;
+    display:flex;
 
-    padding:10mm;
+    justify-content:space-between;
 
-    box-shadow:0 0 12px rgba(0,0,0,.15);
-
-}
-
-/* ================= HEADER ================= */
-
-.header-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-bottom:10px;
+    align-items:center;
 
 }
 
-.header-left{
+/* ================= A4 SHEET ================= */
 
-    text-align:left;
+.kewpa19-print-sheet{
 
-    font-size:12px;
+    position:relative;
 
-    vertical-align:top;
+    width:min(100%,794px);
 
-    color:#000;
+    aspect-ratio:210 / 297;
 
-}
+    margin:auto;
 
-.header-right{
+    background:#ffffff;
 
-    text-align:right;
+    overflow:hidden;
 
-    font-size:16px;
+    border-radius:4px;
 
-    font-weight:bold;
+    box-shadow:
 
-    vertical-align:top;
-
-    color:#000;
-
-}
-
-.formno-table{
-
-    width:100%;
-
-    margin-top:8px;
-
-    margin-bottom:10px;
-
-    border-collapse:collapse;
+    0 30px 80px
+    rgba(0,0,0,.45);
 
 }
 
-.form-title{
+/* ================= TEMPLATE ================= */
 
-    text-align:center;
+.kewpa19-print-background{
+    position: absolute;
+    inset: 0;
 
-    font-size:18px;
+    width: 100%;
+    height: 100%;
 
-    font-weight:bold;
+    display: block;
+    object-fit: fill;
 
-    margin-top:10px;
+    z-index: 1;
 
-    margin-bottom:20px;
+    pointer-events: none;
+    user-select: none;
+}
 
-    line-height:1.5;
+/* ================= FIELD GLOBAL ================= */
 
-    color:#000;
+.kewpa19-print-field{
+    position: absolute;
+    z-index: 2;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: clamp(
+        7px,
+        1.25vw,
+        10px
+    );
+
+    font-weight: 400;
+    line-height: 1.2;
+
+    color: #000000;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   MAKLUMAT KEMENTERIAN / JABATAN
+========================================== */
+
+.field-kewpa19-jabatan{
+    top: 16.2%;
+    left: 31.2%;
+    width: 56%;
+    min-height: 1.8%;
+}
+
+.field-kewpa19-alamat{
+    top: 18.7%;
+    left: 31.2%;
+    width: 56%;
+    min-height: 3%;
+}
+
+/* ==========================================
+   MAKLUMAT ASET — BAHAGIAN KIRI
+========================================== */
+
+.field-kewpa19-no-siri{
+    top: 21.4%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-kodifikasi{
+    top: 25.4%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-jenis-model{
+    top: 29.4%;
+    left: 31.2%;
+    width: 21%;
+    min-height: 2.8%;
+}
+
+.field-kewpa19-chassis{
+    top: 32.3%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-enjin{
+    top: 35%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-pendaftaran{
+    top: 38.7%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-tarikh-perolehan{
+    top: 41.5%;
+    left: 31.2%;
+    width: 21%;
+}
+
+.field-kewpa19-nilai-perolehan{
+    top: 44.2%;
+    left: 31.2%;
+    width: 21%;
+}
+
+/* ==========================================
+   PENILAIAN — BAHAGIAN KANAN
+========================================== */
+
+.field-kewpa19-jarak-tempoh{
+    top: 21.4%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-prestasi{
+    top: 25.4%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-kos-terdahulu{
+    top: 29.5%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-nilai-semasa{
+    top: 32.3%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-kos-semasa{
+    top: 35%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-nilai-baiki{
+    top: 38.1%;
+    left: 76.8%;
+    width: 15%;
+}
+
+.field-kewpa19-usia-guna{
+    top: 41.4%;
+    left: 76.8%;
+    width: 15%;
+}
+
+/* ==========================================
+   BUTIR PENAMBAHBAIKAN
+========================================== */
+
+.field-kewpa19-tambahbaik-1{
+    top: 51%;
+    left: 11%;
+    width: 80%;
+}
+
+.field-kewpa19-tambahbaik-2{
+    top: 53%;
+    left: 11%;
+    width: 80%;
+}
+
+.field-kewpa19-tambahbaik-3{
+    top: 55%;
+    left: 11%;
+    width: 80%;
+}
+
+/* ==========================================
+   LAPORAN PEMERIKSAAN
+========================================== */
+
+.field-kewpa19-laporan-1{
+    top: 60.8%;
+    left: 11%;
+    width: 80%;
+}
+
+.field-kewpa19-laporan-2{
+    top: 62.8%;
+    left: 11%;
+    width: 80%;
+}
+
+.field-kewpa19-laporan-3{
+    top: 64.8%;
+    left: 11%;
+    width: 80%;
+}
+
+/* ==========================================
+   PEMERIKSA PERTAMA
+========================================== */
+
+.field-kewpa19-p1-nama{
+
+    top:74.5%;
+    left:14%;
+    width:28%;
 
 }
 
-/* ================= INFO ================= */
+.field-kewpa19-p1-jawatan{
 
-.info-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-bottom:18px;
+    top:76%;
+    left:16%;
+    width:28%;
 
 }
 
-.info-table td{
+.field-kewpa19-p1-tarikh{
 
-    border:1px solid #000;
-
-    padding:6px;
-
-    vertical-align:top;
+    top:77.5%;
+    left:14%;
+    width:28%;
 
 }
 
-.info-table .label{
+.field-kewpa19-p1-cap{
 
-    width:18%;
-
-    font-weight:bold;
-
-    background:#f7f7f7;
-
-    color:#000;
+    top:91%;
+    left:14%;
+    width:28%;
 
 }
 
-.info-table .value{
+/* ==========================================
+   PEMERIKSA KEDUA
+========================================== */
 
-    width:32%;
+.field-kewpa19-p2-nama{
 
-    color:#000;
-
-}
-
-/* ================= TABLE ================= */
-
-.asset-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-top:10px;
-
-    margin-bottom:18px;
+    top:74.5%;
+    left:14%;
+    width:28%;
 
 }
 
-.asset-table th{
+.field-kewpa19-p2-jawatan{
 
-    border:1px solid #000;
-
-    padding:6px;
-
-    font-size:11px;
-
-    background:#ececec;
-
-    text-align:center;
-
-    color:#000;
+    top:76%;
+    left:16%;
+    width:28%;
 
 }
 
-.asset-table td{
+.field-kewpa19-p2-tarikh{
 
-    border:1px solid #000;
-
-    padding:6px;
-
-    height:28px;
-
-    font-size:11px;
-
-    color:#000;
+    top:77.5%;
+    left:14%;
+    width:28%;
 
 }
 
-.center{
+.field-kewpa19-p2-cap{
 
-    text-align:center;
-
-}
-
-.w-bil{
-
-    width:40px;
+    top:91%;
+    left:57%;
+    width:28%;
 
 }
 
-.w-siri{
+/* ==========================================
+   MOBILE VIEW
+========================================== */
 
-    width:140px;
+@media screen and (max-width: 850px){
 
-}
+    .kewpa19-print-page{
+        padding: 12px;
+    }
 
-/* ================= SIGNATURE ================= */
-
-.signature-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-top:20px;
+    .kewpa19-print-toolbar{
+        justify-content: center;
+    }
 
 }
 
-.signature-table td{
-
-    width:50%;
-
-    vertical-align:top;
-
-    padding:10px;
-
-    font-size:12px;
-
-    color:#000;
-
-}
-
-/* ================= PRINT ================= */
+/* ==========================================
+   PRINT MODE — A4
+========================================== */
 
 @media print{
 
+    html,
     body{
+        width: 210mm;
+        height: 297mm;
 
-        background:#fff;
+        margin: 0 !important;
+        padding: 0 !important;
 
+        background: #ffffff !important;
     }
 
-    .paper{
+    .no-print,
+    .kewpa19-print-toolbar{
+        display: none !important;
+    }
 
-        width:100%;
+    body *{
+        visibility: hidden;
+    }
 
-        margin:0;
+    #kewpa19PrintSheet,
+    #kewpa19PrintSheet *{
+        visibility: visible;
+    }
 
-        box-shadow:none;
+    .kewpa19-print-page{
+        position: static;
 
-        padding:0;
+        width: 210mm;
+        height: 297mm;
 
+        margin: 0;
+        padding: 0;
+
+        background: #ffffff;
+        overflow: visible;
+    }
+
+    #kewpa19PrintSheet{
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 210mm !important;
+        height: 297mm !important;
+
+        margin: 0 !important;
+
+        overflow: hidden;
+
+        box-shadow: none !important;
+
+        page-break-before: avoid;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .kewpa19-print-background{
+        width: 210mm !important;
+        height: 297mm !important;
+
+        object-fit: fill;
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .kewpa19-print-field{
+        font-size: 7.5pt;
+        color: #000000 !important;
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @page{
+        size: A4 portrait;
+        margin: 0;
     }
 
 }

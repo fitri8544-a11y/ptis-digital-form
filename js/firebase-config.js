@@ -38,4 +38,4 @@ console.log(" PTIS DIGITAL FORM");
 console.log(" Firebase Connected Successfully");
 console.log("====================================");
 
-console.log(firebase.app().options);
+console.log("Firebase Connected Successfully");

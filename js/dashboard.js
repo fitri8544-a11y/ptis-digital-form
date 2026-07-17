@@ -1,18 +1,58 @@
 async function loadDashboard(){
 
-    const response=
-    await fetch("data/dashboard.json");
+    try{
 
-    const data=
-    await response.json();
+        const response =
+        await fetch("data/dashboard.json");
 
-    document.getElementById("dashboardUser").innerHTML=
-    data.user.name;
+        if(!response.ok){
 
-    document.getElementById("userName").innerHTML=
-    data.user.name;
+            throw new Error(
+                `Gagal memuatkan dashboard.json: ${response.status}`
+            );
 
-    document.getElementById("userRole").innerHTML=
-    data.user.role;
+        }
+
+        const data =
+        await response.json();
+
+        const dashboardUser =
+        document.getElementById("dashboardUser");
+
+        const userName =
+        document.getElementById("userName");
+
+        const userRole =
+        document.getElementById("userRole");
+
+        if(dashboardUser){
+
+            dashboardUser.textContent =
+            data.user?.name || "Pengguna";
+
+        }
+
+        if(userName){
+
+            userName.textContent =
+            data.user?.name || "Pengguna";
+
+        }
+
+        if(userRole){
+
+            userRole.textContent =
+            data.user?.role || "User";
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Ralat loadDashboard:",
+            error
+        );
+
+    }
 
 }

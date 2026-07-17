@@ -1,0 +1,207 @@
+<!-- ==========================================
+     KEW.PA-19 PRINT VIEW
+========================================== -->
+
+<div class="print-toolbar no-print">
+
+    <button
+    type="button"
+    onclick="loadPage('records')"
+    class="print-back-btn">
+
+        ← Kembali ke Rekod Saya
+
+    </button>
+
+    <button
+    type="button"
+    onclick="printNow()"
+    class="print-now-btn">
+
+        🖨 Cetak Sekarang
+
+    </button>
+
+</div>
+
+    <!-- OFFICIAL FORM -->
+
+    <div
+    id="kewpa19PrintSheet"
+    class="kewpa19-print-sheet">
+
+        <img
+        src="assets/forms/kewpa19-template.png"
+        class="kewpa19-print-background"
+        alt="Borang Rasmi KEW.PA-19">
+
+        <!-- MAKLUMAT JABATAN -->
+
+        <div
+        id="printKewpa19Jabatan"
+        class="kewpa19-print-field field-kewpa19-jabatan">
+        </div>
+
+        <div
+        id="printKewpa19Alamat"
+        class="kewpa19-print-field field-kewpa19-alamat">
+        </div>
+
+        <!-- MAKLUMAT ASET -->
+
+        <div
+        id="printKewpa19NoSiri"
+        class="kewpa19-print-field field-kewpa19-no-siri">
+        </div>
+
+        <div
+        id="printKewpa19JarakTempoh"
+        class="kewpa19-print-field field-kewpa19-jarak-tempoh">
+        </div>
+
+        <div
+        id="printKewpa19Kodifikasi"
+        class="kewpa19-print-field field-kewpa19-kodifikasi">
+        </div>
+
+        <div
+        id="printKewpa19Prestasi"
+        class="kewpa19-print-field field-kewpa19-prestasi">
+        </div>
+
+        <div
+        id="printKewpa19JenisJenamaModel"
+        class="kewpa19-print-field field-kewpa19-jenis-model">
+        </div>
+
+        <div
+        id="printKewpa19KosTerdahulu"
+        class="kewpa19-print-field field-kewpa19-kos-terdahulu">
+        </div>
+
+        <div
+        id="printKewpa19NoChassis"
+        class="kewpa19-print-field field-kewpa19-chassis">
+        </div>
+
+        <div
+        id="printKewpa19NilaiSemasa"
+        class="kewpa19-print-field field-kewpa19-nilai-semasa">
+        </div>
+
+        <div
+        id="printKewpa19NoEnjin"
+        class="kewpa19-print-field field-kewpa19-enjin">
+        </div>
+
+        <div
+        id="printKewpa19KosSemasa"
+        class="kewpa19-print-field field-kewpa19-kos-semasa">
+        </div>
+
+        <div
+        id="printKewpa19NoPendaftaran"
+        class="kewpa19-print-field field-kewpa19-pendaftaran">
+        </div>
+
+        <div
+        id="printKewpa19NilaiSelepasBaiki"
+        class="kewpa19-print-field field-kewpa19-nilai-baiki">
+        </div>
+
+        <div
+        id="printKewpa19TarikhPerolehan"
+        class="kewpa19-print-field field-kewpa19-tarikh-perolehan">
+        </div>
+
+        <div
+        id="printKewpa19UsiaGuna"
+        class="kewpa19-print-field field-kewpa19-usia-guna">
+        </div>
+
+        <div
+        id="printKewpa19NilaiPerolehan"
+        class="kewpa19-print-field field-kewpa19-nilai-perolehan">
+        </div>
+
+        <!-- PENAMBAHBAIKAN -->
+
+        <div
+        id="printKewpa19TambahBaik1"
+        class="kewpa19-print-field field-kewpa19-tambahbaik-1">
+        </div>
+
+        <div
+        id="printKewpa19TambahBaik2"
+        class="kewpa19-print-field field-kewpa19-tambahbaik-2">
+        </div>
+
+        <div
+        id="printKewpa19TambahBaik3"
+        class="kewpa19-print-field field-kewpa19-tambahbaik-3">
+        </div>
+
+        <!-- LAPORAN PEMERIKSAAN -->
+
+        <div
+        id="printKewpa19Laporan1"
+        class="kewpa19-print-field field-kewpa19-laporan-1">
+        </div>
+
+        <div
+        id="printKewpa19Laporan2"
+        class="kewpa19-print-field field-kewpa19-laporan-2">
+        </div>
+
+        <div
+        id="printKewpa19Laporan3"
+        class="kewpa19-print-field field-kewpa19-laporan-3">
+        </div>
+
+        <!-- PEMERIKSA PERTAMA -->
+
+        <div
+        id="printKewpa19Pemeriksa1Nama"
+        class="kewpa19-print-field field-kewpa19-p1-nama">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa1Jawatan"
+        class="kewpa19-print-field field-kewpa19-p1-jawatan">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa1Tarikh"
+        class="kewpa19-print-field field-kewpa19-p1-tarikh">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa1Cap"
+        class="kewpa19-print-field field-kewpa19-p1-cap">
+        </div>
+
+        <!-- PEMERIKSA KEDUA -->
+
+        <div
+        id="printKewpa19Pemeriksa2Nama"
+        class="kewpa19-print-field field-kewpa19-p2-nama">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa2Jawatan"
+        class="kewpa19-print-field field-kewpa19-p2-jawatan">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa2Tarikh"
+        class="kewpa19-print-field field-kewpa19-p2-tarikh">
+        </div>
+
+        <div
+        id="printKewpa19Pemeriksa2Cap"
+        class="kewpa19-print-field field-kewpa19-p2-cap">
+        </div>
+
+    </div>
+
+</div>

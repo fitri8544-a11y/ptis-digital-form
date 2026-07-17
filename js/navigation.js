@@ -205,38 +205,111 @@ async function loadPage(page){
 
 async function loadForm(form){
 
-    const response =
-    await fetch(`forms/${form}.html`);
+    try{
 
-    const html =
-    await response.text();
+        const response =
+        await fetch(`forms/${form}.html`);
 
-    document.getElementById("content").innerHTML = html;
+        if(!response.ok){
 
-    // ================= KEW.PA-9 =================
+            throw new Error(
+                `Gagal memuatkan forms/${form}.html`
+            );
 
-    if(form === "kewpa9"){
+        }
 
-        currentStep = 1;
+        const html =
+        await response.text();
 
-        updateWizard();
+        const content =
+        document.getElementById("content");
 
-        // Jika buka dari Rekod Saya,
-        // isi semula data Firestore
+        if(!content){
 
-        if(window.currentRecord){
+            throw new Error(
+                'Elemen id="content" tidak dijumpai.'
+            );
+
+        }
+
+        content.innerHTML = html;
+
+        // ================= KEW.PA-9 =================
+
+        if(form === "kewpa9"){
+
+            currentStep = 1;
+
+            updateWizard();
+
+            // Jika buka dari Rekod Saya,
+            // isi semula data Firestore
+
+            if(window.currentRecord){
+
+                setTimeout(()=>{
+
+                    if(
+                        typeof populateForm ===
+                        "function"
+                    ){
+
+                        populateForm();
+
+                    }
+
+                },200);
+
+            }
+
+        }
+
+        // ================= KEW.PA-19 =================
+
+        if(form === "kewpa19"){
+
+            if(
+                typeof initKewpa19Wizard ===
+                "function"
+            ){
+
+                initKewpa19Wizard();
+
+            }
+
+        }
+
+        // ================= KEW.PA-19 PRINT =================
+
+        if(form === "kewpa19-print"){
 
             setTimeout(()=>{
 
-                if(typeof populateForm==="function"){
+                if(
+                    typeof populateKewpa19Print ===
+                    "function"
+                ){
 
-                    populateForm();
+                    populateKewpa19Print();
 
                 }
 
             },200);
 
         }
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Ralat loadForm:",
+            error
+        );
+
+        alert(
+            "Halaman borang gagal dimuatkan."
+        );
 
     }
 
