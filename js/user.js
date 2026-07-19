@@ -7,7 +7,7 @@ function loadUser(user){
     if(!user) return;
 
     const displayName =
-    user.displayName || "Pengguna";
+    (user.displayName || "Pengguna").trim();
 
     const email =
     user.email || "";
@@ -15,10 +15,12 @@ function loadUser(user){
     const initials =
     displayName
     .split(" ")
+    .filter(Boolean)
     .map(name=>name[0])
     .join("")
     .substring(0,2)
     .toUpperCase();
+
 
     const nameElement =
     document.getElementById("userName");
@@ -29,24 +31,39 @@ function loadUser(user){
     const avatarElement =
     document.getElementById("userAvatar");
 
+
+    /* ================= NAME ================= */
+
     if(nameElement){
 
-        nameElement.textContent =
-        displayName;
+    nameElement.textContent =
+    displayName;
 
-    }
+    nameElement.title =
+    displayName;
+
+    }   
+
+
+    /* ================= EMAIL ================= */
 
     if(roleElement){
 
-        roleElement.textContent =
-        email;
+    roleElement.textContent =
+    email;
+
+    roleElement.title =
+    email;
 
     }
+
+
+    /* ================= AVATAR ================= */
 
     if(avatarElement){
 
         avatarElement.textContent =
-        initials;
+        initials || "U";
 
     }
 

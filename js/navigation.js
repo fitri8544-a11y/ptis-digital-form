@@ -298,6 +298,21 @@ async function loadForm(form){
 
         }
 
+        // ================= KEW.PA-3 =================
+
+        if(form === "kewpa3"){
+
+                if(
+                    typeof initKewpa3Wizard ===
+                    "function"
+                ){
+
+                    initKewpa3Wizard();
+
+                }
+
+        }
+
     }
 
     catch(error){

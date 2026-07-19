@@ -130,31 +130,35 @@ async function saveForm(){
 }
 
 /* ==========================================
-   LOAD MY RECORDS
+   RECORD CENTER STATE
+========================================== */
+
+let myRecordData = [];
+
+let activeRecordFilter = "all";
+
+let recordEventsInitialized = false;
+
+/* ==========================================
+   LOAD MY RECORDS V2
 ========================================== */
 
 async function loadMyRecords(){
 
     const table =
-    document.getElementById("recordTable");
+    document.getElementById(
+        "recordTable"
+    );
 
-    if(!table) return;
+    if(!table){
+        return;
+    }
 
-    table.innerHTML = `
 
-        <tr>
+    showRecordLoading();
 
-            <td
-            colspan="5"
-            class="py-10 text-center text-slate-400">
+    initializeRecordCenterEvents();
 
-                Memuatkan data...
-
-            </td>
-
-        </tr>
-
-    `;
 
     try{
 
@@ -163,40 +167,36 @@ async function loadMyRecords(){
 
         if(!currentUser){
 
-            table.innerHTML = `
-
-                <tr>
-
-                    <td
-                    colspan="5"
-                    class="py-10 text-center text-red-300">
-
-                        Sesi pengguna tidak dijumpai.
-                        Sila log masuk semula.
-
-                    </td>
-
-                </tr>
-
-            `;
+            showRecordMessage(
+                "Sesi pengguna tidak dijumpai. Sila log masuk semula.",
+                "error"
+            );
 
             return;
 
         }
 
+
         const email =
-        currentUser.email;
+        currentUser.email || "";
+
+        const uid =
+        currentUser.uid || "";
+
 
         /*
         ==========================================
-        AMBIL REKOD KEW.PA-9 DAN KEW.PA-19
+        AMBIL SEMUA JENIS REKOD
         ==========================================
         */
 
         const [
             kewpa9Snapshot,
-            kewpa19Snapshot
+            kewpa19Snapshot,
+            kewpa3Snapshot
         ] = await Promise.all([
+
+            // KEW.PA-9
 
             db
             .collection("forms")
@@ -207,6 +207,9 @@ async function loadMyRecords(){
             )
             .get(),
 
+
+            // KEW.PA-19
+
             db
             .collection("kewpa19")
             .where(
@@ -214,11 +217,25 @@ async function loadMyRecords(){
                 "==",
                 email
             )
+            .get(),
+
+
+            // KEW.PA-3
+
+            db
+            .collection("kewpa3")
+            .where(
+                "createdByUid",
+                "==",
+                uid
+            )
             .get()
 
         ]);
 
+
         const records = [];
+
 
         /* ================= KEW.PA-9 ================= */
 
@@ -229,27 +246,47 @@ async function loadMyRecords(){
 
             records.push({
 
-                id: doc.id,
+                id:
+                doc.id,
 
                 collection:
                 "forms",
+
+                filterType:
+                "kewpa9",
 
                 formType:
                 data.formType ||
                 "KEW.PA-9",
 
+                formDescription:
+                "Permohonan Pergerakan / Pinjaman Aset",
+
                 status:
-                data.status ||
-                "Pending",
+                data.status || "",
 
                 createdAt:
                 data.createdAt || null,
 
-                data: data
+                searchText:[
+                    doc.id,
+                    data.formNo,
+                    data.formType,
+                    data.pemohon?.nama,
+                    data.pemohon?.sekolah,
+                    data.pemohon?.jabatan
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase(),
+
+                data:
+                data
 
             });
 
         });
+
 
         /* ================= KEW.PA-19 ================= */
 
@@ -260,27 +297,119 @@ async function loadMyRecords(){
 
             records.push({
 
-                id: doc.id,
+                id:
+                doc.id,
+
+                displayId:
+                data.borangNo ||
+                doc.id,
 
                 collection:
                 "kewpa19",
 
+                filterType:
+                "kewpa19",
+
                 formType:
                 data.formType ||
+                data.jenisBorang ||
                 "KEW.PA-19",
 
+                formDescription:
+                "Perakuan Pelupusan Aset",
+
                 status:
-                data.status ||
-                "DRAF",
+                data.status || "",
 
                 createdAt:
                 data.createdAt || null,
 
-                data: data
+                searchText:[
+                    doc.id,
+                    data.borangNo,
+                    data.formType,
+                    data.jenisBorang,
+                    data.aset?.noSiri,
+                    data.aset?.keterangan,
+                    data.jabatan?.nama
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase(),
+
+                data:
+                data
 
             });
 
         });
+
+
+        /* ================= KEW.PA-3 ================= */
+
+        kewpa3Snapshot.forEach(doc=>{
+
+            const data =
+            doc.data();
+
+            records.push({
+
+                id:
+                doc.id,
+
+                displayId:
+                data.borangNo ||
+                doc.id,
+
+                collection:
+                "kewpa3",
+
+                filterType:
+                "kewpa3",
+
+                formType:
+                data.jenisBorang ||
+                "KEW.PA-3",
+
+                formDescription:
+                "Daftar Harta Modal",
+
+                status:
+                data.status || "",
+
+                createdAt:
+                data.createdAt || null,
+
+                searchText:[
+                    doc.id,
+                    data.borangNo,
+                    data.jenisBorang,
+                    data.jabatan
+                    ?.noSiriPendaftaran,
+                    data.jabatan
+                    ?.kementerianJabatan,
+                    data.jabatan
+                    ?.bahagianCawangan,
+                    data.aset
+                    ?.keteranganAset,
+                    data.aset
+                    ?.kategori,
+                    data.aset
+                    ?.jenisJenamaModel,
+                    data.aset
+                    ?.namaPembekal
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase(),
+
+                data:
+                data
+
+            });
+
+        });
+
 
         /*
         ==========================================
@@ -304,234 +433,15 @@ async function loadMyRecords(){
 
         });
 
-        table.innerHTML = "";
 
-        let total = 0;
-        let pending = 0;
-        let approved = 0;
-        let rejected = 0;
+        myRecordData =
+        records;
 
-        records.forEach(record=>{
 
-            total++;
+        updateRecordCounters();
 
-            const normalizedStatus =
-            String(
-                record.status || ""
-            ).toUpperCase();
+        renderMyRecords();
 
-            if(
-                normalizedStatus === "PENDING" ||
-                normalizedStatus === "DRAF"
-            ){
-
-                pending++;
-
-            }
-
-            if(
-                normalizedStatus === "APPROVED" ||
-                normalizedStatus === "DILULUSKAN"
-            ){
-
-                approved++;
-
-            }
-
-            if(
-                normalizedStatus === "REJECTED" ||
-                normalizedStatus === "DITOLAK"
-            ){
-
-                rejected++;
-
-            }
-
-            const displayDate =
-            formatRecordDate(
-                record.createdAt
-            );
-
-            const statusBadge =
-            getRecordStatusBadge(
-                record.status
-            );
-
-            const canEdit =
-            normalizedStatus === "PENDING" ||
-            normalizedStatus === "DRAF";
-
-            table.innerHTML += `
-
-                <tr
-                class="
-                border-b
-                border-slate-800
-                hover:bg-white/[0.02]
-                transition">
-
-                    <!-- NO. REKOD -->
-
-                    <td class="py-4 font-bold">
-
-                        ${escapeRecordHTML(record.id)}
-
-                    </td>
-
-                    <!-- JENIS BORANG -->
-
-                    <td class="py-4">
-
-                        <div class="font-bold text-white">
-
-                            ${escapeRecordHTML(record.formType)}
-
-                        </div>
-
-                        <div class="text-xs text-slate-500 mt-1">
-
-                            ${
-                                record.collection === "kewpa19"
-                                ? "Perakuan Pelupusan Aset"
-                                : "Permohonan Pergerakan / Pinjaman Aset"
-                            }
-
-                        </div>
-
-                    </td>
-
-                    <!-- TARIKH -->
-
-                    <td class="py-4">
-
-                        ${displayDate}
-
-                    </td>
-
-                    <!-- STATUS -->
-
-                    <td class="py-4">
-
-                        ${statusBadge}
-
-                    </td>
-
-                    <!-- TINDAKAN -->
-
-                    <td class="py-4">
-
-                        <div
-                        class="
-                        flex
-                        flex-wrap
-                        items-center
-                        gap-3">
-
-                            <button
-                            type="button"
-                            class="
-                            text-cyan-400
-                            hover:text-cyan-300
-                            font-semibold"
-                            onclick="
-                            viewMyRecord(
-                                '${record.collection}',
-                                '${record.id}'
-                            )">
-
-                                👁 Lihat
-
-                            </button>
-
-                            ${
-                                canEdit
-                                ? `
-
-                                <button
-                                type="button"
-                                class="
-                                text-amber-400
-                                hover:text-amber-300
-                                font-semibold"
-                                onclick="
-                                editMyRecord(
-                                    '${record.collection}',
-                                    '${record.id}'
-                                )">
-
-                                    ✏️ Edit
-
-                                </button>
-
-                                `
-                                : ""
-                            }
-
-                            <button
-                            type="button"
-                            class="
-                            text-green-400
-                            hover:text-green-300
-                            font-semibold"
-                            onclick="
-                            printMyRecord(
-                                '${record.collection}',
-                                '${record.id}'
-                            )">
-
-                                🖨️ Cetak
-
-                            </button>
-
-                        </div>
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        });
-
-        if(total === 0){
-
-            table.innerHTML = `
-
-                <tr>
-
-                    <td
-                    colspan="5"
-                    class="py-10 text-center text-slate-400">
-
-                        Tiada rekod borang ditemui.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        }
-
-        setRecordCount(
-            "totalForms",
-            total
-        );
-
-        setRecordCount(
-            "pendingForms",
-            pending
-        );
-
-        setRecordCount(
-            "approvedForms",
-            approved
-        );
-
-        setRecordCount(
-            "rejectedForms",
-            rejected
-        );
 
     }catch(error){
 
@@ -540,16 +450,510 @@ async function loadMyRecords(){
             error
         );
 
-        table.innerHTML = `
+        showRecordMessage(
+            "Rekod gagal dimuatkan. Sila cuba semula.",
+            "error"
+        );
 
-            <tr>
+    }
+
+}
+
+/* ==========================================
+   PAPAR LOADING REKOD
+========================================== */
+
+function showRecordLoading(){
+
+    const table =
+    document.getElementById(
+        "recordTable"
+    );
+
+    const resultCount =
+    document.getElementById(
+        "recordResultCount"
+    );
+
+    const emptyState =
+    document.getElementById(
+        "recordEmptyState"
+    );
+
+    if(emptyState){
+
+        emptyState.classList.add(
+            "hidden"
+        );
+
+    }
+
+    if(resultCount){
+
+        resultCount.textContent =
+        "Memuatkan rekod...";
+
+    }
+
+    if(!table){
+        return;
+    }
+
+    table.innerHTML = `
+
+        <tr>
+
+            <td
+            colspan="4"
+            class="
+            px-6
+            py-16
+            text-center">
+
+                <div
+                class="
+                mx-auto
+                h-10
+                w-10
+                animate-spin
+                rounded-full
+                border-4
+                border-slate-700
+                border-t-cyan-400">
+                </div>
+
+                <p
+                class="
+                mt-4
+                text-sm
+                text-slate-400">
+
+                    Memuatkan data rekod...
+
+                </p>
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+/* ==========================================
+   PAPAR MESEJ REKOD
+========================================== */
+
+function showRecordMessage(
+    message,
+    type = "empty"
+){
+
+    const table =
+    document.getElementById(
+        "recordTable"
+    );
+
+    const resultCount =
+    document.getElementById(
+        "recordResultCount"
+    );
+
+    const emptyState =
+    document.getElementById(
+        "recordEmptyState"
+    );
+
+    if(resultCount){
+
+        resultCount.textContent =
+        "0 rekod ditemui";
+
+    }
+
+    if(emptyState){
+
+        emptyState.classList.add(
+            "hidden"
+        );
+
+    }
+
+    if(!table){
+        return;
+    }
+
+    const textClass =
+    type === "error"
+    ? "text-red-300"
+    : "text-slate-400";
+
+    table.innerHTML = `
+
+        <tr>
+
+            <td
+            colspan="4"
+            class="
+            px-6
+            py-14
+            text-center
+            ${textClass}">
+
+                ${escapeRecordHTML(message)}
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+/* ==========================================
+   UPDATE RECORD COUNTERS
+========================================== */
+
+function updateRecordCounters(){
+
+    const totalAll =
+    myRecordData.length;
+
+    const totalKewpa3 =
+    myRecordData.filter(
+        record=>
+        record.filterType ===
+        "kewpa3"
+    ).length;
+
+    const totalKewpa9 =
+    myRecordData.filter(
+        record=>
+        record.filterType ===
+        "kewpa9"
+    ).length;
+
+    const totalKewpa19 =
+    myRecordData.filter(
+        record=>
+        record.filterType ===
+        "kewpa19"
+    ).length;
+
+
+    setRecordCount(
+        "recordCountAll",
+        totalAll
+    );
+
+    setRecordCount(
+        "recordCountKewpa3",
+        totalKewpa3
+    );
+
+    setRecordCount(
+        "recordCountKewpa9",
+        totalKewpa9
+    );
+
+    setRecordCount(
+        "recordCountKewpa19",
+        totalKewpa19
+    );
+
+}
+
+/* ==========================================
+   RENDER MY RECORDS
+========================================== */
+
+function renderMyRecords(){
+
+    const table =
+    document.getElementById(
+        "recordTable"
+    );
+
+    const searchInput =
+    document.getElementById(
+        "recordSearchInput"
+    );
+
+    const resultCount =
+    document.getElementById(
+        "recordResultCount"
+    );
+
+    const emptyState =
+    document.getElementById(
+        "recordEmptyState"
+    );
+
+    if(!table){
+        return;
+    }
+
+
+    const keyword =
+    searchInput?.value
+    .trim()
+    .toLowerCase() || "";
+
+
+    const filteredRecords =
+    myRecordData.filter(record=>{
+
+        const matchCategory =
+        activeRecordFilter === "all" ||
+        record.filterType ===
+        activeRecordFilter;
+
+        const matchSearch =
+        !keyword ||
+        record.searchText
+        .includes(keyword);
+
+        return (
+            matchCategory &&
+            matchSearch
+        );
+
+    });
+
+
+    if(resultCount){
+
+        resultCount.textContent =
+        `${filteredRecords.length} rekod ditemui`;
+
+    }
+
+
+    updateActiveRecordLabels();
+
+
+    if(
+        filteredRecords.length === 0
+    ){
+
+        table.innerHTML = "";
+
+        if(emptyState){
+
+            emptyState.classList.remove(
+                "hidden"
+            );
+
+        }
+
+        return;
+
+    }
+
+
+    if(emptyState){
+
+        emptyState.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    table.innerHTML =
+    filteredRecords
+    .map(record=>{
+
+        const recordId =
+        escapeRecordHTML(
+            record.id
+        );
+
+        const displayId =
+        escapeRecordHTML(
+            record.displayId ||
+            record.id
+        );
+
+        const collection =
+        escapeRecordHTML(
+            record.collection
+        );
+
+        const formType =
+        escapeRecordHTML(
+            record.formType
+        );
+
+        const description =
+        escapeRecordHTML(
+            record.formDescription
+        );
+
+        const displayDate =
+        formatRecordDate(
+            record.createdAt
+        );
+
+
+        return `
+
+            <tr
+            class="
+            border-b
+            border-slate-800
+            transition
+            hover:bg-white/[0.025]">
+
+                <!-- NO. PERMOHONAN -->
 
                 <td
-                colspan="5"
-                class="py-10 text-center text-red-300">
+                class="
+                px-6
+                py-5">
 
-                    Rekod gagal dimuatkan.
-                    Sila cuba semula.
+                    <div
+                    class="
+                    font-black
+                    text-white">
+
+                        ${displayId}
+
+                    </div>
+
+                </td>
+
+
+                <!-- BORANG -->
+
+                <td
+                class="
+                px-6
+                py-5">
+
+                    <div
+                    class="
+                    font-black
+                    text-white">
+
+                        ${formType}
+
+                    </div>
+
+                    <div
+                    class="
+                    mt-1
+                    text-xs
+                    text-slate-500">
+
+                        ${description}
+
+                    </div>
+
+                </td>
+
+
+                <!-- TARIKH -->
+
+                <td
+                class="
+                px-6
+                py-5
+                text-sm
+                text-slate-300">
+
+                    ${displayDate}
+
+                </td>
+
+
+                <!-- TINDAKAN -->
+
+                <td
+                class="
+                px-6
+                py-5">
+
+                    <div
+                    class="
+                    flex
+                    flex-wrap
+                    justify-end
+                    gap-2">
+
+                        <button
+                        type="button"
+                        onclick="
+                        viewMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-cyan-500/20
+                        bg-cyan-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-cyan-300
+                        transition
+                        hover:bg-cyan-500/20">
+
+                            👁️ Lihat
+
+                        </button>
+
+                        <button
+                        type="button"
+                        onclick="
+                        editMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-amber-500/20
+                        bg-amber-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-amber-300
+                        transition
+                        hover:bg-amber-500/20">
+
+                            ✏️ Edit
+
+                        </button>
+
+                        <button
+                        type="button"
+                        onclick="
+                        printMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-emerald-500/20
+                        bg-emerald-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-emerald-300
+                        transition
+                        hover:bg-emerald-500/20">
+
+                            🖨️ Cetak
+
+                        </button>
+
+                    </div>
 
                 </td>
 
@@ -557,7 +961,241 @@ async function loadMyRecords(){
 
         `;
 
+    })
+    .join("");
+
+}
+
+/* ==========================================
+   UPDATE ACTIVE RECORD LABELS
+========================================== */
+
+function updateActiveRecordLabels(){
+
+    const config = {
+
+        all:{
+            title:
+            "Semua Rekod",
+
+            description:
+            "Paparan semua borang yang pernah dihantar."
+        },
+
+        kewpa3:{
+            title:
+            "Rekod KEW.PA-3",
+
+            description:
+            "Senarai Daftar Harta Modal."
+        },
+
+        kewpa9:{
+            title:
+            "Rekod KEW.PA-9",
+
+            description:
+            "Senarai pergerakan dan pinjaman aset."
+        },
+
+        kewpa19:{
+            title:
+            "Rekod KEW.PA-19",
+
+            description:
+            "Senarai perakuan pelupusan aset."
+        }
+
+    };
+
+
+    const selected =
+    config[activeRecordFilter] ||
+    config.all;
+
+
+    const title =
+    document.getElementById(
+        "recordSectionTitle"
+    );
+
+    const description =
+    document.getElementById(
+        "recordSectionDescription"
+    );
+
+    const activeLabel =
+    document.getElementById(
+        "recordActiveFilterLabel"
+    );
+
+
+    if(title){
+
+        title.textContent =
+        selected.title;
+
     }
+
+    if(description){
+
+        description.textContent =
+        selected.description;
+
+    }
+
+    if(activeLabel){
+
+        activeLabel.textContent =
+        selected.title;
+
+    }
+
+
+    updateRecordFilterStyles();
+
+}
+
+/* ==========================================
+   UPDATE FILTER STYLES
+========================================== */
+
+function updateRecordFilterStyles(){
+
+    document
+    .querySelectorAll(
+        ".record-filter-tab"
+    )
+    .forEach(button=>{
+
+        const isActive =
+        button.dataset.recordFilter ===
+        activeRecordFilter;
+
+        button.classList.toggle(
+            "border-cyan-500/30",
+            isActive
+        );
+
+        button.classList.toggle(
+            "bg-cyan-500/15",
+            isActive
+        );
+
+        button.classList.toggle(
+            "text-cyan-300",
+            isActive
+        );
+
+        button.classList.toggle(
+            "border-slate-700",
+            !isActive
+        );
+
+        button.classList.toggle(
+            "bg-slate-800/70",
+            !isActive
+        );
+
+        button.classList.toggle(
+            "text-slate-400",
+            !isActive
+        );
+
+    });
+
+
+    document
+    .querySelectorAll(
+        ".record-filter-card"
+    )
+    .forEach(button=>{
+
+        const isActive =
+        button.dataset.recordFilter ===
+        activeRecordFilter;
+
+        button.classList.toggle(
+            "ring-2",
+            isActive
+        );
+
+        button.classList.toggle(
+            "ring-cyan-400/50",
+            isActive
+        );
+
+    });
+
+}
+
+/* ==========================================
+   INITIALIZE RECORD EVENTS
+========================================== */
+
+function initializeRecordCenterEvents(){
+
+    if(recordEventsInitialized){
+        return;
+    }
+
+    recordEventsInitialized = true;
+
+
+    document.addEventListener(
+        "click",
+        event=>{
+
+            const filterButton =
+            event.target.closest(
+                "[data-record-filter]"
+            );
+
+            if(filterButton){
+
+                activeRecordFilter =
+                filterButton
+                .dataset
+                .recordFilter ||
+                "all";
+
+                renderMyRecords();
+
+                return;
+
+            }
+
+
+            const refreshButton =
+            event.target.closest(
+                "#recordRefreshBtn"
+            );
+
+            if(refreshButton){
+
+                loadMyRecords();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "input",
+        event=>{
+
+            if(
+                event.target.id ===
+                "recordSearchInput"
+            ){
+
+                renderMyRecords();
+
+            }
+
+        }
+    );
 
 }
 
@@ -640,15 +1278,47 @@ function formatRecordDate(timestamp){
 
 }
 
-
 /* ================= STATUS BADGE ================= */
 
 function getRecordStatusBadge(status){
 
     const normalizedStatus =
     String(
-        status || "DRAF"
-    ).toUpperCase();
+        status || ""
+    )
+    .trim()
+    .toUpperCase();
+
+
+    /* ================= TIADA STATUS ================= */
+
+    if(normalizedStatus === ""){
+
+        return `
+
+            <span
+            class="
+            inline-flex
+            px-3
+            py-1
+            rounded-full
+            bg-slate-500/10
+            border
+            border-slate-500/20
+            text-slate-400
+            text-xs
+            font-bold">
+
+                -
+
+            </span>
+
+        `;
+
+    }
+
+
+    /* ================= DILULUSKAN ================= */
 
     if(
         normalizedStatus === "APPROVED" ||
@@ -678,6 +1348,9 @@ function getRecordStatusBadge(status){
 
     }
 
+
+    /* ================= DITOLAK ================= */
+
     if(
         normalizedStatus === "REJECTED" ||
         normalizedStatus === "DITOLAK"
@@ -706,7 +1379,13 @@ function getRecordStatusBadge(status){
 
     }
 
-    if(normalizedStatus === "PENDING"){
+
+    /* ================= MENUNGGU ================= */
+
+    if(
+        normalizedStatus === "PENDING" ||
+        normalizedStatus === "MENUNGGU"
+    ){
 
         return `
 
@@ -731,6 +1410,37 @@ function getRecordStatusBadge(status){
 
     }
 
+
+    /* ================= DRAF ================= */
+
+    if(normalizedStatus === "DRAF"){
+
+        return `
+
+            <span
+            class="
+            inline-flex
+            px-3
+            py-1
+            rounded-full
+            bg-slate-500/10
+            border
+            border-slate-500/20
+            text-slate-300
+            text-xs
+            font-bold">
+
+                DRAF
+
+            </span>
+
+        `;
+
+    }
+
+
+    /* ================= DEFAULT ================= */
+
     return `
 
         <span
@@ -739,14 +1449,14 @@ function getRecordStatusBadge(status){
         px-3
         py-1
         rounded-full
-        bg-slate-500/10
+        bg-blue-500/10
         border
-        border-slate-500/20
-        text-slate-300
+        border-blue-500/20
+        text-blue-300
         text-xs
         font-bold">
 
-            DRAF
+            ${escapeRecordHTML(status)}
 
         </span>
 
@@ -816,6 +1526,8 @@ async function viewMyRecord(
     recordId
 ){
 
+    // ================= KEW.PA-9 =================
+
     if(collectionName === "forms"){
 
         if(
@@ -831,11 +1543,29 @@ async function viewMyRecord(
 
     }
 
+
+    // ================= KEW.PA-19 =================
+
     if(collectionName === "kewpa19"){
 
         await viewKewpa19Record(
             recordId
         );
+
+        return;
+
+    }
+
+
+    // ================= KEW.PA-3 =================
+
+    if(collectionName === "kewpa3"){
+
+        await viewKewpa3Record(
+            recordId
+        );
+
+        return;
 
     }
 
@@ -848,6 +1578,8 @@ async function editMyRecord(
     collectionName,
     recordId
 ){
+
+    // ================= KEW.PA-9 =================
 
     if(collectionName === "forms"){
 
@@ -864,11 +1596,29 @@ async function editMyRecord(
 
     }
 
+
+    // ================= KEW.PA-19 =================
+
     if(collectionName === "kewpa19"){
 
         await editKewpa19Record(
             recordId
         );
+
+        return;
+
+    }
+
+
+    // ================= KEW.PA-3 =================
+
+    if(collectionName === "kewpa3"){
+
+        alert(
+            "✏️ Fungsi Edit KEW.PA-3 akan dibina pada langkah seterusnya."
+        );
+
+        return;
 
     }
 
@@ -882,6 +1632,8 @@ async function printMyRecord(
     recordId
 ){
 
+    // ================= KEW.PA-9 =================
+
     if(collectionName === "forms"){
 
         printRecord(recordId);
@@ -890,9 +1642,25 @@ async function printMyRecord(
 
     }
 
+
+    // ================= KEW.PA-19 =================
+
     if(collectionName === "kewpa19"){
 
         printKewpa19Record(recordId);
+
+        return;
+
+    }
+
+
+    // ================= KEW.PA-3 =================
+
+    if(collectionName === "kewpa3"){
+
+        alert(
+            "🖨️ Fungsi Cetak KEW.PA-3 akan dibina selepas fungsi Edit."
+        );
 
         return;
 
@@ -954,6 +1722,88 @@ async function viewKewpa19Record(
 
         alert(
             "Rekod KEW.PA-19 gagal dibuka."
+        );
+
+    }
+
+}
+
+/* ==========================================
+   VIEW KEW.PA-3 RECORD
+========================================== */
+
+async function viewKewpa3Record(
+    recordId
+){
+
+    try{
+
+        const documentSnapshot =
+        await db
+        .collection("kewpa3")
+        .doc(recordId)
+        .get();
+
+        if(!documentSnapshot.exists){
+
+            alert(
+                "Rekod KEW.PA-3 tidak dijumpai."
+            );
+
+            return;
+
+        }
+
+        const data =
+        documentSnapshot.data();
+
+        const borangNo =
+        data.borangNo || "-";
+
+        const noSiri =
+        data.jabatan
+        ?.noSiriPendaftaran || "-";
+
+        const sekolah =
+        data.jabatan
+        ?.bahagianCawangan || "-";
+
+        const aset =
+        data.aset
+        ?.jenisJenamaModel ||
+        data.aset
+        ?.keteranganAset ||
+        "-";
+
+        const status =
+        data.status || "Aktif";
+
+
+        alert(
+
+            `KEW.PA-3\n\n` +
+
+            `No. Borang: ${borangNo}\n` +
+
+            `No. Siri Pendaftaran: ${noSiri}\n` +
+
+            `Aset: ${aset}\n` +
+
+            `Sekolah: ${sekolah}\n` +
+
+            `Status: ${status}`
+
+        );
+
+    }catch(error){
+
+        console.error(
+            "Ralat melihat KEW.PA-3:",
+            error
+        );
+
+        alert(
+            "Rekod KEW.PA-3 gagal dibuka."
         );
 
     }

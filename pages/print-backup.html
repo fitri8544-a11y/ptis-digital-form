@@ -1,0 +1,563 @@
+<!-- ================= HERO ================= -->
+
+<section class="mb-8">
+
+    <div class="rounded-3xl
+    bg-gradient-to-r
+    from-cyan-600
+    via-blue-600
+    to-indigo-700
+    p-8
+    shadow-xl">
+
+        <div class="flex
+        justify-between
+        items-center
+        flex-wrap
+        gap-6">
+
+            <div>
+
+                <p class="uppercase
+                tracking-[0.3em]
+                text-cyan-100
+                text-xs
+                font-bold">
+
+                    PTIS DIGITAL FORM
+
+                </p>
+
+                <h1 class="text-4xl
+                font-black
+                text-white
+                mt-2">
+
+                    🖨️ Print & PDF Center
+
+                </h1>
+
+                <p class="text-cyan-100
+                mt-3">
+
+                    Cetak semula, pratonton dan muat turun semua borang digital PTIS.
+
+                </p>
+
+            </div>
+
+            <div
+            class="grid
+            grid-cols-3
+            gap-4">
+
+                <div class="bg-white/10
+                rounded-2xl
+                px-6
+                py-4
+                text-center">
+
+                    <div
+                    id="totalPrintForms"
+                    class="text-3xl
+                    font-black">
+
+                        0
+
+                    </div>
+
+                    <div class="text-xs">
+
+                        Jumlah Borang
+
+                    </div>
+
+                </div>
+
+                <div class="bg-white/10
+                rounded-2xl
+                px-6
+                py-4
+                text-center">
+
+                    <div
+                    id="todayPrint"
+                    class="text-3xl
+                    font-black">
+
+                        0
+
+                    </div>
+
+                    <div class="text-xs">
+
+                        Hari Ini
+
+                    </div>
+
+                </div>
+
+                <div class="bg-white/10
+                rounded-2xl
+                px-6
+                py-4
+                text-center">
+
+                    <div
+                    id="readyPrint"
+                    class="text-3xl
+                    font-black">
+
+                        0
+
+                    </div>
+
+                    <div class="text-xs">
+
+                        Ready Print
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= QUICK PRINT ================= -->
+
+<section class="mb-8">
+
+    <div class="flex
+    items-center
+    justify-between
+    mb-5">
+
+        <div>
+
+            <p class="text-xs
+            uppercase
+            tracking-[0.25em]
+            text-cyan-400
+            font-bold">
+
+                QUICK ACCESS
+
+            </p>
+
+            <h2 class="text-2xl
+            font-black
+            text-white
+            mt-1">
+
+                Pilihan Cetakan
+
+            </h2>
+
+        </div>
+
+        <button
+        type="button"
+        onclick="loadPage('records')"
+        class="text-sm
+        font-bold
+        text-cyan-400
+        hover:text-cyan-300
+        transition">
+
+            Lihat Semua Rekod
+            <i class="fa-solid fa-arrow-right ml-2"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="grid
+    grid-cols-1
+    sm:grid-cols-2
+    xl:grid-cols-4
+    gap-5">
+
+        <!-- KEW.PA-3 -->
+
+        <button
+        type="button"
+        onclick="filterPrintRecords('KEWPA3')"
+        class="group
+        text-left
+        rounded-3xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-6
+        hover:border-cyan-500/50
+        hover:-translate-y-1
+        hover:shadow-xl
+        hover:shadow-cyan-500/10
+        transition-all
+        duration-300">
+
+            <div class="flex
+            items-start
+            justify-between
+            gap-4">
+
+                <div class="w-14
+                h-14
+                rounded-2xl
+                bg-cyan-500/10
+                border
+                border-cyan-500/20
+                text-cyan-400
+                flex
+                items-center
+                justify-center
+                text-2xl">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+                <span
+                id="printCountKewpa3"
+                class="px-3
+                py-1
+                rounded-full
+                bg-slate-800
+                text-xs
+                font-bold
+                text-slate-300">
+
+                    0 Rekod
+
+                </span>
+
+            </div>
+
+            <h3 class="text-xl
+            font-black
+            text-white
+            mt-6">
+
+                KEW.PA-3
+
+            </h3>
+
+            <p class="text-sm
+            text-slate-400
+            mt-2
+            leading-relaxed">
+
+                Daftar Harta Modal dan maklumat penempatan aset.
+
+            </p>
+
+            <div class="flex
+            items-center
+            gap-2
+            text-cyan-400
+            font-bold
+            text-sm
+            mt-6">
+
+                Buka Senarai
+
+                <i class="fa-solid
+                fa-arrow-right
+                transition-transform
+                group-hover:translate-x-1"></i>
+
+            </div>
+
+        </button>
+
+
+        <!-- KEW.PA-9 -->
+
+        <button
+        type="button"
+        onclick="filterPrintRecords('KEWPA9')"
+        class="group
+        text-left
+        rounded-3xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-6
+        hover:border-blue-500/50
+        hover:-translate-y-1
+        hover:shadow-xl
+        hover:shadow-blue-500/10
+        transition-all
+        duration-300">
+
+            <div class="flex
+            items-start
+            justify-between
+            gap-4">
+
+                <div class="w-14
+                h-14
+                rounded-2xl
+                bg-blue-500/10
+                border
+                border-blue-500/20
+                text-blue-400
+                flex
+                items-center
+                justify-center
+                text-2xl">
+
+                    <i class="fa-solid fa-clipboard-list"></i>
+
+                </div>
+
+                <span
+                id="printCountKewpa9"
+                class="px-3
+                py-1
+                rounded-full
+                bg-slate-800
+                text-xs
+                font-bold
+                text-slate-300">
+
+                    0 Rekod
+
+                </span>
+
+            </div>
+
+            <h3 class="text-xl
+            font-black
+            text-white
+            mt-6">
+
+                KEW.PA-9
+
+            </h3>
+
+            <p class="text-sm
+            text-slate-400
+            mt-2
+            leading-relaxed">
+
+                Borang pemeriksaan dan perakuan pelupusan aset.
+
+            </p>
+
+            <div class="flex
+            items-center
+            gap-2
+            text-blue-400
+            font-bold
+            text-sm
+            mt-6">
+
+                Buka Senarai
+
+                <i class="fa-solid
+                fa-arrow-right
+                transition-transform
+                group-hover:translate-x-1"></i>
+
+            </div>
+
+        </button>
+
+
+        <!-- KEW.PA-19 -->
+
+        <button
+        type="button"
+        onclick="filterPrintRecords('KEWPA19')"
+        class="group
+        text-left
+        rounded-3xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-6
+        hover:border-indigo-500/50
+        hover:-translate-y-1
+        hover:shadow-xl
+        hover:shadow-indigo-500/10
+        transition-all
+        duration-300">
+
+            <div class="flex
+            items-start
+            justify-between
+            gap-4">
+
+                <div class="w-14
+                h-14
+                rounded-2xl
+                bg-indigo-500/10
+                border
+                border-indigo-500/20
+                text-indigo-400
+                flex
+                items-center
+                justify-center
+                text-2xl">
+
+                    <i class="fa-solid fa-box-archive"></i>
+
+                </div>
+
+                <span
+                id="printCountKewpa19"
+                class="px-3
+                py-1
+                rounded-full
+                bg-slate-800
+                text-xs
+                font-bold
+                text-slate-300">
+
+                    0 Rekod
+
+                </span>
+
+            </div>
+
+            <h3 class="text-xl
+            font-black
+            text-white
+            mt-6">
+
+                KEW.PA-19
+
+            </h3>
+
+            <p class="text-sm
+            text-slate-400
+            mt-2
+            leading-relaxed">
+
+                Perakuan pelupusan dan rekod aset alih kerajaan.
+
+            </p>
+
+            <div class="flex
+            items-center
+            gap-2
+            text-indigo-400
+            font-bold
+            text-sm
+            mt-6">
+
+                Buka Senarai
+
+                <i class="fa-solid
+                fa-arrow-right
+                transition-transform
+                group-hover:translate-x-1"></i>
+
+            </div>
+
+        </button>
+
+
+        <!-- SEMUA REKOD -->
+
+        <button
+        type="button"
+        onclick="filterPrintRecords('ALL')"
+        class="group
+        text-left
+        rounded-3xl
+        border
+        border-slate-800
+        bg-slate-900
+        p-6
+        hover:border-emerald-500/50
+        hover:-translate-y-1
+        hover:shadow-xl
+        hover:shadow-emerald-500/10
+        transition-all
+        duration-300">
+
+            <div class="flex
+            items-start
+            justify-between
+            gap-4">
+
+                <div class="w-14
+                h-14
+                rounded-2xl
+                bg-emerald-500/10
+                border
+                border-emerald-500/20
+                text-emerald-400
+                flex
+                items-center
+                justify-center
+                text-2xl">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                </div>
+
+                <span
+                id="printCountAll"
+                class="px-3
+                py-1
+                rounded-full
+                bg-slate-800
+                text-xs
+                font-bold
+                text-slate-300">
+
+                    0 Rekod
+
+                </span>
+
+            </div>
+
+            <h3 class="text-xl
+            font-black
+            text-white
+            mt-6">
+
+                Semua Rekod
+
+            </h3>
+
+            <p class="text-sm
+            text-slate-400
+            mt-2
+            leading-relaxed">
+
+                Paparkan semua borang yang tersedia untuk dicetak.
+
+            </p>
+
+            <div class="flex
+            items-center
+            gap-2
+            text-emerald-400
+            font-bold
+            text-sm
+            mt-6">
+
+                Lihat Semua
+
+                <i class="fa-solid
+                fa-arrow-right
+                transition-transform
+                group-hover:translate-x-1"></i>
+
+            </div>
+
+        </button>
+
+    </div>
+
+</section>

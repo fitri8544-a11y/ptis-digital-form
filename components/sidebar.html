@@ -1,12 +1,23 @@
 <div class="h-full flex flex-col bg-slate-900">
 
-    <!-- LOGO -->
+    <!-- ================= LOGO ================= -->
 
     <div class="p-8 border-b border-slate-800">
 
         <div class="flex items-center gap-4">
 
-            <div class="w-14 h-14 rounded-2xl bg-cyan-500 flex items-center justify-center text-2xl font-black">
+            <div
+            class="
+            w-14
+            h-14
+            rounded-2xl
+            bg-cyan-500
+            flex
+            items-center
+            justify-center
+            text-2xl
+            text-white
+            font-black">
 
                 P
 
@@ -14,7 +25,7 @@
 
             <div>
 
-                <h2 class="text-2xl font-black">
+                <h2 class="text-2xl font-black text-white">
 
                     PTIS
 
@@ -32,132 +43,92 @@
 
     </div>
 
-    <!-- MENU -->
+
+    <!-- ================= MENU UTAMA ================= -->
 
     <nav class="flex-1 p-6 space-y-3">
 
-<button
-class="menu-item active"
-data-page="dashboard">
+        <!-- DASHBOARD -->
 
-<i class="fa-solid fa-table-columns"></i>
+        <button
+        type="button"
+        class="menu-item active"
+        data-page="dashboard">
 
-Dashboard
+            <i class="fa-solid fa-table-columns"></i>
 
-</button>
+            <span>
 
-<button
-class="menu-item"
-data-page="digital-forms">
+                Dashboard
 
-<i class="fa-solid fa-file-lines"></i>
+            </span>
 
-Digital Forms
+        </button>
 
-</button>
 
-<button
-class="menu-item"
-data-page="records">
+        <!-- DIGITAL FORMS -->
 
-<i class="fa-solid fa-folder-open"></i>
+        <button
+        type="button"
+        class="menu-item"
+        data-page="digital-forms">
 
-Rekod Saya
+            <i class="fa-solid fa-file-lines"></i>
 
-</button>
+            <span>
 
-<button
-class="menu-item"
-data-page="approval">
+                Digital Forms
 
-<i class="fa-solid fa-circle-check"></i>
+            </span>
 
-Approvals
+        </button>
 
-</button>
 
-<button
-class="menu-item"
-data-page="print-center">
+        <!-- REKOD SAYA -->
 
-<i class="fa-solid fa-print"></i>
+        <button
+        type="button"
+        class="menu-item"
+        data-page="records">
 
-Print Center
+            <i class="fa-solid fa-folder-open"></i>
 
-</button>
+            <span>
 
-<button
-class="menu-item"
-data-page="reports">
+                Rekod Saya
 
-<i class="fa-solid fa-chart-column"></i>
+            </span>
 
-Reports
+        </button>
 
-</button>
+    </nav>
 
-<button
-class="menu-item"
-data-page="statistics">
 
-<i class="fa-solid fa-chart-line"></i>
+    <!-- ================= STATUS SISTEM ================= -->
 
-Statistics
-
-</button>
-
-<button
-class="menu-item"
-data-page="settings">
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</button>
-
-<button
-onclick="logout()"
-
-class="w-full
-flex
-items-center
-gap-3
-px-5
-py-4
-rounded-2xl
-text-red-400
-hover:bg-red-500/10
-hover:text-red-300
-transition">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-<span>
-
-Logout
-
-</span>
-
-</button>
-
-</nav>
-
-    <!-- STATUS -->
-
-    <div class="p-6">
+    <div class="px-6 pb-5">
 
         <div class="rounded-3xl bg-slate-800 p-5">
 
-            <h3 class="text-xs uppercase tracking-widest text-slate-400 mb-4">
+            <h3
+            class="
+            text-xs
+            uppercase
+            tracking-widest
+            text-slate-400
+            mb-4">
 
                 System Status
 
             </h3>
 
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-4">
 
-                <span>Firebase</span>
+                <span class="text-slate-300">
+
+                    Firebase
+
+                </span>
 
                 <span class="text-green-400">
 
@@ -167,9 +138,13 @@ Logout
 
             </div>
 
-            <div class="flex justify-between mt-2">
+            <div class="flex justify-between gap-4 mt-2">
 
-                <span>Print</span>
+                <span class="text-slate-300">
+
+                    Digital Forms
+
+                </span>
 
                 <span class="text-cyan-400">
 
@@ -180,6 +155,41 @@ Logout
             </div>
 
         </div>
+
+    </div>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <div class="p-6 pt-0">
+
+        <div class="border-t border-slate-800 mb-4"></div>
+
+        <button
+        type="button"
+        onclick="logout()"
+        class="
+        w-full
+        flex
+        items-center
+        gap-3
+        px-5
+        py-4
+        rounded-2xl
+        text-red-400
+        hover:bg-red-500/10
+        hover:text-red-300
+        transition">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+
+                Logout
+
+            </span>
+
+        </button>
 
     </div>
 

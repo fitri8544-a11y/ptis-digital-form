@@ -1340,6 +1340,83 @@ function previousKewpa19Step(){
 }
 
 /* ==========================================
+   GENERATE KEW.PA-19 BORANG NUMBER
+========================================== */
+
+async function generateKewpa19BorangNo(){
+
+    const year =
+    new Date().getFullYear();
+
+    const counterReference =
+    db
+    .collection("counters")
+    .doc(`kewpa19-${year}`);
+
+
+    const borangNo =
+    await db.runTransaction(
+        async transaction=>{
+
+            const counterSnapshot =
+            await transaction.get(
+                counterReference
+            );
+
+            let nextNumber = 1;
+
+            if(counterSnapshot.exists){
+
+                nextNumber =
+                Number(
+                    counterSnapshot
+                    .data()
+                    .lastNumber || 0
+                ) + 1;
+
+            }
+
+
+            transaction.set(
+                counterReference,
+                {
+
+                    formType:
+                    "KEW.PA-19",
+
+                    year:
+                    year,
+
+                    lastNumber:
+                    nextNumber,
+
+                    updatedAt:
+                    firebase.firestore
+                    .FieldValue
+                    .serverTimestamp()
+
+                },
+                {
+                    merge: true
+                }
+            );
+
+
+            return (
+                `KEWPA19-${year}-` +
+                String(nextNumber)
+                .padStart(4,"0")
+            );
+
+        }
+    );
+
+
+    return borangNo;
+
+}
+
+/* ==========================================
    SAVE KEW.PA-19 TO FIRESTORE
 ========================================== */
 
@@ -1457,8 +1534,6 @@ async function saveKewpa19ToFirestore(){
 
             },
 
-            status: "DRAF",
-
             createdBy: user.uid,
 
             createdByEmail:
@@ -1498,34 +1573,46 @@ async function saveKewpa19ToFirestore(){
 
         }
 
-        /* ================= CREATE NEW ================= */
+       /* ================= CREATE NEW ================= */
 
-        else{
+else{
 
-            const documentReference =
-            await db
-            .collection("kewpa19")
-            .add({
+    const borangNo =
+    await generateKewpa19BorangNo();
 
-                ...recordData,
+    await db
+    .collection("kewpa19")
+    .doc(borangNo)
+    .set({
 
-                createdAt:
-                firebase.firestore
-                .FieldValue
-                .serverTimestamp()
+        ...recordData,
 
-            });
+        borangNo:
+        borangNo,
 
-            window.kewpa19RecordId =
-            documentReference.id;
+        createdAt:
+        firebase.firestore
+        .FieldValue
+        .serverTimestamp()
 
-            window.kewpa19EditMode = true;
+    });
 
-            alert(
-                "Rekod KEW.PA-19 berjaya disimpan."
-            );
+    window.kewpa19RecordId =
+    borangNo;
 
-        }
+    window.kewpa19EditMode = true;
+
+    alert(
+
+        "✅ Rekod KEW.PA-19 berjaya disimpan.\n\n" +
+
+        "No. Borang : " +
+
+        borangNo
+
+    );
+
+}
 
         console.log(
             "KEW.PA-19 berjaya disimpan:",

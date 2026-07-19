@@ -1,0 +1,256 @@
+<!-- ==========================================
+     KEW.PA-3
+     DAFTAR HARTA MODAL
+========================================== -->
+
+<section class="space-y-6">
+
+    <!-- HEADER -->
+
+    <div
+    class="
+    relative
+    overflow-hidden
+    rounded-3xl
+    border
+    border-cyan-500/20
+    bg-gradient-to-br
+    from-slate-900
+    via-slate-950
+    to-black
+    p-6
+    md:p-8
+    shadow-2xl">
+
+        <div
+        class="
+        absolute
+        top-0
+        right-0
+        w-72
+        h-72
+        rounded-full
+        bg-cyan-500/10
+        blur-3xl">
+        </div>
+
+        <div class="relative z-10">
+
+            <div
+            class="
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-cyan-400/20
+            bg-cyan-500/10
+            px-4
+            py-2
+            text-xs
+            font-bold
+            tracking-widest
+            text-cyan-300">
+
+                PENGURUSAN HARTA MODAL
+
+            </div>
+
+            <div
+            class="
+            mt-5
+            flex
+            flex-col
+            gap-4
+            md:flex-row
+            md:items-end
+            md:justify-between">
+
+                <div>
+
+                    <h1
+                    class="
+                    text-2xl
+                    md:text-4xl
+                    font-black
+                    tracking-tight
+                    text-white">
+
+                        KEW.PA-3
+
+                    </h1>
+
+                    <p
+                    class="
+                    mt-2
+                    text-sm
+                    md:text-base
+                    text-slate-400">
+
+                        Daftar Harta Modal
+
+                    </p>
+
+                </div>
+
+                <div
+                class="
+                rounded-2xl
+                border
+                border-white/10
+                bg-white/5
+                px-5
+                py-3
+                text-sm
+                text-slate-300">
+
+                    Pekeliling Perbendaharaan Malaysia
+                    <strong class="text-white">
+                        AM 2.3 Lampiran A
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PROGRESS -->
+
+    <div
+    class="
+    rounded-3xl
+    border
+    border-white/10
+    bg-slate-900/70
+    p-5
+    shadow-xl">
+
+        <div
+        class="
+        mb-3
+        flex
+        items-center
+        justify-between
+        text-sm">
+
+            <span class="font-semibold text-slate-400">
+                Kemajuan Pengisian
+            </span>
+
+            <span
+            id="kewpa3StepText"
+            class="font-bold text-cyan-300">
+
+                Langkah 1 daripada 5
+
+            </span>
+
+        </div>
+
+        <div
+        class="
+        h-2
+        overflow-hidden
+        rounded-full
+        bg-slate-800">
+
+            <div
+            id="kewpa3ProgressBar"
+            class="
+            h-full
+            rounded-full
+            bg-gradient-to-r
+            from-cyan-500
+            to-blue-500
+            transition-all
+            duration-300"
+            style="width:20%">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- WIZARD CONTENT -->
+
+    <div
+    id="kewpa3WizardContent"
+    class="
+    rounded-3xl
+    border
+    border-white/10
+    bg-slate-900/70
+    p-5
+    md:p-8
+    shadow-xl">
+
+        <div
+        class="
+        py-10
+        text-center
+        text-slate-400">
+
+            Memuatkan borang KEW.PA-3...
+
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
+
+    <div
+    class="
+    flex
+    flex-col-reverse
+    gap-3
+    sm:flex-row
+    sm:items-center
+    sm:justify-between">
+
+        <button
+        id="kewpa3PrevBtn"
+        type="button"
+        class="
+        hidden
+        rounded-xl
+        border
+        border-slate-700
+        bg-slate-800
+        px-6
+        py-3
+        font-bold
+        text-slate-200
+        transition
+        hover:bg-slate-700">
+
+            ← Sebelumnya
+
+        </button>
+
+        <button
+        id="kewpa3NextBtn"
+        type="button"
+        class="
+        ml-auto
+        rounded-xl
+        bg-gradient-to-r
+        from-cyan-600
+        to-blue-600
+        px-6
+        py-3
+        font-bold
+        text-white
+        shadow-lg
+        transition
+        hover:scale-[1.02]">
+
+            Seterusnya →
+
+        </button>
+
+    </div>
+
+</section>
