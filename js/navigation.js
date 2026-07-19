@@ -329,3 +329,58 @@ async function loadForm(form){
     }
 
 }
+
+/* ================= LOAD KNOWLEDGE MODULE ================= */
+
+async function loadKnowledge(module){
+
+    try{
+
+        const response =
+        await fetch(`knowledge/${module}.html`);
+
+        if(!response.ok){
+
+            throw new Error(
+                `Gagal memuatkan knowledge/${module}.html`
+            );
+
+        }
+
+        const html =
+        await response.text();
+
+        const content =
+        document.getElementById("content");
+
+        if(!content){
+
+            throw new Error(
+                'Elemen id="content" tidak dijumpai.'
+            );
+
+        }
+
+        content.innerHTML = html;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Load Knowledge Error:",
+            error
+        );
+
+        alert(
+            "Modul panduan gagal dimuatkan."
+        );
+
+    }
+
+}
