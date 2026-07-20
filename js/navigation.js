@@ -37,6 +37,12 @@ function initNavigation(){
 
             await loadPage(page);
 
+            if(window.innerWidth < 1024){
+
+                closeSidebar();
+
+            }
+
         };
 
     });

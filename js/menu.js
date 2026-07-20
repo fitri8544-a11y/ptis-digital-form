@@ -1,25 +1,92 @@
-function initNavigation(){
+/* ==========================================
+   PTIS DIGITAL FORM
+   Mobile Sidebar Controller
+========================================== */
 
-    document.querySelectorAll(".menu-item").forEach(button=>{
+const sidebar =
+document.getElementById("sidebar");
 
-        button.onclick=()=>{
+const overlay =
+document.getElementById("sidebarOverlay");
 
-            document.querySelectorAll(".menu-item").forEach(item=>{
+/* ================= OPEN ================= */
 
-                item.classList.remove("active");
+function openSidebar(){
 
-            });
+    if(!sidebar) return;
 
-            button.classList.add("active");
+    sidebar.classList.add("show");
 
-            const page=
+    overlay?.classList.add("show");
 
-            button.dataset.page;
-
-            loadPage(page);
-
-        };
-
-    });
+    document.body.classList.add(
+        "sidebar-open"
+    );
 
 }
+
+/* ================= CLOSE ================= */
+
+function closeSidebar(){
+
+    if(!sidebar) return;
+
+    sidebar.classList.remove("show");
+
+    overlay?.classList.remove("show");
+
+    document.body.classList.remove(
+        "sidebar-open"
+    );
+
+}
+
+/* ================= TOGGLE ================= */
+
+function toggleSidebar(){
+
+    if(!sidebar) return;
+
+    if(
+        sidebar.classList.contains("show")
+    ){
+
+        closeSidebar();
+
+    }
+
+    else{
+
+        openSidebar();
+
+    }
+
+}
+
+/* ================= CLICK OUTSIDE ================= */
+
+overlay?.addEventListener(
+
+    "click",
+
+    closeSidebar
+
+);
+
+/* ================= DESKTOP ================= */
+
+window.addEventListener(
+
+    "resize",
+
+    ()=>{
+
+        if(window.innerWidth >= 1024){
+
+            closeSidebar();
+
+        }
+
+    }
+
+);

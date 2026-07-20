@@ -1,52 +1,143 @@
 <div
-class="h-20
+class="
+h-20
 bg-slate-900
 border-b
 border-slate-800
-px-8
+px-4
+sm:px-6
+lg:px-8
 flex
 items-center
-justify-between">
+justify-between
+gap-3">
 
-    <!-- LEFT -->
+    <!-- ================= LEFT ================= -->
 
     <div
-    class="flex
+    class="
+    flex
     items-center
     gap-3
-    text-slate-400">
+    min-w-0">
 
-        <span>
+        <!-- MOBILE MENU BUTTON -->
 
-            Workspace
+        <button
+        type="button"
+        onclick="toggleSidebar()"
+        aria-label="Buka menu navigasi"
+        class="
+        lg:hidden
+        shrink-0
+        w-11
+        h-11
+        rounded-2xl
+        bg-slate-800
+        border
+        border-slate-700
+        text-white
+        flex
+        items-center
+        justify-center
+        hover:bg-cyan-500
+        hover:border-cyan-400
+        active:scale-95
+        transition">
 
-        </span>
+            <i
+            class="
+            fa-solid
+            fa-bars
+            text-lg">
+            </i>
 
-        <i
-        class="fa-solid
-        fa-angle-right
-        text-xs"></i>
+        </button>
 
-        <span
-        class="text-white
-        font-semibold">
+        <!-- MOBILE BRAND -->
 
-            Dashboard
+        <div
+        class="
+        lg:hidden
+        min-w-0">
 
-        </span>
+            <div
+            class="
+            text-sm
+            font-black
+            text-white
+            truncate">
+
+                PTIS DIGITAL FORM
+
+            </div>
+
+            <div
+            class="
+            text-[10px]
+            uppercase
+            tracking-[0.18em]
+            text-cyan-400
+            truncate">
+
+                Digital Workspace
+
+            </div>
+
+        </div>
+
+        <!-- DESKTOP BREADCRUMB -->
+
+        <div
+        class="
+        hidden
+        lg:flex
+        items-center
+        gap-3
+        text-slate-400">
+
+            <span>
+
+                Workspace
+
+            </span>
+
+            <i
+            class="
+            fa-solid
+            fa-angle-right
+            text-xs">
+            </i>
+
+            <span
+            id="currentPageTitle"
+            class="
+            text-white
+            font-semibold">
+
+                Dashboard
+
+            </span>
+
+        </div>
 
     </div>
 
-    <!-- CENTER -->
+
+    <!-- ================= CENTER ================= -->
 
     <div
-    class="hidden
+    class="
+    hidden
     lg:block
-    text-center">
+    text-center
+    shrink-0">
 
         <div
         id="currentDate"
-        class="font-bold">
+        class="
+        font-bold
+        text-white">
 
             Khamis, 16 Julai 2026
 
@@ -54,7 +145,8 @@ justify-between">
 
         <div
         id="currentTime"
-        class="text-cyan-400
+        class="
+        text-cyan-400
         text-sm">
 
             10:45:32 PTG
@@ -63,33 +155,53 @@ justify-between">
 
     </div>
 
-    <!-- RIGHT -->
+
+    <!-- ================= RIGHT ================= -->
 
     <div
-    class="flex
+    class="
+    flex
     items-center
-    gap-6">
+    gap-3
+    sm:gap-5
+    shrink-0">
 
-        <!-- Notification -->
+        <!-- NOTIFICATION -->
 
         <button
-        class="relative">
+        type="button"
+        aria-label="Notifikasi"
+        class="
+        relative
+        w-10
+        h-10
+        rounded-xl
+        flex
+        items-center
+        justify-center
+        text-slate-300
+        hover:text-white
+        hover:bg-slate-800
+        transition">
 
             <i
-            class="fa-regular
+            class="
+            fa-regular
             fa-bell
-            text-xl"></i>
+            text-lg">
+            </i>
 
             <span
             class="
             absolute
-            -top-2
-            -right-2
+            -top-1
+            -right-1
             w-5
             h-5
             rounded-full
             bg-red-500
-            text-xs
+            text-white
+            text-[10px]
             font-bold
             flex
             items-center
@@ -104,51 +216,65 @@ justify-between">
         <!-- USER -->
 
         <div
-        class="flex
+        class="
+        flex
         items-center
-        gap-4">
+        gap-3">
+
+            <!-- USER TEXT: HIDDEN ON SMALL PHONE -->
 
             <div
-class="
-min-w-0
-text-right">
+            class="
+            hidden
+            sm:block
+            min-w-0
+            text-right">
 
-    <div
-    id="userName"
-    class="
-    max-w-[320px]
-    truncate
-    font-bold
-    text-white
-    leading-tight">
+                <div
+                id="userName"
+                class="
+                max-w-[220px]
+                lg:max-w-[320px]
+                truncate
+                font-bold
+                text-white
+                leading-tight">
 
-        Muhamed Fitri
+                    Muhamed Fitri
 
-    </div>
+                </div>
 
-    <div
-    id="userRole"
-    class="
-    max-w-[320px]
-    truncate
-    text-xs
-    text-cyan-400
-    mt-1">
+                <div
+                id="userRole"
+                class="
+                max-w-[220px]
+                lg:max-w-[320px]
+                truncate
+                text-xs
+                text-cyan-400
+                mt-1">
 
-        ICT Coordinator
+                    ICT Coordinator
 
-    </div>
+                </div>
 
-</div>
+            </div>
+
+            <!-- AVATAR -->
 
             <div
             id="userAvatar"
             class="
-            w-12
-            h-12
+            w-10
+            h-10
+            sm:w-12
+            sm:h-12
+            shrink-0
             rounded-full
             bg-cyan-500
             text-white
+            text-sm
+            sm:text-base
             font-bold
             flex
             items-center
