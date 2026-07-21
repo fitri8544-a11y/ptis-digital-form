@@ -3110,3 +3110,473 @@ document.addEventListener(
     }
 
 });
+
+/* =========================================================
+   KEW.PA-3 PRINT
+========================================================= */
+
+window.currentPrintKewpa3 = null;
+
+
+/* ================= SAFE VALUE ================= */
+
+function kewpa3PrintValue(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+        return "-";
+    }
+
+    return String(value);
+
+}
+
+
+/* ================= FORMAT DATE ================= */
+
+function formatKewpa3PrintDate(value){
+
+    if(!value){
+        return "-";
+    }
+
+    const date =
+    new Date(value);
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+        return kewpa3PrintValue(value);
+    }
+
+    return date.toLocaleDateString(
+        "ms-MY",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* ================= FORMAT MONEY ================= */
+
+function formatKewpa3PrintMoney(value){
+
+    const number =
+    Number(value);
+
+    if(
+        !Number.isFinite(number)
+    ){
+        return "-";
+    }
+
+    return new Intl.NumberFormat(
+        "ms-MY",
+        {
+            style:"currency",
+            currency:"MYR",
+            minimumFractionDigits:2
+        }
+    ).format(number);
+
+}
+
+
+/* ================= SET TEXT ================= */
+
+function setKewpa3PrintText(
+    elementId,
+    value
+){
+
+    const element =
+    document.getElementById(
+        elementId
+    );
+
+    if(!element){
+        return;
+    }
+
+    element.textContent =
+    kewpa3PrintValue(value);
+
+}
+
+
+/* ================= POPULATE PRINT ================= */
+
+function populateKewpa3Print(){
+
+    const data =
+    window.currentPrintKewpa3;
+
+    if(!data){
+        console.error(
+            "Data cetakan KEW.PA-3 tidak dijumpai."
+        );
+        return;
+    }
+
+
+    /* ================= HEADER ================= */
+
+    setKewpa3PrintText(
+        "printKewpa3KementerianJabatan",
+        data.jabatan
+        ?.kementerianJabatan
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3BahagianCawangan",
+        data.jabatan
+        ?.bahagianCawangan
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3NoSiri",
+        data.jabatan
+        ?.noSiriPendaftaran
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3BorangNo",
+        data.borangNo ||
+        data.id
+    );
+
+
+    /* ================= ASSET ================= */
+
+    const aset =
+    data.aset || {};
+
+    setKewpa3PrintText(
+        "printKewpa3KodNasional",
+        aset.kodNasional
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3KeteranganAset",
+        aset.keteranganAset
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3Kategori",
+        aset.kategori
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3SubKategori",
+        aset.subKategori
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3JenisJenamaModel",
+        aset.jenisJenamaModel
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3Buatan",
+        aset.buatan
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3Harga",
+        formatKewpa3PrintMoney(
+            aset.hargaPerolehanAsal
+        )
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3NoEnjin",
+        aset.jenisNoEnjin
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3NoCasis",
+        aset.noCasisSiriPembuat
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3NoPendaftaran",
+        aset.noPendaftaran
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3TempohJaminan",
+        aset.tempohJaminan
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3TarikhPerolehan",
+        formatKewpa3PrintDate(
+            aset.tarikhPerolehan
+        )
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3TarikhDiterima",
+        formatKewpa3PrintDate(
+            aset.tarikhDiterima
+        )
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3PesananKontrak",
+        aset.noPesananKontrak
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3NamaPembekal",
+        aset.namaPembekal
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3AlamatPembekal",
+        aset.alamatPembekal
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3Spesifikasi",
+        aset.spesifikasiCatatan
+    );
+
+
+    /* ================= CONFIRMATION ================= */
+
+    const pengesahan =
+    data.pengesahan || {};
+
+    setKewpa3PrintText(
+        "printKewpa3PengesahanNama",
+        pengesahan.nama
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3PengesahanJawatan",
+        pengesahan.jawatan
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3PengesahanTarikh",
+        formatKewpa3PrintDate(
+            pengesahan.tarikh
+        )
+    );
+
+    setKewpa3PrintText(
+        "printKewpa3PengesahanCap",
+        pengesahan.cap
+    );
+
+
+ /* ================= PLACEMENT ================= */
+
+const placementContainer =
+document.getElementById(
+    "printKewpa3PenempatanHorizontal"
+);
+
+if(placementContainer){
+
+    const penempatan =
+    Array.isArray(data.penempatan)
+    ? data.penempatan.slice(0,6)
+    : [];
+
+    const lokasiCells = [];
+    const tarikhCells = [];
+    const pegawaiCells = [];
+
+    for(let index = 0; index < 6; index++){
+
+        const item =
+        penempatan[index] || {};
+
+        lokasiCells.push(`
+
+            <div class="kewpa3-history-value">
+
+                ${
+                    escapeKewpa3PrintHTML(
+                        item.lokasi || "-"
+                    )
+                }
+
+            </div>
+
+        `);
+
+        tarikhCells.push(`
+
+            <div class="kewpa3-history-value">
+
+                ${
+                    escapeKewpa3PrintHTML(
+                        item.tarikh
+                        ? formatKewpa3PrintDate(
+                            item.tarikh
+                        )
+                        : "-"
+                    )
+                }
+
+            </div>
+
+        `);
+
+        pegawaiCells.push(`
+
+            <div class="kewpa3-history-value">
+
+                ${
+                    escapeKewpa3PrintHTML(
+                        item.pegawai || "-"
+                    )
+                }
+
+            </div>
+
+        `);
+
+    }
+
+    placementContainer.innerHTML = `
+
+        <div class="kewpa3-history-title">
+
+            PENEMPATAN
+
+        </div>
+
+        <div class="kewpa3-history-label">
+
+            Lokasi
+
+        </div>
+
+        ${lokasiCells.join("")}
+
+        <div class="kewpa3-history-label">
+
+            Tarikh
+
+        </div>
+
+        ${tarikhCells.join("")}
+
+        <div class="kewpa3-history-label">
+
+            Nama Pegawai
+
+        </div>
+
+        ${pegawaiCells.join("")}
+
+    `;
+
+}
+
+
+    /* ================= GENERATED DATE ================= */
+
+    setKewpa3PrintText(
+        "printKewpa3GeneratedAt",
+        `Dijana pada ${new Date()
+        .toLocaleString("ms-MY")}`
+    );
+
+}
+
+
+/* ================= SECURITY ================= */
+
+function escapeKewpa3PrintHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ================= OPEN PRINT PAGE ================= */
+
+async function printKewpa3Record(
+    recordId
+){
+
+    try{
+
+        if(!recordId){
+
+            throw new Error(
+                "ID rekod KEW.PA-3 tidak dijumpai."
+            );
+
+        }
+
+        const snapshot =
+        await db
+        .collection("kewpa3")
+        .doc(recordId)
+        .get();
+
+        if(!snapshot.exists){
+
+            throw new Error(
+                "Rekod KEW.PA-3 tidak dijumpai."
+            );
+
+        }
+
+        window.currentPrintKewpa3 = {
+
+            id:
+            snapshot.id,
+
+            ...snapshot.data()
+
+        };
+
+        await loadForm(
+            "kewpa3-print-v3"
+        );
+
+        setTimeout(()=>{
+
+            populateKewpa3Print();
+
+        },150);
+
+    }
+    catch(error){
+
+        console.error(
+            "Ralat cetak KEW.PA-3:",
+            error
+        );
+
+        alert(
+            error?.message ||
+            "Paparan cetakan KEW.PA-3 gagal dibuka."
+        );
+
+    }
+
+}

@@ -119,3 +119,304 @@ box-shadow:0 10px 25px rgba(0,0,0,.25);
     font-size:14px;
     font-weight:800;
 }
+
+/* =====================================================
+   KNOWLEDGE CHECKLIST
+===================================================== */
+
+.guide-check-item{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:18px;
+    border:1px solid rgb(30 41 59);
+    border-radius:16px;
+    background:rgba(2,6,23,.55);
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.6;
+    cursor:pointer;
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.guide-check-item:hover{
+    border-color:rgba(34,211,238,.35);
+    background:rgba(15,23,42,.9);
+    transform:translateY(-1px);
+}
+
+.guide-check-item input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.guide-check-box{
+    width:24px;
+    height:24px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #475569;
+    border-radius:8px;
+    color:transparent;
+    transition:.2s ease;
+}
+
+.guide-check-item input:checked
++ .guide-check-box{
+    background:#06b6d4;
+    border-color:#22d3ee;
+    color:white;
+    box-shadow:
+        0 0 16px rgba(34,211,238,.25);
+}
+
+.guide-check-item:has(input:checked){
+    border-color:rgba(34,211,238,.3);
+    background:rgba(8,145,178,.08);
+    color:white;
+}
+
+/* =========================================================
+   KEW.PA-3 PRINT
+========================================================= */
+
+.kewpa3-print-page{
+    min-height:100%;
+    padding:24px;
+    background:#020617;
+}
+
+.kewpa3-print-toolbar{
+    width:min(100%,1100px);
+    margin:0 auto 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.kewpa3-toolbar-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.kewpa3-toolbar-btn,
+.kewpa3-print-btn{
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:10px 18px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:800;
+    transition:.2s ease;
+}
+
+.kewpa3-toolbar-btn{
+    color:#cbd5e1;
+    background:#0f172a;
+    border:1px solid #334155;
+}
+
+.kewpa3-toolbar-btn:hover{
+    color:white;
+    border-color:#64748b;
+    background:#1e293b;
+}
+
+.kewpa3-print-btn{
+    color:white;
+    background:#0891b2;
+    border:1px solid #22d3ee;
+}
+
+.kewpa3-print-btn:hover{
+    background:#06b6d4;
+}
+
+.kewpa3-print-sheet{
+    position:relative;
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    padding:13mm 12mm;
+    color:#000;
+    background:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10px;
+    line-height:1.35;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.kewpa3-form-code{
+    position:absolute;
+    top:8mm;
+    right:12mm;
+    font-size:11px;
+    font-weight:700;
+}
+
+.kewpa3-document-header{
+    padding-top:7mm;
+    margin-bottom:6mm;
+    text-align:center;
+}
+
+.kewpa3-document-header h1{
+    margin:0;
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.kewpa3-document-header p{
+    margin:4px 0 0;
+    font-size:9px;
+}
+
+.kewpa3-section-title{
+    margin-top:5mm;
+    padding:6px 8px;
+    border:1px solid #000;
+    border-bottom:0;
+    font-size:10px;
+    font-weight:800;
+    text-align:center;
+    background:#eee;
+}
+
+.kewpa3-table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+.kewpa3-table th,
+.kewpa3-table td{
+    height:8mm;
+    padding:5px 6px;
+    border:1px solid #000;
+    vertical-align:top;
+    overflow-wrap:anywhere;
+}
+
+.kewpa3-table th{
+    font-size:9px;
+    font-weight:700;
+    text-align:left;
+    background:#f5f5f5;
+}
+
+.kewpa3-asset-table th{
+    width:19%;
+}
+
+.kewpa3-asset-table td{
+    width:31%;
+}
+
+.kewpa3-important-field{
+    font-size:11px;
+    font-weight:800;
+}
+
+.kewpa3-long-field{
+    min-height:18mm;
+    white-space:pre-wrap;
+}
+
+.kewpa3-placement-table thead th{
+    text-align:center;
+}
+
+.kewpa3-placement-table tbody td{
+    text-align:center;
+}
+
+.kewpa3-document-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-top:7mm;
+    padding-top:4mm;
+    border-top:1px solid #777;
+    color:#555;
+    font-size:8px;
+}
+
+@media(max-width:900px){
+
+    .kewpa3-print-page{
+        padding:12px;
+        overflow-x:auto;
+    }
+
+    .kewpa3-print-toolbar{
+        min-width:720px;
+    }
+
+    .kewpa3-print-sheet{
+        transform-origin:top left;
+    }
+
+}
+
+@media print{
+
+    @page{
+        size:A4 portrait;
+        margin:0;
+    }
+
+    html,
+    body{
+        width:210mm;
+        min-height:297mm;
+        margin:0 !important;
+        padding:0 !important;
+        background:white !important;
+    }
+
+    body *{
+        visibility:hidden;
+    }
+
+    #kewpa3PrintSheet,
+    #kewpa3PrintSheet *{
+        visibility:visible;
+    }
+
+    #kewpa3PrintSheet{
+        position:absolute;
+        top:0;
+        left:0;
+        width:210mm;
+        min-height:297mm;
+        margin:0;
+        padding:13mm 12mm;
+        box-shadow:none;
+        print-color-adjust:exact;
+        -webkit-print-color-adjust:exact;
+    }
+
+    .no-print{
+        display:none !important;
+    }
+
+    .kewpa3-table tr,
+    .kewpa3-section-title{
+        break-inside:avoid;
+        page-break-inside:avoid;
+    }
+
+}

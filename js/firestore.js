@@ -674,6 +674,11 @@ function renderMyRecords(){
         "recordTable"
     );
 
+    const cardContainer =
+    document.getElementById(
+        "recordCardContainer"
+    );
+
     const searchInput =
     document.getElementById(
         "recordSearchInput"
@@ -689,7 +694,10 @@ function renderMyRecords(){
         "recordEmptyState"
     );
 
-    if(!table){
+    if(
+        !table ||
+        !cardContainer
+    ){
         return;
     }
 
@@ -738,6 +746,8 @@ function renderMyRecords(){
 
         table.innerHTML = "";
 
+        cardContainer.innerHTML = "";
+
         if(emptyState){
 
             emptyState.classList.remove(
@@ -746,9 +756,9 @@ function renderMyRecords(){
 
         }
 
-        return;
+    return;
 
-    }
+}
 
 
     if(emptyState){
@@ -958,6 +968,749 @@ function renderMyRecords(){
                 </td>
 
             </tr>
+
+        `;
+
+    })
+    .join("");
+
+}
+
+/* ==========================================
+   RENDER MY RECORDS
+========================================== */
+
+function renderMyRecords(){
+
+    const table =
+    document.getElementById(
+        "recordTable"
+    );
+
+    const cardContainer =
+    document.getElementById(
+        "recordCardContainer"
+    );
+
+    const searchInput =
+    document.getElementById(
+        "recordSearchInput"
+    );
+
+    const resultCount =
+    document.getElementById(
+        "recordResultCount"
+    );
+
+    const emptyState =
+    document.getElementById(
+        "recordEmptyState"
+    );
+
+
+    if(
+        !table ||
+        !cardContainer
+    ){
+
+        return;
+
+    }
+
+
+    const keyword =
+    searchInput?.value
+    .trim()
+    .toLowerCase() || "";
+
+
+    const filteredRecords =
+    myRecordData.filter(record=>{
+
+        const matchCategory =
+        activeRecordFilter === "all" ||
+        record.filterType ===
+        activeRecordFilter;
+
+        const matchSearch =
+        !keyword ||
+        record.searchText
+        .includes(keyword);
+
+        return (
+            matchCategory &&
+            matchSearch
+        );
+
+    });
+
+
+    if(resultCount){
+
+        resultCount.textContent =
+        `${filteredRecords.length} rekod ditemui`;
+
+    }
+
+
+    updateActiveRecordLabels();
+
+
+    /* ================= TIADA REKOD ================= */
+
+    if(
+        filteredRecords.length === 0
+    ){
+
+        table.innerHTML = "";
+
+        cardContainer.innerHTML = "";
+
+        if(emptyState){
+
+            emptyState.classList.remove(
+                "hidden"
+            );
+
+        }
+
+        return;
+
+    }
+
+
+    if(emptyState){
+
+        emptyState.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    /* ================= DESKTOP ================= */
+
+    table.innerHTML =
+    renderDesktopRecordRows(
+        filteredRecords
+    );
+
+
+    /* ================= MOBILE ================= */
+
+    cardContainer.innerHTML =
+    renderMobileRecordCards(
+        filteredRecords
+    );
+
+}
+
+/* ==========================================
+   RENDER DESKTOP RECORD TABLE
+========================================== */
+
+function renderDesktopRecordRows(
+    records
+){
+
+    return records
+    .map(record=>{
+
+        const recordId =
+        escapeRecordHTML(
+            record.id
+        );
+
+        const displayId =
+        escapeRecordHTML(
+            record.displayId ||
+            record.id
+        );
+
+        const collection =
+        escapeRecordHTML(
+            record.collection
+        );
+
+        const formType =
+        escapeRecordHTML(
+            record.formType
+        );
+
+        const description =
+        escapeRecordHTML(
+            record.formDescription
+        );
+
+        const displayDate =
+        formatRecordDate(
+            record.createdAt
+        );
+
+
+        return `
+
+            <tr
+            class="
+            border-b
+            border-slate-800
+            transition
+            hover:bg-white/[0.025]">
+
+                <!-- NO. PERMOHONAN -->
+
+                <td
+                class="
+                px-6
+                py-5">
+
+                    <div
+                    class="
+                    font-black
+                    text-white">
+
+                        ${displayId}
+
+                    </div>
+
+                </td>
+
+
+                <!-- BORANG -->
+
+                <td
+                class="
+                px-6
+                py-5">
+
+                    <div
+                    class="
+                    font-black
+                    text-white">
+
+                        ${formType}
+
+                    </div>
+
+                    <div
+                    class="
+                    mt-1
+                    text-xs
+                    text-slate-500">
+
+                        ${description}
+
+                    </div>
+
+                </td>
+
+
+                <!-- TARIKH -->
+
+                <td
+                class="
+                px-6
+                py-5
+                text-sm
+                text-slate-300">
+
+                    ${displayDate}
+
+                </td>
+
+
+                <!-- TINDAKAN -->
+
+                <td
+                class="
+                px-6
+                py-5">
+
+                    <div
+                    class="
+                    flex
+                    flex-wrap
+                    justify-end
+                    gap-2">
+
+                        <button
+                        type="button"
+                        onclick="
+                        viewMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-cyan-500/20
+                        bg-cyan-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-cyan-300
+                        transition
+                        hover:bg-cyan-500/20">
+
+                            👁️ Lihat
+
+                        </button>
+
+
+                        <button
+                        type="button"
+                        onclick="
+                        editMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-amber-500/20
+                        bg-amber-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-amber-300
+                        transition
+                        hover:bg-amber-500/20">
+
+                            ✏️ Edit
+
+                        </button>
+
+
+                        <button
+                        type="button"
+                        onclick="
+                        printMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-emerald-500/20
+                        bg-emerald-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-emerald-300
+                        transition
+                        hover:bg-emerald-500/20">
+
+                            🖨️ Cetak
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    })
+    .join("");
+
+}
+
+/* ==========================================
+   RENDER MOBILE RECORD CARDS
+========================================== */
+
+function renderMobileRecordCards(
+    records
+){
+
+    return records
+    .map(record=>{
+
+        const recordId =
+        escapeRecordHTML(
+            record.id
+        );
+
+        const displayId =
+        escapeRecordHTML(
+            record.displayId ||
+            record.id
+        );
+
+        const collection =
+        escapeRecordHTML(
+            record.collection
+        );
+
+        const formType =
+        escapeRecordHTML(
+            record.formType
+        );
+
+        const description =
+        escapeRecordHTML(
+            record.formDescription
+        );
+
+        const displayDate =
+        formatRecordDate(
+            record.createdAt
+        );
+
+        const statusBadge =
+        getRecordStatusBadge(
+            record.status
+        );
+
+
+        let icon = "📁";
+
+        let iconStyle =
+        `
+        border-cyan-500/20
+        bg-cyan-500/10
+        `;
+
+
+        if(
+            record.filterType ===
+            "kewpa3"
+        ){
+
+            icon = "🗂️";
+
+            iconStyle =
+            `
+            border-cyan-500/20
+            bg-cyan-500/10
+            `;
+
+        }
+
+
+        if(
+            record.filterType ===
+            "kewpa9"
+        ){
+
+            icon = "🚚";
+
+            iconStyle =
+            `
+            border-blue-500/20
+            bg-blue-500/10
+            `;
+
+        }
+
+
+        if(
+            record.filterType ===
+            "kewpa19"
+        ){
+
+            icon = "♻️";
+
+            iconStyle =
+            `
+            border-rose-500/20
+            bg-rose-500/10
+            `;
+
+        }
+
+
+        return `
+
+            <article
+            class="
+            relative
+            overflow-hidden
+            rounded-3xl
+            border
+            border-slate-800
+            bg-slate-900/80
+            p-5
+            shadow-lg">
+
+                <!-- GLOW -->
+
+                <div
+                class="
+                pointer-events-none
+                absolute
+                -right-16
+                -top-16
+                h-36
+                w-36
+                rounded-full
+                bg-cyan-500/5
+                blur-3xl">
+                </div>
+
+
+                <!-- HEADER -->
+
+                <div
+                class="
+                relative
+                z-10
+                flex
+                items-start
+                gap-4">
+
+                    <!-- ICON -->
+
+                    <div
+                    class="
+                    flex
+                    h-14
+                    w-14
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    border
+                    text-2xl
+                    ${iconStyle}">
+
+                        ${icon}
+
+                    </div>
+
+
+                    <!-- INFO -->
+
+                    <div
+                    class="
+                    min-w-0
+                    flex-1">
+
+                        <div
+                        class="
+                        flex
+                        flex-wrap
+                        items-start
+                        justify-between
+                        gap-2">
+
+                            <h3
+                            class="
+                            text-lg
+                            font-black
+                            text-white">
+
+                                ${formType}
+
+                            </h3>
+
+                            ${statusBadge}
+
+                        </div>
+
+                        <p
+                        class="
+                        mt-1
+                        text-xs
+                        leading-5
+                        text-slate-500">
+
+                            ${description}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NO. PERMOHONAN -->
+
+                <div
+                class="
+                relative
+                z-10
+                mt-5
+                rounded-2xl
+                border
+                border-slate-800
+                bg-slate-950/50
+                p-4">
+
+                    <p
+                    class="
+                    text-[10px]
+                    font-black
+                    uppercase
+                    tracking-wider
+                    text-slate-500">
+
+                        No. Permohonan
+
+                    </p>
+
+                    <p
+                    class="
+                    mt-2
+                    break-all
+                    text-base
+                    font-black
+                    leading-6
+                    text-white">
+
+                        ${displayId}
+
+                    </p>
+
+                </div>
+
+
+                <!-- TARIKH -->
+
+                <div
+                class="
+                relative
+                z-10
+                mt-4
+                flex
+                items-center
+                gap-2
+                text-sm
+                text-slate-300">
+
+                    <span>
+
+                        📅
+
+                    </span>
+
+                    <span>
+
+                        ${displayDate}
+
+                    </span>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div
+                class="
+                relative
+                z-10
+                mt-5
+                grid
+                grid-cols-1
+                gap-2
+                min-[360px]:grid-cols-3">
+
+                    <!-- LIHAT -->
+
+                    <button
+                    type="button"
+                    onclick="
+                    viewMyRecord(
+                        '${collection}',
+                        '${recordId}'
+                    )"
+                    class="
+                    inline-flex
+                    min-h-11
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-cyan-500/20
+                    bg-cyan-500/10
+                    px-3
+                    py-2.5
+                    text-xs
+                    font-bold
+                    text-cyan-300
+                    transition
+                    hover:bg-cyan-500/20
+                    active:scale-[0.98]">
+
+                        👁️ Lihat
+
+                    </button>
+
+
+                    <!-- EDIT -->
+
+                    <button
+                    type="button"
+                    onclick="
+                    editMyRecord(
+                        '${collection}',
+                        '${recordId}'
+                    )"
+                    class="
+                    inline-flex
+                    min-h-11
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-amber-500/20
+                    bg-amber-500/10
+                    px-3
+                    py-2.5
+                    text-xs
+                    font-bold
+                    text-amber-300
+                    transition
+                    hover:bg-amber-500/20
+                    active:scale-[0.98]">
+
+                        ✏️ Edit
+
+                    </button>
+
+
+                    <!-- CETAK -->
+
+                    <button
+                    type="button"
+                    onclick="
+                    printMyRecord(
+                        '${collection}',
+                        '${recordId}'
+                    )"
+                    class="
+                    inline-flex
+                    min-h-11
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-emerald-500/20
+                    bg-emerald-500/10
+                    px-3
+                    py-2.5
+                    text-xs
+                    font-bold
+                    text-emerald-300
+                    transition
+                    hover:bg-emerald-500/20
+                    active:scale-[0.98]">
+
+                        🖨️ Cetak
+
+                    </button>
+
+                </div>
+
+            </article>
 
         `;
 
@@ -1658,8 +2411,9 @@ async function printMyRecord(
 
     if(collectionName === "kewpa3"){
 
-        alert(
-            "🖨️ Fungsi Cetak KEW.PA-3 akan dibina selepas fungsi Edit."
+        await printKewpa3Record(
+        
+            recordId
         );
 
         return;
