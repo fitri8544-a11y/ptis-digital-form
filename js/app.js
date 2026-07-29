@@ -30,4 +30,18 @@ async function loadLayout(){
         "components/footer.html"
     );
 
+    /* ================= ADMIN MENU ================= */
+
+    const adminMenu =
+    document.getElementById("adminMenu");
+
+    if(
+        adminMenu &&
+        window.currentUserRole === "admin"
+    ){
+
+        adminMenu.classList.remove("hidden");
+
+    }
+
 }

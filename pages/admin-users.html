@@ -1,0 +1,92 @@
+<div class="space-y-6">
+
+    <!-- HEADER -->
+
+    <div class="border-b border-slate-700 pb-5">
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 font-bold">
+
+            👥 USER MANAGEMENT
+
+        </div>
+
+        <h1 class="text-4xl font-black text-white mt-4">
+
+            Pengurusan Pengguna
+
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+
+            Senarai semua pengguna yang pernah login ke PTIS Digital Form.
+
+        </p>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div>
+
+        <input
+        id="userSearch"
+        type="text"
+        placeholder="Cari nama atau email..."
+
+        class="w-full rounded-2xl
+        bg-slate-800
+        border border-slate-700
+        px-5 py-4
+        text-white
+        placeholder:text-slate-500">
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="overflow-x-auto rounded-3xl border border-slate-700">
+
+        <table class="w-full">
+
+            <thead class="bg-slate-800">
+
+                <tr>
+
+                    <th class="p-4 text-left text-slate-300">
+
+                        Nama
+
+                    </th>
+
+                    <th class="p-4 text-left text-slate-300">
+
+                        Email
+
+                    </th>
+
+                    <th class="p-4 text-center text-slate-300">
+
+                        Role
+
+                    </th>
+
+                    <th class="p-4 text-center text-slate-300">
+
+                        Login Terakhir
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody
+            id="userTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

@@ -22,11 +22,63 @@ async function googleLogin(){
         await auth.signInWithPopup(provider);
 
         const user =
-        result.user;
+result.user;
 
-        console.log("Login Success");
+/* ===========================
+   CREATE USER PROFILE
+=========================== */
 
-        console.log(user);
+const userRef =
+db.collection("users")
+.doc(user.uid);
+
+const doc =
+await userRef.get();
+
+if(!doc.exists){
+
+    await userRef.set({
+
+        uid : user.uid,
+
+        nama :
+        user.displayName || "",
+
+        email :
+        user.email || "",
+
+        photoURL :
+        user.photoURL || "",
+
+        role :
+        "user",
+
+        createdAt :
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+        lastLogin :
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+}
+else{
+
+    await userRef.update({
+
+        lastLogin :
+        firebase.firestore.FieldValue.serverTimestamp(),
+
+        photoURL :
+        user.photoURL || ""
+
+    });
+
+}
+
+console.log("Login Success");
+
+console.log(user);
 
     }
 
@@ -77,27 +129,54 @@ auth.onAuthStateChanged(async(user)=>{
 
     if(user){
 
-        // Paparkan layout selepas login
+    /* ==========================
+       GET USER ROLE
+    ========================== */
 
-        await loadLayout();
+    const userDoc =
+    await db
+    .collection("users")
+    .doc(user.uid)
+    .get();
 
-        // Dashboard
+    let currentRole = "user";
 
-        await loadPage("dashboard");
+    if(userDoc.exists){
 
-        // Maklumat pengguna
-
-        setTimeout(()=>{
-
-            if(typeof loadUser==="function"){
-
-                loadUser(user);
-
-            }
-
-        },300);
+        currentRole =
+        userDoc.data().role || "user";
 
     }
+
+    /* Simpan maklumat role */
+
+    window.currentUser = user;
+
+    window.currentUserRole = currentRole;
+
+    console.log("Role :", currentRole);
+
+    /* Paparkan layout */
+
+    await loadLayout();
+
+    /* Dashboard */
+
+    await loadPage("dashboard");
+
+    /* Maklumat pengguna */
+
+    setTimeout(()=>{
+
+        if(typeof loadUser==="function"){
+
+            loadUser(user);
+
+        }
+
+    },300);
+
+}
 
     else{
 

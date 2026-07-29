@@ -173,6 +173,46 @@ async function loadPage(page){
 
         }
 
+        /* ================= ADMIN DASHBOARD ================= */
+
+        if(page==="admin-dashboard"){
+
+            if(typeof loadAdminDashboard==="function"){
+
+                setTimeout(()=>{
+
+                    loadAdminDashboard();
+
+                },100);
+
+            }
+
+        }
+
+        /* ================= ADMIN USERS ================= */
+
+        if(page==="admin-users"){
+
+            if(typeof loadAdminUsers==="function"){
+
+                loadAdminUsers();
+
+            }
+
+        }
+
+        /* ================= ADMIN RECORDS ================= */
+
+        if(page==="admin-records"){
+
+            if(typeof loadAdminRecords==="function"){
+
+                loadAdminRecords();
+
+            }
+
+        }
+
         // ================= REPORT =================
 
         if(page==="reports"){
