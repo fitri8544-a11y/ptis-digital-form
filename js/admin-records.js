@@ -11,6 +11,30 @@ async function loadAdminRecords(){
 
         table.innerHTML = "";
 
+        /* ================= USER LIST ================= */
+
+const usersSnapshot =
+await db
+.collection("users")
+.get();
+
+const userMap = {};
+
+usersSnapshot.forEach(doc=>{
+
+    const user =
+    doc.data();
+
+    if(user.email){
+
+        userMap[
+            user.email.toLowerCase()
+        ] = user;
+
+    }
+
+});
+
         const collections = [
 
             {
@@ -42,6 +66,24 @@ async function loadAdminRecords(){
                 const data =
                 doc.data();
 
+                const email =
+
+(
+
+data.createdByEmail ||
+
+data.user?.email ||
+
+""
+
+)
+
+.toLowerCase();
+
+const user =
+
+userMap[email] || {};
+
                 table.innerHTML += `
 
 <tr class="border-t border-slate-800 hover:bg-slate-800/40 transition">
@@ -60,7 +102,17 @@ async function loadAdminRecords(){
 
     <td class="p-4">
 
-        ${data.nama || data.namaPemohon || "-"}
+        ${
+    user.nama ||
+
+    user.displayName ||
+
+    data.createdByEmail ||
+
+    data.user?.email ||
+
+    "-"
+}
 
     </td>
 
