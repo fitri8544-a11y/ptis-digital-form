@@ -2191,3 +2191,37 @@ document.addEventListener(
 
     }
 );
+
+/* ==========================================
+   KEW.PA-19 NOTICE MODAL
+========================================== */
+
+function openKewpa19Notice(){
+
+    const modal =
+    document.getElementById(
+        "kewpa19NoticeModal"
+    );
+
+    if(modal){
+
+        modal.classList.remove("hidden");
+
+    }
+
+}
+
+function closeKewpa19Notice(){
+
+    const modal =
+    document.getElementById(
+        "kewpa19NoticeModal"
+    );
+
+    if(modal){
+
+        modal.classList.add("hidden");
+
+    }
+
+}
