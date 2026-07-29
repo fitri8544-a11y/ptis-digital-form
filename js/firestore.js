@@ -963,6 +963,30 @@ function renderMyRecords(){
 
                         </button>
 
+                        <button
+                        type="button"
+                        onclick="
+                        deleteMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-red-500/20
+                        bg-red-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-red-300
+                        transition
+                        hover:bg-red-500/20">
+
+                        🗑️ Delete
+
+                    </button>
+
                     </div>
 
                 </td>
@@ -1307,6 +1331,30 @@ function renderDesktopRecordRows(
 
                         </button>
 
+                        <button
+                        type="button"
+                        onclick="
+                        deleteMyRecord(
+                            '${collection}',
+                            '${recordId}'
+                        )"
+                        class="
+                        rounded-xl
+                        border
+                        border-red-500/20
+                        bg-red-500/10
+                        px-3
+                        py-2
+                        text-xs
+                        font-bold
+                        text-red-300
+                        transition
+                        hover:bg-red-500/20">
+
+                        🗑️ Delete
+
+                    </button>
+
                     </div>
 
                 </td>
@@ -1606,9 +1654,9 @@ function renderMobileRecordCards(
                 z-10
                 mt-5
                 grid
-                grid-cols-1
+                grid-cols-2
                 gap-2
-                min-[360px]:grid-cols-3">
+                min-[360px]:grid-cols-4
 
                     <!-- LIHAT -->
 
@@ -1707,6 +1755,36 @@ function renderMobileRecordCards(
                         🖨️ Cetak
 
                     </button>
+
+                    <button
+type="button"
+onclick="
+deleteMyRecord(
+    '${collection}',
+    '${recordId}'
+)"
+class="
+inline-flex
+min-h-11
+items-center
+justify-center
+gap-2
+rounded-xl
+border
+border-red-500/20
+bg-red-500/10
+px-3
+py-2.5
+text-xs
+font-bold
+text-red-300
+transition
+hover:bg-red-500/20
+active:scale-[0.98]">
+
+    🗑️ Delete
+
+</button>
 
                 </div>
 
@@ -2422,6 +2500,54 @@ async function printMyRecord(
 
 }
 
+/* ================= DELETE ================= */
+
+async function deleteMyRecord(
+    collectionName,
+    recordId
+){
+
+    // ================= KEW.PA-9 =================
+
+    if(collectionName === "forms"){
+
+        await deleteRecord(
+            "forms",
+            recordId
+        );
+
+        return;
+
+    }
+
+    // ================= KEW.PA-19 =================
+
+    if(collectionName === "kewpa19"){
+
+        await deleteRecord(
+            "kewpa19",
+            recordId
+        );
+
+        return;
+
+    }
+
+    // ================= KEW.PA-3 =================
+
+    if(collectionName === "kewpa3"){
+
+        await deleteRecord(
+            "kewpa3",
+            recordId
+        );
+
+        return;
+
+    }
+
+}
+
 /* ==========================================
    VIEW KEW.PA-19 RECORD
 ========================================== */
@@ -2719,6 +2845,66 @@ async function printRecord(id){
         console.error(error);
 
         alert(error.message);
+
+    }
+
+}
+
+/* ==========================================
+   DELETE RECORD
+========================================== */
+
+async function deleteRecord(
+    collectionName,
+    recordId
+){
+
+    const confirmDelete = confirm(
+
+        "🗑️ PADAM REKOD\n\n" +
+
+        "No. Rekod : " + recordId +
+
+        "\n\nRekod ini akan dipadam secara kekal." +
+
+        "\n\nTeruskan?"
+
+    );
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+    try{
+
+        await db
+        .collection(collectionName)
+        .doc(recordId)
+        .delete();
+
+        alert(
+
+            "✅ Rekod berjaya dipadam."
+
+        );
+
+        await loadMyRecords();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+
+            "❌ Gagal memadam rekod.\n\n" +
+
+            error.message
+
+        );
 
     }
 
