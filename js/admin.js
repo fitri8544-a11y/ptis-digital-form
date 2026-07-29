@@ -67,10 +67,33 @@ async function loadAdminUsers(){
 
         table.innerHTML = "";
 
+        let totalUsers = 0;
+        let totalAdmin = 0;
+        let totalTeacher = 0;
+        let totalActive = 0;
+
         snapshot.forEach(doc=>{
 
             const user =
             doc.data();
+
+            totalUsers++;
+
+if(user.role === "admin"){
+
+    totalAdmin++;
+
+}
+else{
+
+    totalTeacher++;
+
+}
+
+/* Buat masa ini semua pengguna dalam Firestore
+   dianggap aktif */
+
+totalActive++;
 
             let roleBadge =
             `
@@ -139,6 +162,46 @@ async function loadAdminUsers(){
 `;
 
         });
+
+        const totalUserElement =
+document.getElementById("totalUserCount");
+
+if(totalUserElement){
+
+    totalUserElement.textContent =
+    totalUsers;
+
+}
+
+const totalAdminElement =
+document.getElementById("totalAdminCount");
+
+if(totalAdminElement){
+
+    totalAdminElement.textContent =
+    totalAdmin;
+
+}
+
+const totalTeacherElement =
+document.getElementById("totalTeacherCount");
+
+if(totalTeacherElement){
+
+    totalTeacherElement.textContent =
+    totalTeacher;
+
+}
+
+const totalActiveElement =
+document.getElementById("activeUserCount");
+
+if(totalActiveElement){
+
+    totalActiveElement.textContent =
+    totalActive;
+
+}
 
     }
 

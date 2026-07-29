@@ -16,13 +16,16 @@ provider.setCustomParameters({
 
 async function googleLogin(){
 
+    console.log("googleLogin() dipanggil");
+
     try{
 
         const result =
         await auth.signInWithPopup(provider);
 
-        const user =
-result.user;
+        const user = result.user;
+
+        console.log("User Login:", user.uid, user.email);
 
 /* ===========================
    CREATE USER PROFILE

@@ -1,44 +1,83 @@
-<div class="space-y-6">
+<!-- ==========================================
+     ADMIN DASHBOARD
+========================================== -->
 
-    <div class="border-b border-slate-700 pb-5">
+<div class="max-w-[1650px] mx-auto px-10 py-8 space-y-10">
 
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-700 font-bold">
+    <!-- ================= HEADER ================= -->
 
-            👑 ADMINISTRATOR
+    <div class="relative overflow-hidden rounded-3xl border border-slate-700 bg-gradient-to-br from-slate-900 via-slate-950 to-black p-8 shadow-2xl">
 
-        </div>
+        <!-- Glow -->
 
-        <h1 class="text-4xl font-black text-white mt-4">
+        <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
 
-            Admin Dashboard
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-amber-500/10 blur-3xl"></div>
 
-        </h1>
+        <div class="relative z-10">
 
-        <p class="text-slate-400 mt-2">
+            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-amber-400/15 border border-amber-400/20 text-amber-300 font-bold">
 
-            Pusat pengurusan PTIS Digital Form.
-
-        </p>
-
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-
-        <!-- JUMLAH PENGGUNA -->
-
-        <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-sm">
-
-            <div class="text-slate-500 text-sm">
-
-                Jumlah Pengguna
+                👑 ADMINISTRATOR
 
             </div>
 
-            <div
-            id="totalUsers"
-            class="text-5xl font-black mt-3 text-slate-900">
+            <h1 class="mt-6 text-5xl font-black tracking-tight text-white">
 
-                0
+                Admin Dashboard
+
+            </h1>
+
+            <p class="mt-3 text-lg text-slate-400 max-w-3xl">
+
+                Pusat pengurusan PTIS Digital Form. Pantau pengguna, borang,
+                statistik sistem serta keseluruhan operasi secara masa nyata.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ================= KPI ================= -->
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+
+        <!-- JUMLAH PENGGUNA -->
+
+        <div class="relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-7 shadow-xl">
+
+            <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-cyan-500/10 blur-2xl"></div>
+
+            <div class="relative z-10">
+
+                <div class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">
+
+                            Jumlah Pengguna
+
+                        </p>
+
+                        <h2
+                        id="totalUsers"
+                        class="mt-4 text-5xl font-black text-white">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-3xl">
+
+                        👤
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -46,39 +85,79 @@
 
         <!-- JUMLAH BORANG -->
 
-        <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-sm">
+        <div class="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-7 shadow-xl">
 
-            <div class="text-slate-500 text-sm">
+            <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-emerald-500/10 blur-2xl"></div>
 
-                Jumlah Borang
+            <div class="relative z-10">
 
-            </div>
+                <div class="flex items-center justify-between">
 
-            <div
-            id="totalForms"
-            class="text-5xl font-black mt-3 text-slate-900">
+                    <div>
 
-                0
+                        <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">
+
+                            Jumlah Borang
+
+                        </p>
+
+                        <h2
+                        id="totalForms"
+                        class="mt-4 text-5xl font-black text-white">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/15 flex items-center justify-center text-3xl">
+
+                        📄
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
-        <!-- SEKOLAH BERDAFTAR -->
+        <!-- SEKOLAH -->
 
-        <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-sm">
+        <div class="relative overflow-hidden rounded-3xl border border-violet-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-7 shadow-xl">
 
-            <div class="text-slate-500 text-sm">
+            <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-violet-500/10 blur-2xl"></div>
 
-                Sekolah Berdaftar
+            <div class="relative z-10">
 
-            </div>
+                <div class="flex items-center justify-between">
 
-            <div
-            id="totalSchools"
-            class="text-5xl font-black mt-3 text-slate-900">
+                    <div>
 
-                0
+                        <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">
+
+                            Sekolah Berdaftar
+
+                        </p>
+
+                        <h2
+                        id="totalSchools"
+                        class="mt-4 text-5xl font-black text-white">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="w-16 h-16 rounded-2xl bg-violet-500/15 flex items-center justify-center text-3xl">
+
+                        🏫
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -86,19 +165,39 @@
 
         <!-- ONLINE -->
 
-        <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-sm">
+        <div class="relative overflow-hidden rounded-3xl border border-amber-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-7 shadow-xl">
 
-            <div class="text-slate-500 text-sm">
+            <div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-amber-500/10 blur-2xl"></div>
 
-                Online
+            <div class="relative z-10">
 
-            </div>
+                <div class="flex items-center justify-between">
 
-            <div
-            id="onlineUsers"
-            class="text-5xl font-black mt-3 text-slate-900">
+                    <div>
 
-                0
+                        <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">
+
+                            Online
+
+                        </p>
+
+                        <h2
+                        id="onlineUsers"
+                        class="mt-4 text-5xl font-black text-white">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/15 flex items-center justify-center text-3xl">
+
+                        🟢
+
+                    </div>
+
+                </div>
 
             </div>
 
