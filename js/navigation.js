@@ -213,6 +213,18 @@ async function loadPage(page){
 
         }
 
+        /* ================= ADMIN ANALYTICS ================= */
+
+        if(page==="admin-analytics"){
+
+            if(typeof loadAdminAnalytics==="function"){
+
+                loadAdminAnalytics();
+
+            }
+
+        }
+
         // ================= REPORT =================
 
         if(page==="reports"){

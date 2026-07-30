@@ -79,30 +79,40 @@ async function loadAdminUsers(){
 
             totalUsers++;
 
-if(user.role === "admin"){
+            if(user.role==="admin"){
 
-    totalAdmin++;
+                totalAdmin++;
 
-}
-else{
+            }
+            else{
 
-    totalTeacher++;
+                totalTeacher++;
 
-}
+            }
 
-/* Buat masa ini semua pengguna dalam Firestore
-   dianggap aktif */
+            totalActive++;
 
-totalActive++;
+            const loginDate =
+            user.lastLogin
+            ? user.lastLogin.toDate().toLocaleString("ms-MY")
+            : "-";
 
             let roleBadge =
             `
             <span
-            class="px-3 py-1 rounded-full
+            class="
+            inline-flex
+            items-center
+            gap-2
+            px-3
+            py-1
+            rounded-full
             bg-slate-700
-            text-slate-300">
+            text-slate-300
+            text-sm
+            font-semibold">
 
-                User
+                👤 User
 
             </span>
             `;
@@ -112,9 +122,16 @@ totalActive++;
                 roleBadge =
                 `
                 <span
-                class="px-3 py-1 rounded-full
+                class="
+                inline-flex
+                items-center
+                gap-2
+                px-3
+                py-1
+                rounded-full
                 bg-amber-500/20
                 text-amber-400
+                text-sm
                 font-bold">
 
                     👑 Admin
@@ -124,20 +141,74 @@ totalActive++;
 
             }
 
-            const loginDate =
-            user.lastLogin
-            ? user.lastLogin.toDate().toLocaleString("ms-MY")
-            : "-";
+            /* ================= AVATAR ================= */
+
+            let avatar =
+            `
+            <div
+            class="
+            w-12
+            h-12
+            rounded-full
+            bg-cyan-600
+            flex
+            items-center
+            justify-center
+            text-white
+            font-bold
+            text-lg">
+
+                ${(user.nama || "?")
+                .charAt(0)
+                .toUpperCase()}
+
+            </div>
+            `;
+
+            if(user.photoURL){
+
+                avatar =
+                `
+                <img
+
+                src="${user.photoURL}"
+
+                class="
+                w-12
+                h-12
+                rounded-full
+                object-cover
+                border
+                border-slate-600">
+
+                `;
+            }
 
             table.innerHTML += `
 
-<tr class="border-t border-slate-800">
+<tr class="border-t border-slate-800 hover:bg-slate-800/30 transition">
 
-    <td class="p-4 text-white">
+    <!-- AVATAR -->
 
-        ${user.nama || "-"}
+    <td class="p-4">
+
+        ${avatar}
 
     </td>
+
+    <!-- NAMA -->
+
+    <td class="p-4">
+
+        <div class="font-semibold text-white">
+
+            ${user.nama || "-"}
+
+        </div>
+
+    </td>
+
+    <!-- EMAIL -->
 
     <td class="p-4 text-slate-300">
 
@@ -145,15 +216,63 @@ totalActive++;
 
     </td>
 
+    <!-- ROLE -->
+
     <td class="p-4 text-center">
 
         ${roleBadge}
 
     </td>
 
+    <!-- LOGIN -->
+
     <td class="p-4 text-center text-slate-400">
 
         ${loginDate}
+
+    </td>
+
+    <!-- ACTION -->
+
+    <td class="p-4">
+
+        <div class="flex justify-center gap-2">
+
+            <button
+
+            class="
+            w-10
+            h-10
+            rounded-xl
+            bg-cyan-500/15
+            hover:bg-cyan-500/25
+            text-cyan-400
+            transition"
+
+            title="Lihat">
+
+                👁️
+
+            </button>
+
+            <button
+
+            class="
+            w-10
+            h-10
+            rounded-xl
+            bg-amber-500/15
+            hover:bg-amber-500/25
+            text-amber-400
+            transition"
+
+            title="Edit">
+
+                ✏️
+
+            </button>
+
+        </div>
 
     </td>
 
@@ -164,44 +283,44 @@ totalActive++;
         });
 
         const totalUserElement =
-document.getElementById("totalUserCount");
+        document.getElementById("totalUserCount");
 
-if(totalUserElement){
+        if(totalUserElement){
 
-    totalUserElement.textContent =
-    totalUsers;
+            totalUserElement.textContent =
+            totalUsers;
 
-}
+        }
 
-const totalAdminElement =
-document.getElementById("totalAdminCount");
+        const totalAdminElement =
+        document.getElementById("totalAdminCount");
 
-if(totalAdminElement){
+        if(totalAdminElement){
 
-    totalAdminElement.textContent =
-    totalAdmin;
+            totalAdminElement.textContent =
+            totalAdmin;
 
-}
+        }
 
-const totalTeacherElement =
-document.getElementById("totalTeacherCount");
+        const totalTeacherElement =
+        document.getElementById("totalTeacherCount");
 
-if(totalTeacherElement){
+        if(totalTeacherElement){
 
-    totalTeacherElement.textContent =
-    totalTeacher;
+            totalTeacherElement.textContent =
+            totalTeacher;
 
-}
+        }
 
-const totalActiveElement =
-document.getElementById("activeUserCount");
+        const totalActiveElement =
+        document.getElementById("activeUserCount");
 
-if(totalActiveElement){
+        if(totalActiveElement){
 
-    totalActiveElement.textContent =
-    totalActive;
+            totalActiveElement.textContent =
+            totalActive;
 
-}
+        }
 
     }
 
