@@ -2198,6 +2198,21 @@ document.addEventListener(
 
 function openKewpa19Notice(){
 
+    const googleFormUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLSfmUb901xsQLFD69Z1tS3G8yO53oDw3SAanaBV-NLvF7i4PhA/viewform?usp=header";
+
+    // Popup sudah pernah dipaparkan dalam sesi ini
+    if(sessionStorage.getItem("kewpa19NoticeShown")){
+
+        window.open(
+            googleFormUrl,
+            "_blank"
+        );
+
+        return;
+
+    }
+
     const modal =
     document.getElementById(
         "kewpa19NoticeModal"
@@ -2223,5 +2238,21 @@ function closeKewpa19Notice(){
         modal.classList.add("hidden");
 
     }
+
+}
+
+function openKewpa19GoogleForm(){
+
+    sessionStorage.setItem(
+        "kewpa19NoticeShown",
+        "true"
+    );
+
+    closeKewpa19Notice();
+
+    window.open(
+        "https://docs.google.com/forms/d/e/1FAIpQLSfmUb901xsQLFD69Z1tS3G8yO53oDw3SAanaBV-NLvF7i4PhA/viewform?usp=header",
+        "_blank"
+    );
 
 }
