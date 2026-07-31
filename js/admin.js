@@ -9,23 +9,42 @@ async function loadAdminDashboard(){
         /* ================= USERS ================= */
 
         const users =
-        await db.collection("users").get();
+        await db
+        .collection("users")
+        .get();
 
+        const totalUsersElement =
         document.getElementById(
             "totalUsers"
-        ).textContent =
-        users.size;
+        );
+
+        if(totalUsersElement){
+
+            totalUsersElement.textContent =
+            users.size;
+
+        }
+
 
         /* ================= FORMS ================= */
 
         const forms =
-        await db.collection("forms").get();
+        await db
+        .collection("forms")
+        .get();
 
         const kewpa3 =
-        await db.collection("kewpa3").get();
+        await db
+        .collection("kewpa3")
+        .get();
 
         const kewpa19 =
-        await db.collection("kewpa19").get();
+        await db
+        .collection("kewpa19")
+        .get();
+
+
+        /* ================= TOTAL FORMS ================= */
 
         const totalForms =
 
@@ -35,16 +54,186 @@ async function loadAdminDashboard(){
 
             kewpa19.size;
 
+
+        const totalFormsElement =
         document.getElementById(
             "totalForms"
-        ).textContent =
-        totalForms;
+        );
+
+        if(totalFormsElement){
+
+            totalFormsElement.textContent =
+            totalForms;
+
+        }
+
+
+        /* ================= SEKOLAH BERDAFTAR ================= */
+
+        const sekolahSet =
+        new Set();
+
+
+        function collectSekolah(snapshot){
+
+            snapshot.forEach(doc=>{
+
+                const data =
+                doc.data();
+
+                const sekolah =
+
+                    data.sekolah ||
+
+                    data.pemohon?.sekolah ||
+
+                    data.pemohon?.bahagian ||
+
+                    data.bahagian ||
+
+                    data.user?.sekolah ||
+
+                    "";
+
+                if(
+                    sekolah &&
+                    sekolah.trim() !== ""
+                ){
+
+                    sekolahSet.add(
+                        sekolah
+                        .trim()
+                        .toUpperCase()
+                    );
+
+                }
+
+            });
+
+        }
+
+
+        collectSekolah(forms);
+
+        collectSekolah(kewpa3);
+
+        collectSekolah(kewpa19);
+
+
+        const totalSchoolsElement =
+        document.getElementById(
+            "totalSchools"
+        );
+
+        if(totalSchoolsElement){
+
+            totalSchoolsElement.textContent =
+            sekolahSet.size;
+
+        }
+
+
+        /* ================= ONLINE USERS ================= */
+
+        let onlineUsers = 0;
+
+        const now =
+        Date.now();
+
+        const ONLINE_LIMIT =
+        5 * 60 * 1000;
+
+
+        users.forEach(doc=>{
+
+            const user =
+            doc.data();
+
+            /*
+               Sokong beberapa struktur
+               status pengguna
+            */
+
+            if(
+                user.status === "online" ||
+                user.online === true
+            ){
+
+                onlineUsers++;
+
+                return;
+
+            }
+
+
+            /*
+               Jika sistem simpan lastSeen
+            */
+
+            if(user.lastSeen){
+
+                let lastSeenTime = 0;
+
+                if(
+                    typeof user.lastSeen.toDate ===
+                    "function"
+                ){
+
+                    lastSeenTime =
+                    user.lastSeen
+                    .toDate()
+                    .getTime();
+
+                }
+
+                if(
+                    lastSeenTime &&
+                    now - lastSeenTime <=
+                    ONLINE_LIMIT
+                ){
+
+                    onlineUsers++;
+
+                }
+
+            }
+
+        });
+
+
+        const onlineUsersElement =
+        document.getElementById(
+            "onlineUsers"
+        );
+
+        if(onlineUsersElement){
+
+            onlineUsersElement.textContent =
+            onlineUsers;
+
+        }
+
+
+        /* ================= DEBUG ================= */
+
+        console.log(
+            "Admin Dashboard Loaded",
+            {
+                users:users.size,
+                forms:totalForms,
+                schools:sekolahSet.size,
+                online:onlineUsers
+            }
+        );
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Admin Dashboard Error:",
+            error
+        );
 
     }
 

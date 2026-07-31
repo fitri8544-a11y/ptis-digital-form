@@ -23,75 +23,127 @@ async function googleLogin(){
         const result =
         await auth.signInWithPopup(provider);
 
-        const user = result.user;
+        const user =
+        result.user;
 
-        console.log("User Login:", user.uid, user.email);
+        console.log(
+            "User Login:",
+            user.uid,
+            user.email
+        );
 
-/* ===========================
-   CREATE USER PROFILE
-=========================== */
 
-const userRef =
-db.collection("users")
-.doc(user.uid);
+        /* ================= USER REFERENCE ================= */
 
-const doc =
-await userRef.get();
+        const userRef =
+        db
+        .collection("users")
+        .doc(user.uid);
 
-if(!doc.exists){
 
-    await userRef.set({
+        /* ================= CHECK EXISTING USER ================= */
 
-        uid : user.uid,
+        const userDoc =
+        await userRef.get();
 
-        nama :
-        user.displayName || "",
 
-        email :
-        user.email || "",
+        /* ================= NEW USER ================= */
 
-        photoURL :
-        user.photoURL || "",
+        if(!userDoc.exists){
 
-        role :
-        "user",
+            await userRef.set({
 
-        createdAt :
-        firebase.firestore.FieldValue.serverTimestamp(),
+                uid:
+                user.uid,
 
-        lastLogin :
-        firebase.firestore.FieldValue.serverTimestamp()
+                nama:
+                user.displayName || "",
 
-    });
+                email:
+                user.email || "",
 
-}
-else{
+                photoURL:
+                user.photoURL || "",
 
-    await userRef.update({
+                role:
+                "user",
 
-        lastLogin :
-        firebase.firestore.FieldValue.serverTimestamp(),
+                createdAt:
+                firebase.firestore.FieldValue.serverTimestamp(),
 
-        photoURL :
-        user.photoURL || ""
+                lastLogin:
+                firebase.firestore.FieldValue.serverTimestamp(),
 
-    });
+                lastSeen:
+                firebase.firestore.FieldValue.serverTimestamp(),
 
-}
+                status:
+                "online"
 
-console.log("Login Success");
+            });
 
-console.log(user);
+            console.log(
+                "Pengguna baru disimpan ke Firestore"
+            );
+
+        }
+
+
+        /* ================= EXISTING USER ================= */
+
+        else{
+
+            await userRef.set({
+
+                uid:
+                user.uid,
+
+                nama:
+                user.displayName || "",
+
+                email:
+                user.email || "",
+
+                photoURL:
+                user.photoURL || "",
+
+                lastLogin:
+                firebase.firestore.FieldValue.serverTimestamp(),
+
+                lastSeen:
+                firebase.firestore.FieldValue.serverTimestamp(),
+
+                status:
+                "online"
+
+            },{
+                merge:true
+            });
+
+            console.log(
+                "Data pengguna dikemaskini"
+            );
+
+        }
+
+
+        /* ================= LOGIN SUCCESS ================= */
+
+        console.log(
+            "Google Sign-In selesai"
+        );
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Google Login Error:",
+            error
+        );
 
         alert(
-            "Login gagal.\n\n" +
-            error.message
+            "Log masuk Google tidak berjaya."
         );
 
     }
@@ -104,23 +156,52 @@ async function logout(){
 
     try{
 
+        const user =
+        auth.currentUser;
+
+        /* ================= UPDATE STATUS ================= */
+
+        if(user){
+
+            await db
+            .collection("users")
+            .doc(user.uid)
+            .set({
+
+                status:
+                "offline",
+
+                lastSeen:
+                firebase.firestore.FieldValue.serverTimestamp()
+
+            },{
+                merge:true
+            });
+
+        }
+
+
+        /* ================= FIREBASE LOGOUT ================= */
+
         await auth.signOut();
 
-        document.getElementById("content").innerHTML="";
 
-        document.getElementById("sidebar").innerHTML="";
-
-        document.getElementById("topbar").innerHTML="";
-
-        document.getElementById("footer").innerHTML="";
+        console.log(
+            "User logout successfully"
+        );
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Logout Error:",
+            error
+        );
 
-        alert(error.message);
+        alert(
+            "Log keluar tidak berjaya."
+        );
 
     }
 
