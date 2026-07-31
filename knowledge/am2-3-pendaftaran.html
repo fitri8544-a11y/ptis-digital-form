@@ -2926,72 +2926,40 @@ Buka Dokumen
 </section>
 
 <!-- ========================================================= -->
-<!-- NAVIGATION -->
+<!-- MODULE NAVIGATION -->
 <!-- ========================================================= -->
 
-<section class="mt-16">
-
-<div
-class="
-flex
-flex-col
-sm:flex-row
-justify-between
-gap-5">
-
-<button
-
-onclick="loadKnowledge('am2-2-penerimaan')"
-
-class="
-flex
-items-center
-gap-3
-px-6
-py-4
-rounded-2xl
-bg-slate-800
-hover:bg-cyan-500
-transition">
-
-<i class="fa-solid fa-arrow-left"></i>
-
-AM 2.2
-Penerimaan
-
-</button>
-
-<button
-
-onclick="loadKnowledge('am2-4-penggunaan')"
-
-class="
-flex
-items-center
-gap-3
-px-6
-py-4
-rounded-2xl
-bg-cyan-500
-hover:bg-cyan-400
-font-bold
-transition">
-
-AM 2.4
-
-Penggunaan,
-Penyimpanan &
-Pemeriksaan
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</button>
-
-</div>
-
-</section>
+<div id="moduleNavigation"></div>
 
 <script>
+
+renderModuleNavigation({
+
+    theme:"indigo",
+
+    previous:{
+
+        title:"AM 2.2",
+
+        subtitle:"Penerimaan",
+
+        file:"am2-2-penerimaan"
+
+    },
+
+    next:{
+
+        title:"AM 2.4",
+
+        subtitle:"Penggunaan, Penyimpanan & Pemeriksaan",
+
+        file:"am2-4-penggunaan"
+
+    }
+
+});
+
+</script>
 
 /* =====================================================
    AM 2.3 CHECKLIST

@@ -1,5 +1,5 @@
 <!-- ========================================================= -->
-<!-- AM 2.3 MAIN WRAPPER -->
+<!-- AM 2.2 MAIN WRAPPER -->
 <!-- ========================================================= -->
 
 <div
@@ -2047,60 +2047,40 @@ pb-12">
     </section>
 
 
-    <!-- ================= BOTTOM NAVIGATION ================= -->
+    <!-- ========================================================= -->
+<!-- MODULE NAVIGATION -->
+<!-- ========================================================= -->
 
-    <div
-    class="
-    flex flex-col gap-4
-    border-t border-slate-800
-    pt-7
-    sm:flex-row
-    sm:items-center
-    sm:justify-between">
+<div id="moduleNavigation"></div>
 
-        <button
-        type="button"
-        onclick="loadKnowledge('am2-1-pendahuluan')"
-        class="
-        inline-flex items-center justify-center gap-2
-        rounded-xl
-        border border-slate-700
-        bg-slate-900
-        px-5 py-3
-        text-sm font-bold
-        text-slate-300
-        transition
-        hover:border-emerald-500/40
-        hover:bg-emerald-500/10
-        hover:text-emerald-300">
+<script>
 
-            <i class="fa-solid fa-arrow-left"></i>
+renderModuleNavigation({
 
-            AM 2.1 Pendahuluan
+    theme:"emerald",
 
-        </button>
+    previous:{
 
-        <button
-        type="button"
-        onclick="loadKnowledge('am2-3-pendaftaran')"
-        class="
-        inline-flex items-center justify-center gap-2
-        rounded-xl
-        border border-emerald-500/30
-        bg-emerald-500/10
-        px-5 py-3
-        text-sm font-bold
-        text-emerald-200
-        transition
-        hover:bg-emerald-500/20
-        hover:text-white">
+        title:"AM 2.1",
 
-            Modul Seterusnya: AM 2.3
+        subtitle:"Pendahuluan",
 
-            <i class="fa-solid fa-arrow-right"></i>
+        file:"am2-1-pendahuluan"
 
-        </button>
+    },
 
-    </div>
+    next:{
+
+        title:"AM 2.3",
+
+        subtitle:"Pendaftaran",
+
+        file:"am2-3-pendaftaran"
+
+    }
+
+});
+
+</script>
 
 </div>

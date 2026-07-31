@@ -234,7 +234,7 @@
                         text-2xl
                         font-black">
 
-                            4
+                            8
 
                         </p>
 
@@ -263,7 +263,7 @@
                         text-2xl
                         font-black">
 
-                            8
+                            0
 
                         </p>
 
@@ -354,255 +354,351 @@
 
 
     <!-- ======================================
-         MODULE CATALOG
-    ======================================= -->
+     MODULE CATALOG
+======================================= -->
 
-    <section
-    class="
-    grid
-    gap-5
-    md:grid-cols-2
-    xl:grid-cols-3">
-
-
-        <!-- AM 2.1 -->
-
-<article
+<section
 class="
+grid
+gap-6
+md:grid-cols-2
+xl:grid-cols-3">
+
+<!-- ========================================================= -->
+<!-- AM 2.1 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-1-pendahuluan')"
+class="
+group
+relative
+overflow-hidden
 rounded-3xl
 border
-border-blue-500/30
+border-blue-500/20
 bg-gradient-to-br
-from-slate-900
+from-blue-950/40
 via-slate-900
-to-blue-950/40
+to-slate-950
 p-6
-shadow-xl
+text-left
 transition
 duration-300
 hover:-translate-y-1
 hover:border-blue-400/50
+hover:shadow-2xl
 hover:shadow-blue-500/10">
 
-    <div
-    class="
-    flex
-    items-start
-    justify-between
-    gap-4">
-
-        <div
-        class="
-        flex
-        h-14
-        w-14
-        items-center
-        justify-center
-        rounded-2xl
-        border
-        border-blue-500/30
-        bg-blue-500/10
-        text-2xl">
-
-            📘
-
-        </div>
-
-        <span
-        class="
-        rounded-full
-        border
-        border-emerald-500/20
-        bg-emerald-500/10
-        px-3
-        py-1
-        text-[10px]
-        font-black
-        text-emerald-300">
-
-            TERSEDIA
-
-        </span>
-
-    </div>
-
-    <div class="mt-6">
-
-        <p
-        class="
-        text-xs
-        font-black
-        uppercase
-        tracking-[0.25em]
-        text-blue-300">
-
-            AM 2.1
-
-        </p>
-
-        <h3
-        class="
-        mt-2
-        text-xl
-        font-black
-        text-white">
-
-            Pendahuluan
-
-        </h3>
-
-        <p
-        class="
-        mt-3
-        text-sm
-        leading-6
-        text-slate-400">
-
-            Pengenalan kepada Tatacara Pengurusan Aset Alih Kerajaan,
-            kategori aset dan keseluruhan kitaran pengurusan aset.
-
-        </p>
-
-    </div>
-
-    <button
-    type="button"
-    onclick="loadKnowledge('am2-1-pendahuluan')"
-    class="
-    mt-6
-    flex
-    w-full
-    items-center
-    justify-center
-    gap-2
-    rounded-xl
-    border
-    border-blue-500/30
-    bg-blue-500/10
-    px-4
-    py-3
-    text-sm
-    font-black
-    text-blue-200
-    transition
-    hover:bg-blue-500/20
-    hover:text-white">
-
-        <i class="fa-solid fa-book-open"></i>
-
-        Buka Modul
-
-    </button>
-
-</article>
-
-
-        <!-- AM 2.2 -->
-
-<article
+<div
 class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-blue-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
+
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-blue-500/20
+bg-blue-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-blue-300
+group-hover:bg-blue-500
+group-hover:text-white
+transition">
+
+📘
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-blue-300">
+
+AM 2.1
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Pendahuluan
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Pengenalan kepada Tatacara Pengurusan
+Aset Alih Kerajaan serta keseluruhan
+kitaran pengurusan aset.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-blue-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
+
+<!-- ========================================================= -->
+<!-- AM 2.2 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-2-penerimaan')"
+class="
+group
+relative
+overflow-hidden
 rounded-3xl
-border border-emerald-500/30
+border
+border-emerald-500/20
 bg-gradient-to-br
-from-slate-900
+from-emerald-950/40
 via-slate-900
-to-emerald-950/40
-p-6 shadow-xl
-transition duration-300
+to-slate-950
+p-6
+text-left
+transition
+duration-300
 hover:-translate-y-1
 hover:border-emerald-400/50
+hover:shadow-2xl
 hover:shadow-emerald-500/10">
 
-    <div class="flex items-start justify-between gap-4">
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-emerald-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
 
-        <div
-        class="
-        flex h-14 w-14
-        items-center justify-center
-        rounded-2xl
-        border border-emerald-500/30
-        bg-emerald-500/10
-        text-2xl">
+<div class="relative z-10">
 
-            📦
+<div
+class="
+flex
+items-start
+justify-between">
 
-        </div>
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-emerald-500/20
+bg-emerald-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-emerald-300
+group-hover:bg-emerald-500
+group-hover:text-white
+transition">
 
-        <span
-        class="
-        rounded-full
-        border border-emerald-500/20
-        bg-emerald-500/10
-        px-3 py-1
-        text-[10px] font-black
-        text-emerald-300">
+📦
 
-            TERSEDIA
+</div>
 
-        </span>
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
 
-    </div>
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
 
-    <div class="mt-6">
+TERSEDIA
 
-        <p
-        class="
-        text-xs font-black uppercase
-        tracking-[0.25em]
-        text-emerald-300">
+</span>
 
-            AM 2.2
+</div>
 
-        </p>
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-emerald-300">
 
-        <h3
-        class="
-        mt-2 text-xl
-        font-black text-white">
+AM 2.2
 
-            Penerimaan
+</p>
 
-        </h3>
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
 
-        <p
-        class="
-        mt-3 text-sm leading-6
-        text-slate-400">
+Penerimaan
 
-            Panduan menerima, memeriksa dan mengesahkan aset
-            serta penggunaan KEW.PA-1 dan KEW.PA-2.
+</h3>
 
-        </p>
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
 
-    </div>
+Tatacara penerimaan aset,
+pemeriksaan serta pengesahan
+KEW.PA-1 dan KEW.PA-2.
 
-    <button
-    type="button"
-    onclick="loadKnowledge('am2-2-penerimaan')"
-    class="
-    mt-6 flex w-full
-    items-center justify-center gap-2
-    rounded-xl
-    border border-emerald-500/30
-    bg-emerald-500/10
-    px-4 py-3
-    text-sm font-black
-    text-emerald-200
-    transition
-    hover:bg-emerald-500/20
-    hover:text-white">
+</p>
 
-        <i class="fa-solid fa-book-open"></i>
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-emerald-300
+font-bold">
 
-        Buka Modul
+<span>
 
-    </button>
+Buka Modul
 
-</article>
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
 
 
-        <!-- ========================================================= -->
-<!-- AM 2.3 PENDAFTARAN -->
+<!-- ========================================================= -->
+<!-- AM 2.3 -->
 <!-- ========================================================= -->
 
 <button
@@ -610,9 +706,6 @@ type="button"
 onclick="loadKnowledge('am2-3-pendaftaran')"
 class="
 group
-w-full
-h-full
-text-left
 relative
 overflow-hidden
 rounded-3xl
@@ -623,6 +716,7 @@ from-cyan-950/40
 via-slate-900
 to-slate-950
 p-6
+text-left
 transition
 duration-300
 hover:-translate-y-1
@@ -630,653 +724,981 @@ hover:border-cyan-400/50
 hover:shadow-2xl
 hover:shadow-cyan-500/10">
 
-    <!-- GLOW -->
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-cyan-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
 
-    <div
-    class="
-    absolute
-    -top-20
-    -right-20
-    w-52
-    h-52
-    rounded-full
-    bg-cyan-500/10
-    blur-3xl
-    opacity-0
-    group-hover:opacity-100
-    transition">
-    </div>
+<div class="relative z-10">
 
+<div
+class="
+flex
+items-start
+justify-between">
 
-    <div class="relative z-10">
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-cyan-500/20
+bg-cyan-500/10
+flex
+items-center
+justify-center
+text-xl
+text-cyan-300
+group-hover:bg-cyan-500
+group-hover:text-white
+transition">
 
-        <!-- TOP ROW -->
+<i class="fa-solid fa-file-pen"></i>
 
-        <div
-        class="
-        flex
-        items-start
-        justify-between
-        gap-4">
+</div>
 
-            <div
-            class="
-            w-12
-            h-12
-            rounded-2xl
-            bg-cyan-500/10
-            border
-            border-cyan-400/20
-            text-cyan-300
-            flex
-            items-center
-            justify-center
-            text-xl
-            transition
-            group-hover:bg-cyan-500
-            group-hover:text-white">
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
 
-                <i class="fa-solid fa-file-pen"></i>
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
 
-            </div>
+TERSEDIA
 
-            <span
-            class="
-            inline-flex
-            items-center
-            gap-2
-            px-3
-            py-1.5
-            rounded-full
-            bg-green-500/10
-            border
-            border-green-400/20
-            text-green-300
-            text-[10px]
-            sm:text-xs
-            font-black
-            uppercase
-            tracking-wide">
+</span>
 
-                <span
-                class="
-                w-2
-                h-2
-                rounded-full
-                bg-green-400">
-                </span>
+</div>
 
-                Tersedia
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-cyan-300">
 
-            </span>
+AM 2.3
 
-        </div>
+</p>
 
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
 
-        <!-- CONTENT -->
+Pendaftaran
 
-        <div
-        class="
-        mt-6
-        text-xs
-        font-black
-        uppercase
-        tracking-widest
-        text-cyan-300">
+</h3>
 
-            AM 2.3
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
 
-        </div>
+Tatacara pendaftaran Harta Modal,
+Aset Alih Bernilai Rendah,
+penandaan serta rekod aset.
 
-        <h3
-        class="
-        mt-2
-        text-xl
-        font-black
-        text-white
-        transition
-        group-hover:text-cyan-300">
+</p>
 
-            Pendaftaran
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-cyan-300
+font-bold">
 
-        </h3>
+<span>
 
-        <p
-        class="
-        mt-3
-        text-sm
-        leading-6
-        text-slate-400">
+Buka Modul
 
-            Tatacara mendaftarkan Harta Modal dan
-            Aset Alih Bernilai Rendah.
+</span>
 
-        </p>
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
 
+</div>
 
-        <!-- FOOTER -->
+</div>
 
-        <div
-        class="
-        mt-8
-        flex
-        items-center
-        justify-between
-        text-sm
-        font-bold
-        text-cyan-300">
+</button>
 
-            <span>
-                Buka Modul
-            </span>
+<!-- ========================================================= -->
+<!-- AM 2.4 -->
+<!-- ========================================================= -->
 
-            <i
-            class="
-            fa-solid
-            fa-arrow-right
-            transition-transform
-            group-hover:translate-x-1">
-            </i>
+<button
+type="button"
+onclick="loadKnowledge('am2-4-penggunaan')"
+class="
+group
+relative
+overflow-hidden
+rounded-3xl
+border
+border-violet-500/20
+bg-gradient-to-br
+from-violet-950/40
+via-slate-900
+to-slate-950
+p-6
+text-left
+transition
+duration-300
+hover:-translate-y-1
+hover:border-violet-400/50
+hover:shadow-2xl
+hover:shadow-violet-500/10">
 
-        </div>
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-violet-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
 
-    </div>
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-violet-500/20
+bg-violet-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-violet-300
+group-hover:bg-violet-500
+group-hover:text-white
+transition">
+
+🔍
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-violet-300">
+
+AM 2.4
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Penggunaan, Penyimpanan & Pemeriksaan
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Panduan penggunaan aset,
+penyimpanan yang selamat,
+pemeriksaan berkala serta
+tanggungjawab pegawai.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-violet-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
 
 </button>
 
 
-        <!-- AM 2.4 -->
-
-        <article
-        class="
-        rounded-3xl
-        border
-        border-slate-800
-        bg-slate-900/70
-        p-6
-        opacity-70">
-
-            <div
-            class="
-            flex
-            items-start
-            justify-between
-            gap-4">
-
-                <div
-                class="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                border
-                border-violet-500/20
-                bg-violet-500/10
-                text-2xl">
-
-                    🔍
-
-                </div>
-
-                <span
-                class="
-                rounded-full
-                border
-                border-amber-500/20
-                bg-amber-500/10
-                px-3
-                py-1
-                text-[10px]
-                font-black
-                text-amber-300">
-
-                    DALAM PEMBANGUNAN
-
-                </span>
-
-            </div>
-
-            <p
-            class="
-            mt-5
-            text-xs
-            font-black
-            uppercase
-            tracking-[0.15em]
-            text-violet-300">
-
-                AM 2.4
-
-            </p>
-
-            <h3
-            class="
-            mt-2
-            text-xl
-            font-black
-            text-white">
-
-                Penggunaan, Penyimpanan dan Pemeriksaan
-
-            </h3>
-
-            <p
-            class="
-            mt-3
-            text-sm
-            leading-6
-            text-slate-400">
-
-                Panduan penggunaan, kawalan, penyimpanan dan pemeriksaan aset.
-
-            </p>
-
-        </article>
-
-
-        <!-- AM 2.5 -->
-
-        <article
-        class="
-        rounded-3xl
-        border
-        border-slate-800
-        bg-slate-900/70
-        p-6
-        opacity-70">
-
-            <div
-            class="
-            flex
-            items-start
-            justify-between
-            gap-4">
-
-                <div
-                class="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                border
-                border-orange-500/20
-                bg-orange-500/10
-                text-2xl">
-
-                    🛠️
-
-                </div>
-
-                <span
-                class="
-                rounded-full
-                border
-                border-amber-500/20
-                bg-amber-500/10
-                px-3
-                py-1
-                text-[10px]
-                font-black
-                text-amber-300">
-
-                    DALAM PEMBANGUNAN
-
-                </span>
-
-            </div>
-
-            <p
-            class="
-            mt-5
-            text-xs
-            font-black
-            uppercase
-            tracking-[0.15em]
-            text-orange-300">
-
-                AM 2.5
-
-            </p>
-
-            <h3
-            class="
-            mt-2
-            text-xl
-            font-black
-            text-white">
-
-                Penyelenggaraan
-
-            </h3>
-
-            <p
-            class="
-            mt-3
-            text-sm
-            leading-6
-            text-slate-400">
-
-                Panduan penyelenggaraan berjadual dan pembaikan Aset Alih.
-
-            </p>
-
-        </article>
-
-
-        <!-- AM 2.6 -->
-
-        <article
-        class="
-        rounded-3xl
-        border
-        border-slate-800
-        bg-slate-900/70
-        p-6
-        opacity-70">
-
-            <div
-            class="
-            flex
-            items-start
-            justify-between
-            gap-4">
-
-                <div
-                class="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                border
-                border-sky-500/20
-                bg-sky-500/10
-                text-2xl">
-
-                    🚚
-
-                </div>
-
-                <span
-                class="
-                rounded-full
-                border
-                border-amber-500/20
-                bg-amber-500/10
-                px-3
-                py-1
-                text-[10px]
-                font-black
-                text-amber-300">
-
-                    DALAM PEMBANGUNAN
-
-                </span>
-
-            </div>
-
-            <p
-            class="
-            mt-5
-            text-xs
-            font-black
-            uppercase
-            tracking-[0.15em]
-            text-sky-300">
-
-                AM 2.6
-
-            </p>
-
-            <h3
-            class="
-            mt-2
-            text-xl
-            font-black
-            text-white">
-
-                Pindahan
-
-            </h3>
-
-            <p
-            class="
-            mt-3
-            text-sm
-            leading-6
-            text-slate-400">
-
-                Tatacara pemindahan Aset Alih antara PTJ dan agensi.
-
-            </p>
-
-        </article>
-
-
-        <!-- AM 2.7 ACTIVE -->
-
-        <button
-        type="button"
-        onclick="loadKnowledge('am2-7-pelupusan')"
-        class="
-        group
-        w-full
-        rounded-3xl
-        border
-        border-emerald-500/30
-        bg-gradient-to-br
-        from-emerald-500/10
-        via-slate-900/90
-        to-teal-500/10
-        p-6
-        text-left
-        shadow-xl
-        shadow-emerald-950/10
-        transition
-        duration-300
-        hover:-translate-y-1
-        hover:border-emerald-400/50
-        hover:shadow-2xl">
-
-            <div
-            class="
-            flex
-            items-start
-            justify-between
-            gap-4">
-
-                <div
-                class="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                border
-                border-emerald-500/30
-                bg-emerald-500/15
-                text-2xl
-                transition
-                group-hover:scale-110">
-
-                    ♻️
-
-                </div>
-
-                <span
-                class="
-                rounded-full
-                border
-                border-emerald-500/30
-                bg-emerald-500/10
-                px-3
-                py-1
-                text-[10px]
-                font-black
-                text-emerald-300">
-
-                    TERSEDIA
-
-                </span>
-
-            </div>
-
-            <p
-            class="
-            mt-5
-            text-xs
-            font-black
-            uppercase
-            tracking-[0.15em]
-            text-emerald-300">
-
-                AM 2.7
-
-            </p>
-
-            <h3
-            class="
-            mt-2
-            text-xl
-            font-black
-            text-white">
-
-                Pelupusan Aset Alih
-
-            </h3>
-
-            <p
-            class="
-            mt-3
-            text-sm
-            leading-6
-            text-slate-400">
-
-                Objektif, justifikasi, borang, proses kerja dan dokumen rasmi
-                pelupusan Aset Alih Kerajaan.
-
-            </p>
-
-            <div
-            class="
-            mt-6
-            flex
-            items-center
-            gap-2
-            text-sm
-            font-black
-            text-emerald-300">
-
-                Buka Modul
-
-                <i
-                class="
-                fa-solid
-                fa-arrow-right
-                transition
-                group-hover:translate-x-1">
-                </i>
-
-            </div>
-
-        </button>
-
-
-        <!-- AM 2.8 -->
-
-        <article
-        class="
-        rounded-3xl
-        border
-        border-slate-800
-        bg-slate-900/70
-        p-6
-        opacity-70">
-
-            <div
-            class="
-            flex
-            items-start
-            justify-between
-            gap-4">
-
-                <div
-                class="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                border
-                border-red-500/20
-                bg-red-500/10
-                text-2xl">
-
-                    ⚠️
-
-                </div>
-
-                <span
-                class="
-                rounded-full
-                border
-                border-amber-500/20
-                bg-amber-500/10
-                px-3
-                py-1
-                text-[10px]
-                font-black
-                text-amber-300">
-
-                    DALAM PEMBANGUNAN
-
-                </span>
-
-            </div>
-
-            <p
-            class="
-            mt-5
-            text-xs
-            font-black
-            uppercase
-            tracking-[0.15em]
-            text-red-300">
-
-                AM 2.8
-
-            </p>
-
-            <h3
-            class="
-            mt-2
-            text-xl
-            font-black
-            text-white">
-
-                Kehilangan dan Hapus Kira
-
-            </h3>
-
-            <p
-            class="
-            mt-3
-            text-sm
-            leading-6
-            text-slate-400">
-
-                Tindakan bagi kehilangan aset dan proses hapus kira.
-
-            </p>
-
-        </article>
+       <!-- ========================================================= -->
+<!-- AM 2.5 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-5-penyelenggaraan')"
+class="
+group
+relative
+overflow-hidden
+rounded-3xl
+border
+border-orange-500/20
+bg-gradient-to-br
+from-orange-950/40
+via-slate-900
+to-slate-950
+p-6
+text-left
+transition
+duration-300
+hover:-translate-y-1
+hover:border-orange-400/50
+hover:shadow-2xl
+hover:shadow-orange-500/10">
+
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-orange-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
+
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-orange-500/20
+bg-orange-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-orange-300
+group-hover:bg-orange-500
+group-hover:text-white
+transition">
+
+🛠️
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-orange-300">
+
+AM 2.5
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Penyelenggaraan
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Panduan penyelenggaraan
+pencegahan, pembaikan,
+rekod penyelenggaraan
+serta tanggungjawab pegawai.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-orange-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
+
+<!-- ========================================================= -->
+<!-- AM 2.6 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-6-pindahan')"
+class="
+group
+relative
+overflow-hidden
+rounded-3xl
+border
+border-sky-500/20
+bg-gradient-to-br
+from-sky-950/40
+via-slate-900
+to-slate-950
+p-6
+text-left
+transition
+duration-300
+hover:-translate-y-1
+hover:border-sky-400/50
+hover:shadow-2xl
+hover:shadow-sky-500/10">
+
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-sky-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
+
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-sky-500/20
+bg-sky-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-sky-300
+group-hover:bg-sky-500
+group-hover:text-white
+transition">
+
+🚚
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-sky-300">
+
+AM 2.6
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Pindahan
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Tatacara pemindahan
+Aset Alih antara PTJ,
+agensi kerajaan dan
+rekod pindahan aset.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-sky-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
+
+
+<!-- ========================================================= -->
+<!-- AM 2.7 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-7-pelupusan')"
+class="
+group
+relative
+overflow-hidden
+rounded-3xl
+border
+border-emerald-500/20
+bg-gradient-to-br
+from-emerald-950/40
+via-slate-900
+to-slate-950
+p-6
+text-left
+transition
+duration-300
+hover:-translate-y-1
+hover:border-emerald-400/50
+hover:shadow-2xl
+hover:shadow-emerald-500/10">
+
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-emerald-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
+
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-emerald-500/20
+bg-emerald-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-emerald-300
+group-hover:bg-emerald-500
+group-hover:text-white
+transition">
+
+♻️
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-emerald-300">
+
+AM 2.7
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Pelupusan
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Tatacara pelupusan
+Aset Alih Kerajaan,
+kaedah pelupusan,
+borang serta proses kerja.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-emerald-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
+
+<!-- ========================================================= -->
+<!-- AM 2.8 -->
+<!-- ========================================================= -->
+
+<button
+type="button"
+onclick="loadKnowledge('am2-8-hapuskira')"
+class="
+group
+relative
+overflow-hidden
+rounded-3xl
+border
+border-red-500/20
+bg-gradient-to-br
+from-red-950/40
+via-slate-900
+to-slate-950
+p-6
+text-left
+transition
+duration-300
+hover:-translate-y-1
+hover:border-red-400/50
+hover:shadow-2xl
+hover:shadow-red-500/10">
+
+<div
+class="
+absolute
+-top-20
+-right-20
+w-56
+h-56
+rounded-full
+bg-red-500/10
+blur-3xl
+opacity-0
+group-hover:opacity-100
+transition">
+</div>
+
+<div class="relative z-10">
+
+<div
+class="
+flex
+items-start
+justify-between">
+
+<div
+class="
+w-14
+h-14
+rounded-2xl
+border
+border-red-500/20
+bg-red-500/10
+flex
+items-center
+justify-center
+text-2xl
+text-red-300
+group-hover:bg-red-500
+group-hover:text-white
+transition">
+
+⚠️
+
+</div>
+
+<span
+class="
+inline-flex
+items-center
+gap-2
+px-3
+py-1.5
+rounded-full
+bg-green-500/10
+border
+border-green-500/20
+text-green-300
+text-[11px]
+font-black">
+
+<span
+class="
+w-2
+h-2
+rounded-full
+bg-green-400">
+</span>
+
+TERSEDIA
+
+</span>
+
+</div>
+
+<p
+class="
+mt-6
+text-xs
+font-black
+tracking-widest
+uppercase
+text-red-300">
+
+AM 2.8
+
+</p>
+
+<h3
+class="
+mt-2
+text-xl
+font-black
+text-white">
+
+Kehilangan & Hapus Kira
+
+</h3>
+
+<p
+class="
+mt-3
+text-sm
+leading-6
+text-slate-400">
+
+Tatacara tindakan
+kehilangan aset,
+siasatan, hapus kira
+dan penutupan rekod aset.
+
+</p>
+
+<div
+class="
+mt-8
+flex
+items-center
+justify-between
+text-red-300
+font-bold">
+
+<span>
+
+Buka Modul
+
+</span>
+
+<i
+class="
+fa-solid
+fa-arrow-right
+transition-transform
+group-hover:translate-x-1">
+</i>
+
+</div>
+
+</div>
+
+</button>
 
 
         <!-- FUTURE MODULE -->

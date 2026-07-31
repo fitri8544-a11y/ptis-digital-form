@@ -421,9 +421,44 @@ async function loadKnowledge(module){
 
         content.innerHTML = html;
 
+        // ================= EXECUTE SCRIPT =================
+
+        const scripts =
+        content.querySelectorAll("script");
+
+        scripts.forEach(oldScript=>{
+
+            const newScript =
+            document.createElement("script");
+
+            if(oldScript.src){
+
+                newScript.src =
+                oldScript.src;
+
+            }else{
+
+                newScript.textContent =
+                oldScript.textContent;
+
+            }
+
+            document.body.appendChild(
+                newScript
+            );
+
+            document.body.removeChild(
+                newScript
+            );
+
+        });
+
         window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+
+            top:0,
+
+            behavior:"smooth"
+
         });
 
     }
