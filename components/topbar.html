@@ -158,90 +158,138 @@ gap-3">
 
     <!-- ================= RIGHT ================= -->
 
+<div
+class="
+flex
+items-center
+gap-3
+sm:gap-5
+shrink-0">
+
+
+    <!-- USER -->
+
     <div
     class="
     flex
     items-center
-    gap-3
-    sm:gap-5
-    shrink-0">
+    gap-3">
 
-
-        <!-- USER -->
+        <!-- USER TEXT: HIDDEN ON SMALL PHONE -->
 
         <div
         class="
-        flex
-        items-center
-        gap-3">
-
-            <!-- USER TEXT: HIDDEN ON SMALL PHONE -->
+        hidden
+        sm:block
+        min-w-0
+        text-right">
 
             <div
+            id="userName"
             class="
-            hidden
-            sm:block
-            min-w-0
-            text-right">
+            max-w-[220px]
+            lg:max-w-[320px]
+            truncate
+            font-bold
+            text-white
+            leading-tight">
 
-                <div
-                id="userName"
-                class="
-                max-w-[220px]
-                lg:max-w-[320px]
-                truncate
-                font-bold
-                text-white
-                leading-tight">
-
-                    Muhamed Fitri
-
-                </div>
-
-                <div
-                id="userRole"
-                class="
-                max-w-[220px]
-                lg:max-w-[320px]
-                truncate
-                text-xs
-                text-cyan-400
-                mt-1">
-
-                    ICT Coordinator
-
-                </div>
+                Muhamed Fitri
 
             </div>
 
-            <!-- AVATAR -->
-
             <div
-            id="userAvatar"
+            id="userRole"
             class="
-            w-10
-            h-10
-            sm:w-12
-            sm:h-12
-            shrink-0
-            rounded-full
-            bg-cyan-500
-            text-white
-            text-sm
-            sm:text-base
-            font-bold
-            flex
-            items-center
-            justify-center
-            shadow-lg
-            shadow-cyan-500/20">
+            max-w-[220px]
+            lg:max-w-[320px]
+            truncate
+            text-xs
+            text-cyan-400
+            mt-1">
 
-                MF
+                ICT Coordinator
 
             </div>
 
         </div>
 
+
+        <!-- AVATAR -->
+
+        <div
+        id="userAvatar"
+        class="
+        w-10
+        h-10
+        sm:w-12
+        sm:h-12
+        shrink-0
+        rounded-full
+        bg-cyan-500
+        text-white
+        text-sm
+        sm:text-base
+        font-bold
+        flex
+        items-center
+        justify-center
+        shadow-lg
+        shadow-cyan-500/20">
+
+            MF
+
+        </div>
+
     </div>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <button
+    type="button"
+    onclick="logout()"
+    title="Logout"
+    class="
+    flex
+    items-center
+    justify-center
+    gap-2
+    h-10
+    sm:h-11
+    px-3
+    sm:px-4
+    shrink-0
+    rounded-xl
+    border
+    border-red-500/20
+    bg-red-500/10
+    text-red-400
+    hover:bg-red-500/20
+    hover:border-red-500/40
+    hover:text-red-300
+    transition">
+
+        <i
+        class="
+        fa-solid
+        fa-right-from-bracket">
+        </i>
+
+        <span
+        class="
+        hidden
+        md:inline
+        text-sm
+        font-bold">
+
+            Logout
+
+        </span>
+
+    </button>
+
+
+</div>
 
 </div>
