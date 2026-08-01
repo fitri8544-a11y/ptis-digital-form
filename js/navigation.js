@@ -149,6 +149,18 @@ async function loadPage(page){
 
         }
 
+        /* ================= DOWNLOAD CENTER ================= */
+
+        if(page==="downloads"){
+
+            if(typeof loadDownloads==="function"){
+
+                loadDownloads();
+
+            }
+
+        }
+
         // ================= USER =================
 
         if(page==="user"){
