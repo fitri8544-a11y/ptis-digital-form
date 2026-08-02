@@ -1,61 +1,309 @@
-<div class="min-h-screen flex items-center justify-center p-8">
+<main
+class="
+min-h-screen
+bg-slate-950
+flex
+items-center
+justify-center
+px-6
+py-10">
 
-    <div class="w-full max-w-md">
+    <div
+    class="
+    w-full
+    max-w-7xl
+    mx-auto">
 
-        <div class="bg-slate-900 rounded-3xl p-10 border border-slate-800 shadow-2xl">
+        <div
+        class="
+        grid
+        grid-cols-1
+        lg:grid-cols-2
+        gap-16
+        items-center">
 
-            <div class="text-center">
+            <!-- ================= LEFT PANEL ================= -->
 
-                <div class="w-24 h-24 rounded-3xl bg-cyan-500 flex items-center justify-center text-5xl mx-auto">
+            <section
+            class="
+            hidden
+            lg:flex
+            flex-col
+            justify-center">
 
-                    P
+                <!-- BADGE -->
+
+                <div
+                class="
+                inline-flex
+                w-fit
+                items-center
+                gap-2
+                px-5
+                py-2
+                rounded-full
+                bg-cyan-500/10
+                border
+                border-cyan-500/20
+                text-cyan-300
+                font-bold">
+
+                    🚀 PTIS DIGITAL FORM
 
                 </div>
 
-                <h1 class="text-3xl font-black mt-8">
+                <!-- TITLE -->
 
-                    PTIS DIGITAL FORM
+                <h1
+                class="
+                mt-8
+                text-6xl
+                font-black
+                text-white
+                leading-tight">
+
+                    Digital Forms
 
                 </h1>
 
-                <p class="text-slate-400 mt-3">
+                <h2
+                class="
+                mt-4
+                text-3xl
+                font-bold
+                text-cyan-400">
 
-                    Sistem Pengurusan Borang Digital
-                    Pasukan Teknikal ICT Sekolah
-                    Daerah Baling
+                    Pasukan Teknikal ICT
+                    Sekolah Daerah Baling
+
+                </h2>
+
+                <!-- DESCRIPTION -->
+
+                <p
+                class="
+                mt-8
+                max-w-xl
+                text-xl
+                leading-9
+                text-slate-400">
+
+                    Platform pengurusan borang digital,
+                    Knowledge Center,
+                    Download Center
+                    serta pengurusan rekod
+                    secara masa nyata.
 
                 </p>
 
-            </div>
+                <!-- FEATURES -->
 
-            <button
-            id="googleLoginBtn"
-            class="mt-10 w-full rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-bold py-4 flex items-center justify-center gap-3">
+                <div
+                class="
+                mt-12
+                grid
+                grid-cols-2
+                gap-5
+                max-w-xl">
 
-                <img
-                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                class="w-6 h-6">
+                    <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5">
 
-                Log Masuk Dengan Google
+                        <div class="text-3xl">📄</div>
 
-            </button>
+                        <div class="mt-3 font-bold text-white">
 
-            <div class="mt-8 text-center text-sm text-slate-500">
+                            Digital Forms
 
-                Gunakan akaun rasmi
+                        </div>
 
-                <br>
+                        <div class="mt-1 text-sm text-slate-400">
 
-                <b>@moe.gov.my</b>
+                            Borang KEW.PA secara digital.
 
-                atau
+                        </div>
 
-                <b>@moe-dl.edu.my</b>
+                    </div>
 
-            </div>
+                    <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5">
+
+                        <div class="text-3xl">📚</div>
+
+                        <div class="mt-3 font-bold text-white">
+
+                            Knowledge Center
+
+                        </div>
+
+                        <div class="mt-1 text-sm text-slate-400">
+
+                            Panduan dan rujukan rasmi.
+
+                        </div>
+
+                    </div>
+
+                    <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5">
+
+                        <div class="text-3xl">⬇️</div>
+
+                        <div class="mt-3 font-bold text-white">
+
+                            Download Center
+
+                        </div>
+
+                        <div class="mt-1 text-sm text-slate-400">
+
+                            Muat turun dokumen rasmi.
+
+                        </div>
+
+                    </div>
+
+                    <div class="rounded-2xl bg-slate-900 border border-slate-800 p-5">
+
+                        <div class="text-3xl">☁️</div>
+
+                        <div class="mt-3 font-bold text-white">
+
+                            Cloud System
+
+                        </div>
+
+                        <div class="mt-1 text-sm text-slate-400">
+
+                            Data disimpan secara selamat.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= LOGIN CARD ================= -->
+
+            <section
+            class="
+            flex
+            justify-center">
+
+                <div
+                class="
+                w-full
+                max-w-md
+                rounded-[32px]
+                border
+                border-slate-800
+                bg-slate-900/90
+                backdrop-blur-xl
+                shadow-2xl
+                p-10">
+
+                    <div class="text-center">
+
+                        <div
+class="
+w-24
+h-24
+rounded-3xl
+bg-gradient-to-br
+from-cyan-500
+to-blue-600
+flex
+items-center
+justify-center
+mx-auto
+overflow-hidden
+shadow-lg">
+
+    <img
+    src="assets/logo.png"
+    alt="PTIS Logo"
+    class="
+    w-16
+    h-16
+    object-contain">
+
+</div>
+
+                        <h1
+                        class="
+                        text-4xl
+                        font-black
+                        mt-8
+                        text-white">
+
+                            PTIS DIGITAL FORM
+
+                        </h1>
+
+                        <p
+                        class="
+                        text-slate-400
+                        mt-4
+                        leading-8">
+
+                            Sistem Pengurusan Borang Digital
+                            Pasukan Teknikal ICT
+                            Sekolah Daerah Baling
+
+                        </p>
+
+                    </div>
+
+                    <button
+                    id="googleLoginBtn"
+                    class="
+                    mt-10
+                    w-full
+                    rounded-2xl
+                    bg-white
+                    hover:bg-slate-100
+                    text-slate-900
+                    font-bold
+                    py-4
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                    transition">
+
+                        <img
+                        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                        class="w-6 h-6">
+
+                        Log Masuk Dengan Google
+
+                    </button>
+
+                    <div
+                    class="
+                    mt-8
+                    text-center
+                    text-sm
+                    text-slate-500
+                    leading-7">
+
+                        Gunakan akaun rasmi
+
+                        <br>
+
+                        <b>@moe.gov.my</b>
+
+                        atau
+
+                        <b>@moe-dl.edu.my</b>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
     </div>
 
-</div>
+</main>
