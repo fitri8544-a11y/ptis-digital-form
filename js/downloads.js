@@ -71,28 +71,46 @@ async function loadDownloads(){
 
         }
 
+        const jumlahDownload =
         document.getElementById(
             "jumlahDownload"
-        ).textContent =
-        snapshot.size;
+        );
+
+        if(jumlahDownload){
+
+            jumlahDownload.textContent =
+            snapshot.size;
+
+        }
         
         snapshot.forEach(doc=>{
 
             const data =
             doc.data();
 
+            console.log(doc.id);
+            console.log(data);
+
             container.innerHTML += `
 
 <div
 class="
-rounded-3xl
+group
+rounded-[30px]
 border
 border-slate-800
-bg-slate-900
-p-6
-transition
+bg-gradient-to-br
+from-slate-900
+to-slate-950
+p-7
+transition-all
+duration-300
 hover:-translate-y-1
-hover:border-cyan-500/30">
+hover:border-cyan-500/30
+hover:shadow-2xl
+hover:shadow-cyan-500/10">
+
+    <!-- HEADER -->
 
     <div
     class="
@@ -102,17 +120,16 @@ hover:border-cyan-500/30">
 
         <div
         class="
-        w-14
-        h-14
-        rounded-2xl
-        bg-cyan-500/10
-        text-cyan-300
+        w-16
+        h-16
+        rounded-3xl
+        bg-green-500/10
         flex
         items-center
         justify-center
-        text-3xl">
+        text-4xl">
 
-            📄
+            📗
 
         </div>
 
@@ -121,21 +138,23 @@ hover:border-cyan-500/30">
         px-3
         py-1
         rounded-full
-        bg-green-500/10
-        text-green-300
+        bg-cyan-500/10
+        text-cyan-300
         text-xs
         font-bold">
 
-            TERKINI
+            ${data.kategori || "Dokumen"}
 
         </span>
 
     </div>
 
+    <!-- TITLE -->
+
     <h2
     class="
     mt-6
-    text-xl
+    text-2xl
     font-black
     text-white">
 
@@ -145,24 +164,30 @@ hover:border-cyan-500/30">
 
     <p
     class="
-    mt-2
-    text-slate-400">
+    mt-3
+    text-slate-400
+    leading-7">
 
         ${data.penerangan || "-"}
 
     </p>
 
+    <!-- INFO -->
+
     <div
     class="
     mt-6
-    space-y-2
+    space-y-3
     text-sm">
 
-        <div>
+        <div
+        class="
+        flex
+        justify-between">
 
             <span class="text-slate-500">
 
-                Versi :
+                Versi
 
             </span>
 
@@ -174,11 +199,14 @@ hover:border-cyan-500/30">
 
         </div>
 
-        <div>
+        <div
+        class="
+        flex
+        justify-between">
 
             <span class="text-slate-500">
 
-                Format :
+                Format
 
             </span>
 
@@ -190,7 +218,47 @@ hover:border-cyan-500/30">
 
         </div>
 
+        <div
+        class="
+        flex
+        justify-between">
+
+            <span class="text-slate-500">
+
+                Saiz
+
+            </span>
+
+            <span class="text-white">
+
+                ${data.saiz || "-"}
+
+            </span>
+
+        </div>
+
+        <div
+        class="
+        flex
+        justify-between">
+
+            <span class="text-slate-500">
+
+                Dikemaskini
+
+            </span>
+
+            <span class="text-white">
+
+                ${data.tarikh || "-"}
+
+            </span>
+
+        </div>
+
     </div>
+
+    <!-- BUTTON -->
 
     <button
 
@@ -199,17 +267,26 @@ hover:border-cyan-500/30">
     class="
     mt-8
     w-full
-    py-3
+    py-4
     rounded-2xl
-    bg-cyan-600
-    hover:bg-cyan-500
+    bg-gradient-to-r
+    from-cyan-600
+    to-blue-600
+    hover:from-cyan-500
+    hover:to-blue-500
     text-white
     font-bold
     transition">
 
-        <i class="fa-solid fa-download mr-2"></i>
+        <i
+        class="
+        fa-solid
+        fa-download
+        mr-2">
 
-        Muat Turun
+        </i>
+
+        Muat Turun Borang
 
     </button>
 
