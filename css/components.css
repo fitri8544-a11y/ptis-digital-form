@@ -420,3 +420,934 @@ box-shadow:0 10px 25px rgba(0,0,0,.25);
     }
 
 }
+
+/* =====================================================
+   PTIS DIGITAL FORM ASSISTANT
+   FLOATING CHATBOT UI
+===================================================== */
+
+
+/* =====================================================
+   1. FLOATING ASSISTANT BUTTON
+===================================================== */
+
+#ptisAssistantButton {
+
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        8px
+        18px
+        8px
+        8px;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.35);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.98),
+            rgba(14, 116, 144, 0.96),
+            rgba(37, 99, 235, 0.96)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.40),
+
+        0 0 30px
+        rgba(56, 189, 248, 0.18);
+
+    cursor: pointer;
+
+    z-index: 9990;
+
+    outline: none;
+
+    /* FLOATING MOVEMENT */
+
+    animation:
+        ptisAssistantFloat
+        3.2s
+        ease-in-out
+        infinite;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =====================================================
+   FLOATING ANIMATION
+===================================================== */
+
+@keyframes ptisAssistantFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+#ptisAssistantButton:hover {
+
+    animation-play-state: paused;
+
+    transform:
+        translateY(-6px)
+        scale(1.03);
+
+    border-color:
+        rgba(56, 189, 248, 0.70);
+
+    box-shadow:
+
+        0 24px 60px
+        rgba(0, 0, 0, 0.50),
+
+        0 0 38px
+        rgba(56, 189, 248, 0.32);
+
+}
+
+
+/* =====================================================
+   BUTTON ACTIVE
+===================================================== */
+
+#ptisAssistantButton:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =====================================================
+   2. AVATAR
+===================================================== */
+
+.ptis-assistant-avatar {
+
+    position: relative;
+
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* IMAGE */
+
+.ptis-assistant-avatar img {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        #38bdf8;
+
+    background:
+        #0f172a;
+
+    box-shadow:
+
+        0 0 0 3px
+        rgba(56, 189, 248, 0.12),
+
+        0 8px 20px
+        rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* =====================================================
+   3. ONLINE INDICATOR
+===================================================== */
+
+.ptis-assistant-online {
+
+    position: absolute;
+
+    right: 1px;
+    bottom: 3px;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background:
+        #22c55e;
+
+    border:
+        3px solid
+        #0f172a;
+
+    box-shadow:
+        0 0 12px
+        rgba(34, 197, 94, 0.90);
+
+}
+
+
+/* ONLINE PULSE */
+
+.ptis-assistant-online::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -5px;
+
+    border:
+
+        1px solid
+        rgba(34, 197, 94, 0.55);
+
+    border-radius: 50%;
+
+    animation:
+        ptisOnlinePulse
+        2s
+        ease-out
+        infinite;
+
+}
+
+
+@keyframes ptisOnlinePulse {
+
+    0% {
+
+        transform:
+            scale(0.70);
+
+        opacity: 0.8;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1.60);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   4. BUTTON TEXT
+===================================================== */
+
+.ptis-assistant-label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    line-height: 1.15;
+
+    white-space: nowrap;
+
+}
+
+
+.ptis-assistant-help {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color:
+        #bae6fd;
+
+}
+
+
+.ptis-assistant-click {
+
+    margin-top: 4px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        0.01em;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* =====================================================
+   5. CHATBOT PANEL
+===================================================== */
+
+.ptis-assistant-panel {
+
+    position: fixed;
+
+    right: 28px;
+    bottom: 120px;
+
+    width:
+        min(
+            440px,
+            calc(100vw - 32px)
+        );
+
+    height:
+        min(
+            700px,
+            calc(100vh - 145px)
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.30);
+
+    background:
+        #ffffff;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 40px
+        rgba(37, 99, 235, 0.16);
+
+    z-index: 9989;
+
+
+    /* HIDDEN DEFAULT */
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translateY(28px)
+        scale(0.96);
+
+    transform-origin:
+        bottom right;
+
+
+    transition:
+
+        opacity
+        0.25s ease,
+
+        transform
+        0.25s ease,
+
+        visibility
+        0.25s ease;
+
+}
+
+
+/* =====================================================
+   PANEL OPEN
+===================================================== */
+
+.ptis-assistant-panel.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =====================================================
+   6. PANEL HEADER
+===================================================== */
+
+.ptis-assistant-header {
+
+    position: relative;
+
+    min-height: 88px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding:
+        14px
+        16px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+
+            #0f172a 0%,
+
+            #0c4a6e 48%,
+
+            #2563eb 100%
+
+        );
+
+    color:
+        #ffffff;
+
+    border-bottom:
+
+        1px solid
+        rgba(255,255,255,0.12);
+
+}
+
+
+/* HEADER GLOW */
+
+.ptis-assistant-header::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -35px;
+    top: -55px;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+
+        rgba(
+            56,
+            189,
+            248,
+            0.12
+        );
+
+    filter:
+        blur(5px);
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   HEADER INFORMATION
+===================================================== */
+
+.ptis-assistant-header-info {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+
+}
+
+
+/* HEADER AVATAR */
+
+.ptis-assistant-header-avatar {
+
+    width: 58px;
+    height: 58px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        #38bdf8;
+
+    background:
+        #0f172a;
+
+    flex-shrink: 0;
+
+    box-shadow:
+
+        0 6px 18px
+        rgba(0,0,0,0.30);
+
+}
+
+
+/* TITLE */
+
+.ptis-assistant-header h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    line-height: 1.25;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* STATUS */
+
+.ptis-assistant-header p {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin:
+        6px
+        0
+        0;
+
+    font-size: 12px;
+
+    color:
+        #bae6fd;
+
+}
+
+
+/* STATUS DOT */
+
+.ptis-status-dot {
+
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+
+        0 0 8px
+        rgba(34,197,94,0.90);
+
+}
+
+
+/* =====================================================
+   7. CLOSE BUTTON
+===================================================== */
+
+#ptisAssistantClose {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color:
+        #ffffff;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+
+        background
+        0.20s ease,
+
+        transform
+        0.20s ease;
+
+}
+
+
+#ptisAssistantClose:hover {
+
+    background:
+        rgba(255,255,255,0.18);
+
+    transform:
+        rotate(8deg);
+
+}
+
+
+/* =====================================================
+   8. EDCAFE CONTENT
+===================================================== */
+
+.ptis-assistant-content {
+
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    background:
+        #ffffff;
+
+}
+
+
+/* IFRAME */
+
+.ptis-assistant-content iframe {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    background:
+        #ffffff;
+
+}
+
+
+/* =====================================================
+   9. ASSISTANT BUTTON - HIDE WHEN CHAT IS OPEN
+===================================================== */
+
+body.ptis-assistant-open
+#ptisAssistantButton {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translateY(20px)
+        scale(0.90);
+
+    animation-play-state:
+        paused;
+
+}
+
+
+/* =====================================================
+   10. MOBILE RESPONSIVE
+===================================================== */
+
+@media
+(max-width: 640px) {
+
+
+    /* FLOATING BUTTON */
+
+    #ptisAssistantButton {
+
+        right: 14px;
+
+        bottom: 18px;
+
+        gap: 9px;
+
+        padding:
+
+            6px
+            13px
+            6px
+            6px;
+
+    }
+
+
+    /* AVATAR */
+
+    .ptis-assistant-avatar {
+
+        width: 52px;
+        height: 52px;
+
+    }
+
+
+    /* TEXT */
+
+    .ptis-assistant-help {
+
+        font-size: 10px;
+
+    }
+
+
+    .ptis-assistant-click {
+
+        font-size: 13px;
+
+    }
+
+
+    /* PANEL */
+
+    .ptis-assistant-panel {
+
+        right: 10px;
+
+        bottom: 88px;
+
+        width:
+            calc(100vw - 20px);
+
+        height:
+            calc(100dvh - 108px);
+
+        border-radius:
+            20px;
+
+    }
+
+
+    /* HEADER */
+
+    .ptis-assistant-header {
+
+        min-height:
+            76px;
+
+        padding:
+            10px
+            12px;
+
+    }
+
+
+    /* HEADER AVATAR */
+
+    .ptis-assistant-header-avatar {
+
+        width: 48px;
+        height: 48px;
+
+    }
+
+
+    /* HEADER TITLE */
+
+    .ptis-assistant-header h3 {
+
+        font-size: 13px;
+
+    }
+
+
+    /* HEADER STATUS */
+
+    .ptis-assistant-header p {
+
+        margin-top: 4px;
+
+        font-size: 10px;
+
+    }
+
+
+    /* CLOSE */
+
+    #ptisAssistantClose {
+
+        width: 36px;
+        height: 36px;
+
+    }
+
+}
+
+
+/* =====================================================
+   11. VERY SMALL MOBILE
+===================================================== */
+
+@media
+(max-width: 380px) {
+
+    .ptis-assistant-label {
+
+        display: none;
+
+    }
+
+
+    #ptisAssistantButton {
+
+        width: 62px;
+        height: 62px;
+
+        padding: 5px;
+
+        justify-content: center;
+
+    }
+
+
+    .ptis-assistant-avatar {
+
+        width: 50px;
+        height: 50px;
+
+    }
+
+}
+
+
+/* =====================================================
+   12. ACCESSIBILITY
+   Kurangkan animasi jika pengguna memilih
+   Reduced Motion pada peranti
+===================================================== */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+    #ptisAssistantButton,
+
+    .ptis-assistant-online::after {
+
+        animation: none;
+
+    }
+
+
+    .ptis-assistant-panel {
+
+        transition: none;
+
+    }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+
+    .ptis-assistant-hint {
+
+        right: 14px;
+        bottom: 98px;
+
+        width:
+            min(
+                290px,
+                calc(100vw - 28px)
+            );
+
+    }
+
+}
