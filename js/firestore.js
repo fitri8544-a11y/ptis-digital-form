@@ -2552,60 +2552,8 @@ async function deleteMyRecord(
    VIEW KEW.PA-19 RECORD
 ========================================== */
 
-async function viewKewpa19Record(
-    recordId
-){
-
-    try{
-
-        const documentSnapshot =
-        await db
-        .collection("kewpa19")
-        .doc(recordId)
-        .get();
-
-        if(!documentSnapshot.exists){
-
-            alert(
-                "Rekod KEW.PA-19 tidak dijumpai."
-            );
-
-            return;
-
-        }
-
-        const data =
-        documentSnapshot.data();
-
-        const noSiri =
-        data.aset?.noSiri || "-";
-
-        const jabatan =
-        data.jabatan?.nama || "-";
-
-        const status =
-        data.status || "DRAF";
-
-        alert(
-            `KEW.PA-19\n\n` +
-            `No. Siri Aset: ${noSiri}\n` +
-            `Kementerian / Jabatan: ${jabatan}\n` +
-            `Status: ${status}`
-        );
-
-    }catch(error){
-
-        console.error(
-            "Ralat melihat KEW.PA-19:",
-            error
-        );
-
-        alert(
-            "Rekod KEW.PA-19 gagal dibuka."
-        );
-
-    }
-
+async function viewKewpa19Record(recordId){
+    await printKewpa19Record(recordId);
 }
 
 /* ==========================================

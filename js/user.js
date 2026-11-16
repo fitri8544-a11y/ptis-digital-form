@@ -60,11 +60,26 @@ function loadUser(user){
 
     /* ================= AVATAR ================= */
 
-    if(avatarElement){
+        if(avatarElement){
+        avatarElement.textContent = initials || "U";
 
-        avatarElement.textContent =
-        initials || "U";
+        if(user.photoURL){
+            const photo = document.createElement("img");
 
+            photo.alt = `Gambar profil ${displayName}`;
+            photo.referrerPolicy = "no-referrer";
+            photo.style.cssText =
+                "width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;";
+
+            photo.onerror = ()=>{
+                if(photo.parentNode === avatarElement){
+                    avatarElement.textContent = initials || "U";
+                }
+            };
+
+            avatarElement.replaceChildren(photo);
+            photo.src = user.photoURL;
+        }
     }
 
 }

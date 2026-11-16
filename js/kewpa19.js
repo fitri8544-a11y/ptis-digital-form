@@ -43,6 +43,9 @@ function initKewpa19Wizard(){
 
 function resetKewpa19State(){
 
+    window.kewpa19EditMode = false;
+    window.kewpa19RecordId = null;
+
     kewpa19State.jabatan = {};
 
     kewpa19State.aset = {};
@@ -92,11 +95,7 @@ function updateKewpa19Wizard(){
 
     loadKewpa19Step();
 
-    setTimeout(()=>{
-
-        restoreKewpa19Step();
-
-    },50);
+    restoreKewpa19Step();
 
     updateKewpa19Buttons();
 
@@ -1106,7 +1105,7 @@ function restoreKewpa19Step(){
         if(element){
 
             element.value =
-            value || "";
+            value ?? "";
 
         }
 
@@ -1424,6 +1423,7 @@ async function saveKewpa19ToFirestore(){
 
     const saveButton =
     document.getElementById("saveKewpa19Btn");
+    if(saveButton?.disabled) return;
 
     try{
 
@@ -1442,7 +1442,7 @@ async function saveKewpa19ToFirestore(){
 
         }
 
-        if(!kewpa19State.jabatan.nama.trim()){
+        if(!String(kewpa19State.jabatan.nama || "").trim()){
 
             alert(
                 "Sila lengkapkan nama Kementerian atau Jabatan."
@@ -1456,7 +1456,7 @@ async function saveKewpa19ToFirestore(){
 
         }
 
-        if(!kewpa19State.aset.noSiri.trim()){
+        if(!String(kewpa19State.aset.noSiri || "").trim()){
 
             alert(
                 "Sila lengkapkan No. Siri Pendaftaran Aset."
@@ -1534,11 +1534,6 @@ async function saveKewpa19ToFirestore(){
 
             },
 
-            createdBy: user.uid,
-
-            createdByEmail:
-            user.email || "",
-
             updatedAt:
             firebase.firestore
             .FieldValue
@@ -1587,6 +1582,9 @@ else{
 
         ...recordData,
 
+        createdBy: user.uid,
+        createdByEmail: user.email || "",
+        status: "DRAF",
         borangNo:
         borangNo,
 
@@ -1924,7 +1922,7 @@ const formatWangKewpa19 = (value)=>{
 
         if(el){
 
-            el.innerHTML = value || "";
+            el.textContent = value ?? "";
 
         }
 
@@ -2136,11 +2134,7 @@ async function printKewpa19Record(recordId){
 
         await loadForm("kewpa19-print");
 
-        setTimeout(()=>{
-
-            populateKewpa19Print();
-
-        },200);
+        populateKewpa19Print();
 
     }
 
@@ -2162,8 +2156,11 @@ document.addEventListener(
     "click",
     event=>{
 
+        const button = event.target.closest("button");
+        if(!button) return;
+
         if(
-            event.target.id ===
+            button.id ===
             "kewpa19NextBtn"
         ){
 
@@ -2172,7 +2169,7 @@ document.addEventListener(
         }
 
         if(
-            event.target.id ===
+            button.id ===
             "kewpa19PrevBtn"
         ){
 
@@ -2181,7 +2178,7 @@ document.addEventListener(
         }
 
         if(
-            event.target.id ===
+            button.id ===
             "saveKewpa19Btn"
         ){
 
@@ -2196,63 +2193,43 @@ document.addEventListener(
    KEW.PA-19 NOTICE MODAL
 ========================================== */
 
+async function startNewKewpa19(){
+    resetKewpa19State();
+    await loadForm("kewpa19");
+}
+
+// Compatibility for existing links and cached cards.
 function openKewpa19Notice(){
-
-    const googleFormUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSfmUb901xsQLFD69Z1tS3G8yO53oDw3SAanaBV-NLvF7i4PhA/viewform?usp=header";
-
-    // Popup sudah pernah dipaparkan dalam sesi ini
-    if(sessionStorage.getItem("kewpa19NoticeShown")){
-
-        window.open(
-            googleFormUrl,
-            "_blank"
-        );
-
-        return;
-
-    }
-
-    const modal =
-    document.getElementById(
-        "kewpa19NoticeModal"
-    );
-
-    if(modal){
-
-        modal.classList.remove("hidden");
-
-    }
-
+    return startNewKewpa19();
 }
 
 function closeKewpa19Notice(){
-
-    const modal =
-    document.getElementById(
-        "kewpa19NoticeModal"
-    );
-
-    if(modal){
-
-        modal.classList.add("hidden");
-
-    }
-
+    document.getElementById("kewpa19NoticeModal")?.classList.add("hidden");
 }
 
 function openKewpa19GoogleForm(){
-
-    sessionStorage.setItem(
-        "kewpa19NoticeShown",
-        "true"
-    );
-
     closeKewpa19Notice();
+    return startNewKewpa19();
+}
 
-    window.open(
-        "https://docs.google.com/forms/d/e/1FAIpQLSfmUb901xsQLFD69Z1tS3G8yO53oDw3SAanaBV-NLvF7i4PhA/viewform?usp=header",
-        "_blank"
+async function printKewpa19Now(){
+    const sheet = document.getElementById("kewpa19PrintSheet");
+    if(!sheet) return;
+    const image = sheet.querySelector("img");
+    try{
+        await image.decode();
+        await document.fonts.ready;
+    }catch(error){
+        alert("Templat cetakan gagal dimuatkan. Sila muat semula halaman.");
+        return;
+    }
+    const overflow = [...sheet.querySelectorAll(".kewpa19-print-field")].some(field=>
+        field.scrollHeight > field.clientHeight + 1 ||
+        field.scrollWidth > field.clientWidth + 1
     );
-
+    if(overflow){
+        alert("Teks melebihi ruang borang rasmi. Sila ringkaskan maklumat melalui Edit sebelum mencetak.");
+        return;
+    }
+    window.print();
 }

@@ -859,8 +859,9 @@ body {
 
     position:relative;
 
-    width:min(100%,794px);
-
+    width:794px;
+    height:1122.97px;
+    flex-shrink:0;
     aspect-ratio:210 / 297;
 
     margin:auto;
@@ -1116,7 +1117,7 @@ body {
 
 .field-kewpa19-p1-cap{
 
-    top:91%;
+    top:79%;
     left:14%;
     width:28%;
 
@@ -1129,7 +1130,7 @@ body {
 .field-kewpa19-p2-nama{
 
     top:74.5%;
-    left:14%;
+    left:59%;
     width:28%;
 
 }
@@ -1137,7 +1138,7 @@ body {
 .field-kewpa19-p2-jawatan{
 
     top:76%;
-    left:16%;
+    left:59%;
     width:28%;
 
 }
@@ -1145,14 +1146,14 @@ body {
 .field-kewpa19-p2-tarikh{
 
     top:77.5%;
-    left:14%;
+    left:59%;
     width:28%;
 
 }
 
 .field-kewpa19-p2-cap{
 
-    top:91%;
+    top:79%;
     left:57%;
     width:28%;
 
@@ -1202,7 +1203,7 @@ body {
 
     #kewpa19PrintSheet,
     #kewpa19PrintSheet *{
-        visibility: visible;
+        visibility: visible !important;
     }
 
     .kewpa19-print-page{
@@ -1264,4 +1265,41 @@ body {
         margin: 0;
     }
 
+}
+/* KEW.PA-19 fields use a fixed A4 preview so screen and paper wrap identically. */
+.kewpa19-print-field { height:2.6%; font-size:10px; line-height:1.15; }
+.field-kewpa19-alamat { height:2.5%; min-height:0; }
+.field-kewpa19-jabatan { height:2.2%; }
+.field-kewpa19-tambahbaik-1, .field-kewpa19-tambahbaik-2,
+.field-kewpa19-tambahbaik-3, .field-kewpa19-laporan-1,
+.field-kewpa19-laporan-2, .field-kewpa19-laporan-3 {
+    width:49%; height:1.4%;
+}
+.field-kewpa19-p1-nama, .field-kewpa19-p2-nama,
+.field-kewpa19-p1-jawatan, .field-kewpa19-p2-jawatan,
+.field-kewpa19-p1-tarikh, .field-kewpa19-p2-tarikh { height:1.4%; }
+.field-kewpa19-p1-cap, .field-kewpa19-p2-cap { height:2%; }
+@media print {
+    .kewpa19-print-field { font-size:7.5pt; }
+}
+
+/* Larger inspection report text on screen and A4 paper. */
+.field-kewpa19-laporan-1,
+.field-kewpa19-laporan-2,
+.field-kewpa19-laporan-3 {
+    font-size:12px;
+}
+@media print {
+    .field-kewpa19-laporan-1,
+    .field-kewpa19-laporan-2,
+    .field-kewpa19-laporan-3 {
+        font-size:9pt;
+    }
+}
+
+/* Lift inspection text above the dotted writing lines. */
+.field-kewpa19-laporan-1,
+.field-kewpa19-laporan-2,
+.field-kewpa19-laporan-3 {
+    transform:translateY(-3px);
 }
