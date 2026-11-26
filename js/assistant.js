@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openAssistant() {
 
+        assistantPanel.inert = false;
         assistantPanel.classList.add("active");
 
         assistantPanel.setAttribute(
@@ -55,6 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add(
             "ptis-assistant-open"
         );
+        setTimeout(()=>{
+            if(assistantPanel.classList.contains("active")) assistantClose?.focus();
+        },260);
 
     }
 
@@ -64,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     function closeAssistant() {
+        const hadFocus = assistantPanel.contains(document.activeElement);
 
         assistantPanel.classList.remove("active");
 
@@ -80,6 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove(
             "ptis-assistant-open"
         );
+        if(hadFocus) setTimeout(()=>{
+            if(!assistantPanel.classList.contains("active")) assistantButton.focus();
+        },260);
+        assistantPanel.inert = true;
 
     }
 

@@ -1,0 +1,16 @@
+PTIS DIGITAL FORM - Kemas kini paparan cerah
+
+Gantikan fail projek lama dengan kandungan folder ini selepas membuat sandaran.
+Konfigurasi Firebase dan kod autentikasi asal dikekalkan.
+Belum diterbitkan ke Firebase Hosting.
+
+Perubahan: halaman log masuk, dashboard, topbar, sidebar, footer,
+css/refresh.css, CSS Tailwind dan ikon setempat.
+
+CSS Tailwind disertakan supaya paparan tidak bergantung pada CDN Tailwind.
+Jika menambah kelas Tailwind baharu, jana semula dari folder projek:
+npx --yes --package=tailwindcss@3.4.17 tailwindcss -c tailwind.config.cjs -i css/tailwind.input.css -o css/tailwind.css --minify
+
+Semakan: paparan desktop 1440px dan telefon 390px.
+Ujian menggunakan komponen paparan tanpa sesi Firebase sebenar.
+Log masuk Google dan operasi pangkalan data belum diuji secara langsung.

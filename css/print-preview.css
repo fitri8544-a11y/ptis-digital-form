@@ -1,0 +1,89 @@
+/* Shared screen-only preview shell. Official A4 sheets and print rules stay intact. */
+@media screen {
+ body:has(#kewpa3PrintSheet, #kewpa9PrintSheet, #kewpa19PrintSheet) {
+   background:#f4f7fb;
+ }
+ body:has(#kewpa3PrintSheet, #kewpa9PrintSheet, #kewpa19PrintSheet)
+ :is(#topbar, #sidebar, #sidebarOverlay, #footer, #ptisAssistantButton, #ptisAssistantPanel) {
+   display:none!important;
+ }
+ #content:has(#kewpa3PrintSheet, #kewpa9PrintSheet, #kewpa19PrintSheet) {
+   padding:24px;
+   background:#f4f7fb;
+   overflow-x:auto;
+   min-height:100dvh;
+ }
+ #content :is(.kewpa3-print-page, .kewpa19-print-page) {
+   background:transparent;
+   min-height:0;
+   padding:0;
+   overflow:visible;
+   font-family:'Segoe UI',system-ui,sans-serif;
+ }
+ #content :is(.print-toolbar, .kewpa3-print-toolbar, .kewpa19-print-toolbar) {
+   width:210mm;
+   min-width:0;
+   max-width:100%;
+   min-height:70px;
+   margin:0 auto 20px;
+   padding:12px;
+   display:flex;
+   align-items:center;
+   justify-content:space-between;
+   gap:12px;
+   background:#fff;
+   border:1px solid #dce5ef;
+   border-radius:12px;
+   box-shadow:0 3px 14px #172b4d06;
+   font-family:'Segoe UI',system-ui,sans-serif;
+ }
+ #content :is(.print-back-btn, .print-now-btn, .kewpa3-toolbar-btn, .kewpa3-print-btn) {
+   min-height:44px;
+   padding:11px 16px;
+   display:inline-flex;
+   align-items:center;
+   justify-content:center;
+   gap:8px;
+   border:1px solid transparent;
+   border-radius:9px;
+   font-family:'Segoe UI',system-ui,sans-serif;
+   font-size:13px;
+   font-weight:650;
+   line-height:20px;
+   cursor:pointer;
+   white-space:nowrap;
+   box-shadow:none;
+   transition:background .2s;
+ }
+ #content :is(.print-back-btn, .kewpa3-toolbar-btn) {
+   background:#f1f5f9;
+   border-color:#dce5ef;
+   color:#334155;
+ }
+ #content :is(.print-now-btn, .kewpa3-print-btn) {
+   background:#2563eb;
+   border-color:#2563eb;
+   color:#fff;
+ }
+ #content :is(.print-back-btn, .kewpa3-toolbar-btn):hover { background:#e2e8f0; transform:none; opacity:1; }
+ #content :is(.print-now-btn, .kewpa3-print-btn):hover { background:#1d4ed8; transform:none; opacity:1; }
+ #content :is(#kewpa3PrintSheet, #kewpa9PrintSheet, #kewpa19PrintSheet) {
+   margin:0 auto 24px;
+   border-radius:0;
+   box-shadow:0 8px 28px #172b4d1a;
+ }
+}
+@media screen and (max-width:850px) {
+ #content:has(#kewpa3PrintSheet, #kewpa9PrintSheet, #kewpa19PrintSheet) { padding:16px; }
+ #content :is(.print-toolbar, .kewpa3-print-toolbar, .kewpa19-print-toolbar) {
+   position:sticky;
+   left:0;
+   flex-wrap:wrap;
+   justify-content:space-between;
+   width:100%;
+ }
+ #content :is(.print-back-btn, .print-now-btn, .kewpa3-toolbar-btn, .kewpa3-print-btn) {
+   font-size:12px;
+   padding:10px 12px;
+ }
+}

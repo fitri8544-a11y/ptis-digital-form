@@ -159,6 +159,8 @@ title="Lihat">
 </button>
 
             <button
+            type="button"
+            onclick="editMyRecord('${item.name}','${doc.id}')"
             class="w-10 h-10 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 transition"
             title="Edit">
 
@@ -167,6 +169,8 @@ title="Lihat">
             </button>
 
             <button
+            type="button"
+            onclick="printMyRecord('${item.name}','${doc.id}')"
             class="w-10 h-10 rounded-xl bg-green-500/10 hover:bg-green-500/20 text-green-400 transition"
             title="Print">
 
@@ -175,6 +179,8 @@ title="Lihat">
             </button>
 
             <button
+            type="button"
+            onclick="adminDeleteRecord('${item.name}','${doc.id}',this)"
             class="w-10 h-10 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 transition"
             title="Padam">
 
@@ -296,4 +302,45 @@ async function adminViewRecord(
 
     }
 
+}
+/* Delete the selected admin record and refresh this table. Firestore rules
+   remain responsible for enforcing permissions on the server. */
+const adminDeletesInProgress = new Set();
+
+async function adminDeleteRecord(collectionName, recordId, button){
+    if(window.currentUserRole !== "admin"){
+        alert("Hanya pentadbir boleh memadam rekod melalui menu ini.");
+        return;
+    }
+    const labels = {forms:"KEW.PA-9", kewpa3:"KEW.PA-3", kewpa19:"KEW.PA-19"};
+    if(!Object.hasOwn(labels, collectionName) || !recordId){
+        alert("Rekod yang dipilih tidak sah.");
+        return;
+    }
+    const key = `${collectionName}/${recordId}`;
+    if(adminDeletesInProgress.has(key)) return;
+    if(!confirm(`PADAM REKOD ${labels[collectionName]}\n\nNo. Rekod: ${recordId}\n\nRekod ini akan dipadam secara kekal. Teruskan?`)) return;
+
+    adminDeletesInProgress.add(key);
+    if(button){
+        button.disabled = true;
+        button.setAttribute("aria-busy", "true");
+    }
+    try{
+        await db.collection(collectionName).doc(recordId).delete();
+        alert("Rekod berjaya dipadam.");
+        // Avoid replacing another page if the user navigates during the request.
+        if(document.getElementById("adminRecordTable")){
+            await loadAdminRecords();
+        }
+    }catch(error){
+        console.error("Ralat padam rekod pentadbir:", error);
+        alert("Gagal memadam rekod.\n\n" + (error.message || "Sila cuba semula."));
+    }finally{
+        adminDeletesInProgress.delete(key);
+        if(button){
+            button.disabled = false;
+            button.removeAttribute("aria-busy");
+        }
+    }
 }

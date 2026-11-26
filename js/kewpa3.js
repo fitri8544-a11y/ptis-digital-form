@@ -898,6 +898,25 @@ async function saveKewpa3Form(){
         }
 
 
+        // Update only form fields; retain the original owner, number and creation date.
+        if(window.kewpa3EditRecordId){
+            await db.collection("kewpa3").doc(window.kewpa3EditRecordId).update({
+                jabatan: {...kewpa3State.jabatan},
+                aset: {...kewpa3State.aset,
+                    hargaPerolehanAsal: Number(kewpa3State.aset.hargaPerolehanAsal) || 0},
+                pengesahan: {...kewpa3State.pengesahan},
+                penempatan: kewpa3State.penempatan,
+                pemeriksaan: kewpa3State.pemeriksaan,
+                nilaiSemasa: kewpa3State.nilaiSemasa,
+                pindahanPelupusan: kewpa3State.pindahanPelupusan,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            window.kewpa3EditRecordId = null;
+            alert("Borang KEW.PA-3 berjaya dikemas kini.");
+            await loadPage(window.currentUserRole === "admin" ? "admin-records" : "records");
+            return;
+        }
+
         const borangNo =
         await generateKewpa3BorangNo();
 
@@ -1015,7 +1034,9 @@ async function saveKewpa3Form(){
                 "cursor-not-allowed"
             );
 
-            updateKewpa3Buttons();
+            if(nextButton.isConnected){
+                updateKewpa3Buttons();
+            }
 
         }
 
@@ -1028,6 +1049,8 @@ async function saveKewpa3Form(){
 ========================================== */
 
 function resetKewpa3Form(){
+
+    window.kewpa3EditRecordId = null;
 
     kewpa3State.jabatan = {
 
@@ -3579,4 +3602,25 @@ async function printKewpa3Record(
 
     }
 
+}
+/* Open an existing KEW.PA-3 without allocating a new document or form number. */
+async function editKewpa3Record(recordId){
+    try{
+        const snapshot = await db.collection("kewpa3").doc(recordId).get();
+        if(!snapshot.exists){
+            throw new Error("Rekod KEW.PA-3 tidak dijumpai.");
+        }
+        const data = snapshot.data();
+        for(const field of ["jabatan", "aset", "pengesahan"]){
+            kewpa3State[field] = {...(data[field] || {})};
+        }
+        for(const field of ["penempatan", "pemeriksaan", "nilaiSemasa", "pindahanPelupusan"]){
+            kewpa3State[field] = Array.isArray(data[field]) ? data[field].map(item=>({...item})) : [];
+        }
+        window.kewpa3EditRecordId = recordId;
+        await loadForm("kewpa3", {edit:true});
+    }catch(error){
+        console.error("Ralat sunting KEW.PA-3:", error);
+        alert(error.message || "Rekod KEW.PA-3 gagal dibuka.");
+    }
 }

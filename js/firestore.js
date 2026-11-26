@@ -2419,7 +2419,7 @@ async function editMyRecord(
             "function"
         ){
 
-            editRecord(recordId);
+            await editRecord(recordId);
 
         }
 
@@ -2445,9 +2445,7 @@ async function editMyRecord(
 
     if(collectionName === "kewpa3"){
 
-        alert(
-            "✏️ Fungsi Edit KEW.PA-3 akan dibina pada langkah seterusnya."
-        );
+        await editKewpa3Record(recordId);
 
         return;
 
@@ -2467,7 +2465,7 @@ async function printMyRecord(
 
     if(collectionName === "forms"){
 
-        printRecord(recordId);
+        await printRecord(recordId);
 
         return;
 
@@ -2478,7 +2476,7 @@ async function printMyRecord(
 
     if(collectionName === "kewpa19"){
 
-        printKewpa19Record(recordId);
+        await printKewpa19Record(recordId);
 
         return;
 
@@ -2663,6 +2661,8 @@ async function viewRecord(id){
         const data =
         doc.data();
 
+        window.currentRecord = data;
+
         // Simpan Document ID
         window.currentRecordId =
         doc.id;
@@ -2721,6 +2721,8 @@ async function editRecord(id){
 
         const data =
         doc.data();
+
+        window.currentRecord = data;
 
         window.currentRecordId =
         doc.id;

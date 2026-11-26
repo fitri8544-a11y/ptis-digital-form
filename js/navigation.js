@@ -273,7 +273,7 @@ async function loadPage(page){
 
 /* ================= LOAD FORM ================= */
 
-async function loadForm(form){
+async function loadForm(form, options = {}){
 
     try{
 
@@ -312,25 +312,9 @@ async function loadForm(form){
 
             updateWizard();
 
-            // Jika buka dari Rekod Saya,
-            // isi semula data Firestore
-
-            if(window.currentRecord){
-
-                setTimeout(()=>{
-
-                    if(
-                        typeof populateForm ===
-                        "function"
-                    ){
-
-                        populateForm();
-
-                    }
-
-                },200);
-
-            }
+            // updateWizard restores the selected step from formState.
+            // Do not call legacy populateForm: it calls missing helpers and
+            // can overwrite the active form with an earlier selected record.
 
         }
 
@@ -371,6 +355,10 @@ async function loadForm(form){
         // ================= KEW.PA-3 =================
 
         if(form === "kewpa3"){
+
+                if(!options.edit){
+                    window.kewpa3EditRecordId = null;
+                }
 
                 if(
                     typeof initKewpa3Wizard ===

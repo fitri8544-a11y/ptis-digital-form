@@ -1,0 +1,58 @@
+/* PTIS assistant: light appearance, retaining the existing Edcafe conversation. */
+@media screen {
+ #ptisAssistantButton {
+   right:24px; bottom:24px; width:auto; height:auto; min-height:66px;
+   padding:8px 14px 8px 8px; gap:11px; border:1px solid #d8e4f2;
+   border-radius:18px; background:#fff; color:#243b5b;
+   box-shadow:0 6px 24px #172b4d14; animation:none; transform:none;
+   font-family:'Segoe UI',system-ui,sans-serif;
+ }
+ #ptisAssistantButton:hover { transform:translateY(-2px); border-color:#93b4f5; box-shadow:0 8px 28px #1d4ed81a; }
+ #ptisAssistantButton:focus-visible, #ptisAssistantClose:focus-visible { outline:3px solid #2563eb; outline-offset:4px; }
+ #ptisAssistantButton .ptis-assistant-avatar {
+   width:48px; height:48px; border:1px solid #dbe8fb; border-radius:14px;
+   padding:3px; background:#edf4ff; box-shadow:none; flex-shrink:0;
+ }
+ #ptisAssistantButton .ptis-assistant-avatar img { width:100%; height:100%; border-radius:11px; object-fit:cover; }
+ #ptisAssistantButton .ptis-assistant-online { display:none; }
+ #ptisAssistantButton .ptis-assistant-label { display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; }
+ #ptisAssistantButton .ptis-assistant-help { color:#243b5b; font-size:13px; font-weight:700; text-shadow:none; }
+ #ptisAssistantButton .ptis-assistant-click { color:#64748b; font-size:11px; font-weight:400; letter-spacing:0; text-shadow:none; }
+ #ptisAssistantButton .ptis-assistant-launch-icon { display:grid; place-items:center; width:30px; height:30px; margin-left:6px; border-radius:9px; background:#edf3ff; color:#2563eb; font-size:14px; }
+ #ptisAssistantPanel {
+   right:24px; bottom:24px; width:min(420px,calc(100vw - 32px));
+   height:min(680px,calc(100dvh - 48px)); max-height:calc(100dvh - 48px);
+   border:1px solid #d8e4f2; border-radius:20px; background:#fff;
+   box-shadow:0 16px 60px #172b4d26;
+   font-family:'Segoe UI',system-ui,sans-serif;
+ }
+ #ptisAssistantPanel .ptis-assistant-header {
+   min-height:86px; padding:18px; background:#fff; color:#243b5b;
+   border-bottom:1px solid #e8eef6; box-shadow:none; flex-shrink:0;
+ }
+ #ptisAssistantPanel .ptis-assistant-header::before,
+ #ptisAssistantPanel .ptis-assistant-header::after { display:none; }
+ #ptisAssistantPanel .ptis-assistant-header-info { gap:12px; min-width:0; }
+ #ptisAssistantPanel .ptis-assistant-header-avatar {
+   width:44px; height:44px; padding:3px; object-fit:cover; border:1px solid #dbe8fb;
+   border-radius:13px; background:#edf4ff; box-shadow:none;
+ }
+ #ptisAssistantPanel h3 { font-size:15px; font-weight:700; color:#243b5b; line-height:1.4; text-shadow:none; }
+ #ptisAssistantPanel .ptis-assistant-header p { margin-top:4px; color:#64748b; font-size:11px; }
+ #ptisAssistantPanel .ptis-status-dot { display:none; }
+ #ptisAssistantClose { display:grid; place-items:center; width:34px; height:34px; flex-shrink:0; border:1px solid #e2e8f0; border-radius:10px; background:#f8fafc; color:#64748b; }
+ #ptisAssistantClose:hover { background:#edf3ff; color:#1d4ed8; transform:none; }
+ #ptisAssistantPanel .ptis-assistant-content { flex:1; min-height:0; background:#fff; padding:0; }
+ #ptisAssistantPanel iframe { display:block; width:100%; height:100%; border:0; }
+ .ptis-assistant-footer { flex-shrink:0; padding:10px 16px; border-top:1px solid #e8eef6; background:#f8fafc; color:#64748b; font-size:10px; text-align:center; }
+}
+@media screen and (max-width:640px) {
+ #ptisAssistantButton { right:16px; bottom:max(16px,env(safe-area-inset-bottom)); width:54px; height:54px; min-height:54px; padding:6px; border-radius:17px; }
+ #ptisAssistantButton .ptis-assistant-avatar { width:40px; height:40px; border-radius:11px; }
+ #ptisAssistantButton .ptis-assistant-label, #ptisAssistantButton .ptis-assistant-launch-icon { display:none; }
+ #ptisAssistantPanel { right:12px; bottom:max(12px,env(safe-area-inset-bottom)); width:calc(100vw - 24px); height:min(680px,calc(100dvh - 24px)); max-height:calc(100dvh - 24px); border-radius:18px; }
+ #ptisAssistantPanel .ptis-assistant-header { padding:14px; min-height:78px; }
+}
+@media screen and (prefers-reduced-motion:reduce) {
+ #ptisAssistantButton, #ptisAssistantPanel { transition:none; animation:none; }
+}

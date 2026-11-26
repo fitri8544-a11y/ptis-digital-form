@@ -35,7 +35,7 @@ href="assets/logo.png">
 rel="icon"
 href="assets/favicon/favicon.png">
 
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/tailwind.css">
 
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
@@ -44,7 +44,7 @@ href="assets/favicon/favicon.png">
 
 <link
 rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+href="css/fontawesome.css">
 
 <link
 rel="stylesheet"
@@ -68,7 +68,7 @@ href="css/forms.css">
 
 <link
 rel="stylesheet"
-href="css/wizard.css">
+href="css/wizard.css?v=records-3">
 
 <link
 rel="stylesheet"
@@ -78,6 +78,9 @@ href="css/responsive.css">
 rel="stylesheet"
 href="css/print.css">
 
+<link rel="stylesheet" href="css/refresh.css?v=knowledge-4">
+<link rel="stylesheet" href="css/print-preview.css?v=5">
+<link rel="stylesheet" href="css/assistant-refresh.css?v=6">
 </head>
 
 <body
@@ -141,7 +144,7 @@ id="footer">
 
 <script src="js/auth.js"></script>
 
-<script src="js/firestore.js"></script>
+<script src="js/firestore.js?v=records-3"></script>
 
 <script src="js/print-engine.js"></script>
 
@@ -157,13 +160,13 @@ id="footer">
 
 <script src="js/menu.js"></script>
 
-<script src="js/navigation.js"></script>
+<script src="js/navigation.js?v=records-3"></script>
 
 <script src="js/module-navigation.js"></script>
 
 <script src="js/admin.js"></script>
 
-<script src="js/admin-records.js"></script>
+<script src="js/admin-records.js?v=delete-7"></script>
 
 <script src="js/admin-analytics.js"></script>
 
@@ -175,10 +178,10 @@ id="footer">
 
 <script src="js/kewpa19.js"></script>
 
-<script src="js/kewpa3.js"></script>
+<script src="js/kewpa3.js?v=records-3"></script>
 
 <!-- PTIS DIGITAL FORM ASSISTANT -->
-<script src="js/assistant.js"></script>
+<script src="js/assistant.js?v=6"></script>
 
 <!-- =========================================
      PTIS DIGITAL FORM ASSISTANT
@@ -189,7 +192,9 @@ id="footer">
 <button
     id="ptisAssistantButton"
     type="button"
-    aria-label="Buka PTIS Digital Form Assistant"
+    aria-label="Buka Pembantu PTIS"
+    aria-controls="ptisAssistantPanel"
+    aria-expanded="false"
 >
 
     <div class="ptis-assistant-avatar">
@@ -206,15 +211,16 @@ id="footer">
     <div class="ptis-assistant-label">
 
         <span class="ptis-assistant-help">
-            Selamat Datang 👋
+            Pembantu PTIS
         </span>
 
         <span class="ptis-assistant-click">
-            Klik saya
+            Borang & panduan digital
         </span>
 
     </div>
 
+    <span class="ptis-assistant-launch-icon" aria-hidden="true"><i class="fa-regular fa-comment-dots"></i></span>
 </button>
 
 
@@ -223,7 +229,10 @@ id="footer">
 <div
     id="ptisAssistantPanel"
     class="ptis-assistant-panel"
+    role="dialog"
+    aria-labelledby="ptisAssistantTitle"
     aria-hidden="true"
+    inert
 >
 
     <!-- HEADER -->
@@ -240,13 +249,13 @@ id="footer">
 
             <div>
 
-                <h3>
-                    PTIS Digital Form Assistant
+                <h3 id="ptisAssistantTitle">
+                    Pembantu PTIS
                 </h3>
 
                 <p>
                     <span class="ptis-status-dot"></span>
-                    Online • Sedia Membantu
+                    Bantuan borang dan panduan digital
                 </p>
 
             </div>
@@ -278,6 +287,7 @@ id="footer">
 
     </div>
 
+    <div class="ptis-assistant-footer">PTIS Digital Form · Pasukan Teknikal ICT Daerah Baling</div>
 </div>
 
 </body>

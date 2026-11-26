@@ -48,11 +48,7 @@ border-radius:28px;
 
 }
 
-.hidden{
-
-display:none;
-
-}
+/* Visibility utilities are provided by Tailwind, including responsive variants. */
 
 .wizard-page{
 
